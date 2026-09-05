@@ -1,0 +1,99 @@
+import type { Tool } from '../types/tool'
+
+export const tools: Tool[] = [
+  {
+    id: 'image-to-pdf',
+    name: 'Image to PDF',
+    description:
+      'Combine multiple images into a single PDF file.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/image-to-pdf',
+    keywords: ['image', 'pdf', 'jpg', 'png', 'convert'],
+    featured: true,
+  },
+
+  {
+    id: 'image-compressor',
+    name: 'Image Compressor',
+    description:
+      'Reduce image file size directly in your browser.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/image-compressor',
+    keywords: [
+      'image',
+      'compress',
+      'compression',
+      'jpg',
+      'png',
+      'size',
+    ],
+    featured: true,
+  },
+
+  {
+    id: 'qr-generator',
+    name: 'QR Code Generator',
+    description:
+      'Create clean QR codes for links and text.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/qr-generator',
+    keywords: ['qr', 'qrcode', 'url', 'link', 'text'],
+    featured: true,
+  },
+
+  {
+    id: 'whatsapp-link',
+    name: 'WhatsApp Link',
+    description:
+      'Create WhatsApp links with pre-filled messages.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/whatsapp-link',
+    keywords: [
+      'whatsapp',
+      'wa',
+      'message',
+      'link',
+      'chat',
+    ],
+    featured: true,
+  },
+
+  {
+    id: 'youtube-downloader',
+    name: 'YouTube Downloader',
+    description:
+      'Save authorized YouTube media with your local service.',
+    category: 'media',
+    runtime: 'local-service',
+    path: '/tools/youtube-downloader',
+    keywords: [
+      'youtube',
+      'video',
+      'audio',
+      'download',
+      'mp3',
+    ],
+    featured: true,
+  },
+
+  {
+    id: 'tiktok-downloader',
+    name: 'TikTok Downloader',
+    description:
+      'Save authorized TikTok media with your local service.',
+    category: 'media',
+    runtime: 'local-service',
+    path: '/tools/tiktok-downloader',
+    keywords: [
+      'tiktok',
+      'video',
+      'audio',
+      'download',
+    ],
+    featured: true,
+  },
+]

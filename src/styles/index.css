@@ -1,0 +1,110 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ================================
+   AP TOOLS DESIGN TOKENS
+================================ */
+
+:root {
+  --background: #f8fafc;
+
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --surface-hover: #f0f9ff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --border: #e2e8f0;
+  --border-hover: #bae6fd;
+
+  --primary: #38bdf8;
+  --primary-hover: #0ea5e9;
+  --primary-strong: #0284c7;
+
+  --primary-soft: #f0f9ff;
+  --primary-soft-strong: #e0f2fe;
+  --primary-border: #bae6fd;
+  --primary-text: #0369a1;
+
+  --accent: #818cf8;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+.dark {
+  --background: #080d14;
+
+  --surface: #0f172a;
+  --surface-soft: #111827;
+  --surface-hover: #111e2e;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  --border: #1e293b;
+  --border-hover: #164e63;
+
+  --primary: #38bdf8;
+  --primary-hover: #7dd3fc;
+  --primary-strong: #7dd3fc;
+
+  --primary-soft: #0c2230;
+  --primary-soft-strong: #0f2d40;
+  --primary-border: #164e63;
+  --primary-text: #7dd3fc;
+
+  --accent: #818cf8;
+}
+
+/* ================================
+   GLOBAL BASE
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: var(--background);
+  color: var(--text-primary);
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
