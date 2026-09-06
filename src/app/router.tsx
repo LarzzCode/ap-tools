@@ -84,11 +84,11 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: '/tools/tiktok-downloader',
+        path: '/tools/remove-background',
         lazy: async () => {
-          const { default: Component } =
+          const { default: Component } = 
             await import(
-              '../pages/tools/TikTokDownloader'
+            '../pages/tools/RemoveBackground'
             )
 
           return { Component }

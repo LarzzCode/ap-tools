@@ -79,21 +79,32 @@ export const tools: Tool[] = [
     ],
     featured: true,
   },
-
   {
-    id: 'tiktok-downloader',
-    name: 'TikTok Downloader',
+    id: 'remove-background',
+
+    name: 'Remove Background',
+
     description:
-      'Save authorized TikTok media with your local service.',
-    category: 'media',
-    runtime: 'local-service',
-    path: '/tools/tiktok-downloader',
+      'Remove image backgrounds locally and export transparent or solid-color photos.',
+
+    category: 'image',
+
+    runtime: 'browser',
+
+    path: '/tools/remove-background',
+
     keywords: [
-      'tiktok',
-      'video',
-      'audio',
-      'download',
+      'remove background',
+      'background',
+      'transparent',
+      'png',
+      'photo',
+      'pas foto',
+      'red background',
+      'blue background',
+      'job application',
     ],
+
     featured: true,
   },
 ]
