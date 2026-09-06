@@ -1,7 +1,6 @@
-import { url } from "inspector/promises"
-
 export const LOCAL_SERVICE_URL =
   'http://127.0.0.1:8787'
+
 
 export interface LocalServiceHealth {
   status: string
@@ -9,10 +8,12 @@ export interface LocalServiceHealth {
   version: string
 }
 
+
 export type MediaFormatKind =
   | 'combined'
   | 'video'
   | 'audio'
+
 
 export interface MediaFormat {
   format_id: string
@@ -33,6 +34,7 @@ export interface MediaFormat {
   total_bitrate: number | null
 }
 
+
 export interface MediaAnalysis {
   id: string
   title: string
@@ -48,13 +50,16 @@ export interface MediaAnalysis {
   formats: MediaFormat[]
 }
 
+
 export type MediaDownloadMode =
   | 'video'
   | 'audio'
 
+
 export type MediaAudioFormat =
   | 'mp3'
   | 'm4a'
+
 
 export interface MediaDownloadRequest {
   url: string
@@ -64,18 +69,73 @@ export interface MediaDownloadRequest {
   audio_format?: MediaAudioFormat
 }
 
+
 export interface MediaDownloadPrepared {
   download_id: string
   filename: string
   download_url: string
 }
 
-export async function prepareMediaDownload(
-  payload: MediaDownloadRequest,
+
+interface ApiErrorResponse {
+  detail?: string
+}
+
+
+type LocalRequestInit =
+  RequestInit & {
+    targetAddressSpace?: 'loopback'
+  }
+
+
+async function localFetch(
+  path: string,
+  init: RequestInit = {},
+) {
+  const options: LocalRequestInit = {
+    ...init,
+    targetAddressSpace: 'loopback',
+  }
+
+  return fetch(
+    `${LOCAL_SERVICE_URL}${path}`,
+    options,
+  )
+}
+
+
+export async function checkLocalService(
   signal?: AbortSignal,
-): Promise<MediaDownloadPrepared> {
-  const response = await fetch(
-    `${LOCAL_SERVICE_URL}/media/download/prepare`,
+): Promise<LocalServiceHealth> {
+  const response = await localFetch(
+    '/health',
+    {
+      method: 'GET',
+      signal,
+    },
+  )
+
+  if (!response.ok) {
+    throw new Error(
+      `Local service returned ${response.status}.`,
+    )
+  }
+
+  return response.json() as
+    Promise<LocalServiceHealth>
+}
+
+
+export async function analyzeYouTubeMedia(
+  url: string,
+  signal?: AbortSignal,
+): Promise<MediaAnalysis> {
+  const payload = {
+    url: url.trim(),
+  }
+
+  const response = await localFetch(
+    '/media/analyze',
     {
       method: 'POST',
 
@@ -83,17 +143,73 @@ export async function prepareMediaDownload(
         'Content-Type': 'application/json',
       },
 
-      body: JSON.stringify({
-        url: payload.url,
-        mode: payload.mode,
-        quality:
-          payload.mode === 'video'
-            ? payload.quality ?? null
-            : null,
+      body: JSON.stringify(payload),
 
-        audio_format:
-          payload.audio_format ?? 'mp3',
-      }),
+      signal,
+    },
+  )
+
+  const data = (await response
+    .json()
+    .catch(() => null)) as
+    | MediaAnalysis
+    | ApiErrorResponse
+    | null
+
+  if (!response.ok) {
+    const message =
+      data &&
+      'detail' in data &&
+      typeof data.detail === 'string'
+        ? data.detail
+        : `Media analysis failed with status ${response.status}.`
+
+    throw new Error(message)
+  }
+
+  if (
+    !data ||
+    !('title' in data)
+  ) {
+    throw new Error(
+      'Local service returned an unexpected response.',
+    )
+  }
+
+  return data
+}
+
+
+export async function prepareMediaDownload(
+  payload: MediaDownloadRequest,
+  signal?: AbortSignal,
+): Promise<MediaDownloadPrepared> {
+  const requestBody = {
+    url: payload.url.trim(),
+
+    mode: payload.mode,
+
+    quality:
+      payload.mode === 'video'
+        ? payload.quality ?? null
+        : null,
+
+    audio_format:
+      payload.audio_format ?? 'mp3',
+  }
+
+  const response = await localFetch(
+    '/media/download/prepare',
+    {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(
+        requestBody,
+      ),
 
       signal,
     },
@@ -129,6 +245,7 @@ export async function prepareMediaDownload(
   return data
 }
 
+
 export function getLocalDownloadUrl(
   downloadUrl: string,
 ) {
@@ -137,111 +254,3 @@ export function getLocalDownloadUrl(
     LOCAL_SERVICE_URL,
   ).toString()
 }
-
-interface ApiErrorResponse {
-  detail?: string
-}
-
-function createLocalRequest(
-  path: string,
-  init: RequestInit = {},
-) {
-  const url =
-    `${LOCAL_SERVICE_URL}${path}`
-
-  return new Request(url, {
-    ...init,
-
-    // Local Network Access.
-    // Cast sementara karena DOM typings
-    // browser/TS bisa berbeda versi.
-    targetAddressSpace: 'loopback',
-  } as RequestInit)
-}
-
-export async function checkLocalService(
-  signal?: AbortSignal,
-): Promise<LocalServiceHealth> {
-  const request = createLocalRequest(
-    '/media/analyze',
-    {
-      method: 'POST',
-
-      headers: {
-        'Content-Type':
-          'application/json',
-      },
-
-      body: JSON.stringify({
-        url,
-      }),
-
-      signal,
-    },
-  )
-
-  const response =
-    await fetch(request)
-
-  if (!response.ok) {
-    throw new Error(
-      `Local service returned ${response.status}.`,
-    )
-  }
-
-  return response.json() as
-    Promise<LocalServiceHealth>
-}
-
-
-
-export async function analyzeYouTubeMedia(
-  url: string,
-  signal?: AbortSignal,
-): Promise<MediaAnalysis> {
-  const response = await fetch(
-    `${LOCAL_SERVICE_URL}/media/analyze`,
-    {
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        url,
-      }),
-
-      signal,
-    },
-  )
-
-  const data = (await response
-    .json()
-    .catch(() => null)) as
-    | MediaAnalysis
-    | ApiErrorResponse
-    | null
-
-  if (!response.ok) {
-    const message =
-      data &&
-      'detail' in data &&
-      typeof data.detail === 'string'
-        ? data.detail
-        : `Media analysis failed with status ${response.status}.`
-
-    throw new Error(message)
-  }
-
-  if (!data || !('title' in data)) {
-    throw new Error(
-      'Local service returned an unexpected response.',
-    )
-  }
-
-  return data
-}
-
-
-
