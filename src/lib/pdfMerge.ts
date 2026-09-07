@@ -123,11 +123,11 @@ export async function mergePdfFiles(
   )
 
   mergedDocument.setCreator(
-    'AP Tools',
+    'Ditya Tools',
   )
 
   mergedDocument.setProducer(
-    'AP Tools',
+    'Ditya Tools',
   )
 
   const outputBytes =

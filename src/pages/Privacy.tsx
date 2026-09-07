@@ -20,7 +20,7 @@ const sections = [
     content: (
       <>
         <p>
-          Most AP Tools utilities process
+          Most Ditya Tools utilities process
           your files directly inside your
           browser whenever possible.
         </p>
@@ -30,7 +30,7 @@ const sections = [
           Compressor, Image to PDF, PDF Merge,
           and PDF Split. Your selected images
           and PDF files are not uploaded to an
-          AP Tools server for these operations.
+          Ditya Tools server for these operations.
         </p>
       </>
     ),
@@ -47,7 +47,7 @@ const sections = [
           Remove Background performs AI
           processing on your device. Your
           selected image is processed locally
-          and is not uploaded to AP Tools.
+          and is not uploaded to Ditya Tools.
         </p>
 
         <p className="mt-3">
@@ -70,7 +70,7 @@ const sections = [
     content: (
       <>
         <p>
-          Some media features require AP Tools
+          Some media features require Ditya Tools
           Local Service running on your own
           computer.
         </p>
@@ -85,7 +85,7 @@ const sections = [
         </p>
 
         <p className="mt-3">
-          AP Tools does not use its hosted
+          Ditya Tools does not use its hosted
           frontend as a storage server for the
           downloaded media.
         </p>
@@ -101,7 +101,7 @@ const sections = [
     content: (
       <>
         <p>
-          AP Tools may use privacy-focused web
+          Ditya Tools may use privacy-focused web
           analytics provided by Vercel to
           understand general website usage.
         </p>
@@ -132,12 +132,12 @@ const sections = [
     content: (
       <>
         <p>
-          AP Tools does not require you to create
+          Ditya Tools does not require you to create
           an account to use its current tools.
         </p>
 
         <p className="mt-3">
-          AP Tools does not intentionally ask for
+          Ditya Tools does not intentionally ask for
           your name, email address, password, or
           other account information simply to use
           the utilities available on this site.
@@ -227,7 +227,7 @@ export default function Privacy() {
               text-[var(--text-secondary)]
             "
           >
-            AP Tools is designed around a simple
+            Ditya Tools is designed around a simple
             principle: process as much as possible
             on your own device and collect only
             what is useful for operating and
@@ -455,7 +455,7 @@ export default function Privacy() {
               text-[var(--text-secondary)]
             "
           >
-            AP Tools may store small preferences
+            Ditya Tools may store small preferences
             in your browser, such as your selected
             theme or favorite tools. These settings
             help preserve your experience between
@@ -508,7 +508,7 @@ export default function Privacy() {
             you have the appropriate rights or
             permission to process, convert, save,
             or download the files and media you use
-            with AP Tools.
+            with Ditya Tools.
           </p>
         </section>
 
@@ -542,7 +542,7 @@ export default function Privacy() {
             "
           >
             This privacy notice may be updated as
-            AP Tools adds new features, services,
+            Ditya Tools adds new features, services,
             or integrations. The date shown at the
             top of this page indicates the latest
             revision.

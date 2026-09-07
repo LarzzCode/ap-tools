@@ -40,7 +40,7 @@ export default function Header() {
               text-[var(--text-primary)]
             "
           >
-            AP Tools
+            Ditya Tools
           </span>
         </Link>
 

@@ -1291,7 +1291,7 @@ export default function YouTubeDownloader() {
                   "
                 >
                   Keep this page open.
-                  AP Tools is preparing
+                  Ditya Tools is preparing
                   the file locally.
                 </p>
               )}

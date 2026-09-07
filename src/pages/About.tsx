@@ -21,7 +21,7 @@ const principles = [
     title: 'Open. Use. Done.',
 
     description:
-      'AP Tools is built for quick tasks without unnecessary steps, accounts, or clutter.',
+      'Ditya Tools is built for quick tasks without unnecessary steps, accounts, or clutter.',
   },
 
   {
@@ -122,7 +122,7 @@ export default function About() {
               sm:text-4xl
             "
           >
-            About AP Tools
+            About Ditya Tools
           </h1>
 
 
@@ -135,7 +135,7 @@ export default function About() {
               text-[var(--text-secondary)]
             "
           >
-            AP Tools is a collection
+            Ditya Tools is a collection
             of focused utilities for
             everyday image, PDF,
             media, and productivity
@@ -359,14 +359,14 @@ export default function About() {
                   text-[var(--text-secondary)]
                 "
               >
-                Many AP Tools features,
+                Many Ditya Tools features,
                 including image utilities
                 and PDF tools, perform
                 their work directly in
                 your browser. This keeps
                 the workflow fast and
                 avoids uploading your
-                working files to an AP
+                working files to an Ditya
                 Tools processing server.
               </p>
             </div>
@@ -426,7 +426,7 @@ export default function About() {
                 Features that need
                 capabilities unavailable
                 inside a normal browser
-                can use AP Tools Local
+                can use Ditya Tools Local
                 Service running on your
                 own computer.
               </p>
@@ -478,7 +478,7 @@ export default function About() {
               text-[var(--text-secondary)]
             "
           >
-            AP Tools currently includes
+            Ditya Tools currently includes
             utilities across quick tasks,
             images, PDFs, and media.
           </p>
@@ -673,7 +673,7 @@ export default function About() {
                 text-[var(--text-secondary)]
               "
             >
-              AP Tools is an evolving
+              Ditya Tools is an evolving
               project. New utilities are
               added when they solve a
               useful problem and fit the

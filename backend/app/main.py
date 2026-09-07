@@ -5,7 +5,7 @@ from app.routers.media import router as media_router
 
 
 app = FastAPI(
-    title="AP Tools Local Service",
+    title="Ditya Tools Local Service",
     version="0.1.0",
 )
 
@@ -38,7 +38,7 @@ app.include_router(media_router)
 @app.get("/")
 def root():
     return {
-        "name": "AP Tools Local Service",
+        "name": "Ditya Tools Local Service",
         "status": "running",
     }
 

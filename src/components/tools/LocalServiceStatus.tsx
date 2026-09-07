@@ -58,7 +58,7 @@ export default function LocalServiceStatus({
               text-[var(--text-muted)]
             "
           >
-            Looking for AP Tools on this device.
+            Looking for Ditya Tools on this device.
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ export default function LocalServiceStatus({
               text-[var(--text-muted)]
             "
           >
-            Start AP Tools Local Service before
+            Start Ditya Tools Local Service before
             using media tools.
           </p>
 
