@@ -110,6 +110,21 @@ export const router = createBrowserRouter([
           }
         },
       },
+      {
+        path: '/tools/pdf-split',
+
+        lazy: async () => {
+          const {
+            default: Component,
+          } = await import(
+            '../pages/tools/PdfSplit'
+          )
+
+          return {
+            Component,
+          }
+        },
+      },
 
       {
         path: '/about',

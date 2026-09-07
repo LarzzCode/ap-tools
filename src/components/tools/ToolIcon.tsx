@@ -2,7 +2,6 @@ import {
   FileImage,
   Images,
   MessageCircle,
-  Music2,
   Play,
   QrCode,
 } from 'lucide-react'
@@ -36,9 +35,6 @@ export default function ToolIcon({
 
     case 'youtube-downloader':
       return <Play {...props} />
-
-    case 'tiktok-downloader':
-      return <Music2 {...props} />
 
     default:
       return <FileImage {...props} />

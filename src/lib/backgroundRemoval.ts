@@ -108,15 +108,6 @@ async function createFastSegmenter() {
     {
       device: 'wasm',
       dtype: 'q8',
-
-      progress_callback: (
-        progress: unknown,
-      ) => {
-        console.info(
-          '[RemoveBG Fast]',
-          progress,
-        )
-      },
     },
   )
 }
@@ -199,11 +190,6 @@ async function createQualityEngine() {
   } = await import(
     '@huggingface/transformers'
   )
-
-  console.info(
-    '[RemoveBG Quality] Loading model...',
-  )
-
   const [
     model,
     processor,
@@ -214,37 +200,13 @@ async function createQualityEngine() {
         {
           device: 'webgpu',
           dtype: 'fp16',
-
-          progress_callback: (
-            progress: unknown,
-          ) => {
-            console.info(
-              '[RemoveBG Quality model]',
-              progress,
-            )
-          },
         },
       ),
 
       AutoProcessor.from_pretrained(
         QUALITY_MODEL,
-        {
-          progress_callback: (
-            progress: unknown,
-          ) => {
-            console.info(
-              '[RemoveBG Quality processor]',
-              progress,
-            )
-          },
-        },
       ),
     ])
-
-  console.info(
-    '[RemoveBG Quality] Model ready.',
-  )
-
   return {
     model,
     processor,
@@ -292,18 +254,10 @@ async function removeQuality(
   } =
     await getQualityEngine()
 
-  console.info(
-    '[RemoveBG Quality] Reading image...',
-  )
-
   const image =
     await RawImage.fromBlob(
       file,
     )
-
-  console.info(
-    '[RemoveBG Quality] Preparing image...',
-  )
 
   const processed =
     await processor(
@@ -318,10 +272,6 @@ async function removeQuality(
       'Unable to prepare the image for Quality mode.',
     )
   }
-
-  console.info(
-    '[RemoveBG Quality] Starting inference...',
-  )
 
   const output =
     await model({
@@ -386,11 +336,6 @@ async function removeQuality(
   foreground.putAlpha(
     mask,
   )
-
-  console.info(
-    '[RemoveBG Quality] Inference finished.',
-  )
-
   return rawImageToPngBlob(
     foreground,
   )

@@ -131,4 +131,29 @@ export const tools: Tool[] = [
 
     featured: true,
   },
+  {
+    id: 'pdf-split',
+
+    name: 'PDF Split',
+
+    description:
+      'Extract selected pages from a PDF directly in your browser.',
+
+    category: 'pdf',
+
+    runtime: 'browser',
+
+    path: '/tools/pdf-split',
+
+    keywords: [
+      'pdf',
+      'split',
+      'extract',
+      'pages',
+      'separate',
+      'document',
+    ],
+
+    featured: true,
+  },
 ]
