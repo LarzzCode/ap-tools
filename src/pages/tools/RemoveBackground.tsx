@@ -409,17 +409,13 @@ export default function RemoveBackground() {
     clearResult()
 
     try {
-      setStage(
-        'loading-model',
-      )
+      setStage('loading-model')
 
       await preloadBackgroundRemovalModel(
         removalMode,
       )
 
-      setStage(
-        'processing',
-      )
+      setStage('processing')
 
       const blob =
         await removeImageBackground(
@@ -428,23 +424,52 @@ export default function RemoveBackground() {
         )
 
       const resultUrl =
-        URL.createObjectURL(
-          blob,
-        )
+        URL.createObjectURL(blob)
 
-      setResultBlob(
-        blob,
-      )
+      setResultBlob(blob)
+      setResultPreview(resultUrl)
+    } catch (caughtError) {
+      if (removalMode === 'quality') {
+        try {
+          setError(
+            'Quality mode is not supported on this device. Switched to Fast mode.',
+          )
 
-      setResultPreview(
-        resultUrl,
-      )
-    } catch (
-      caughtError
-    ) {
+          setRemovalMode('fast')
+          setStage('loading-model')
+
+          await preloadBackgroundRemovalModel(
+            'fast',
+          )
+
+          setStage('processing')
+
+          const fallbackBlob =
+            await removeImageBackground(
+              file,
+              'fast',
+            )
+
+          const fallbackUrl =
+            URL.createObjectURL(
+              fallbackBlob,
+            )
+
+          setResultBlob(
+            fallbackBlob,
+          )
+          setResultPreview(
+            fallbackUrl,
+          )
+
+          return
+        } catch {
+          // lanjut ke error umum di bawah
+        }
+      }
+
       if (
-        caughtError
-        instanceof Error
+        caughtError instanceof Error
       ) {
         setError(
           caughtError.message,
@@ -455,9 +480,7 @@ export default function RemoveBackground() {
         )
       }
     } finally {
-      setStage(
-        'idle',
-      )
+      setStage('idle')
     }
   }
 
@@ -883,7 +906,7 @@ export default function RemoveBackground() {
                     text-amber-500
                   "
                 >
-                  WebGPU is not available in this browser.
+                  Quality mode is currently available on desktop browsers only.
                 </p>
               )}
             </button>

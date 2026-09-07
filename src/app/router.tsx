@@ -96,6 +96,22 @@ export const router = createBrowserRouter([
       },
 
       {
+        path: '/tools/pdf-merge',
+
+        lazy: async () => {
+          const {
+            default: Component,
+          } = await import(
+            '../pages/tools/PdfMerge'
+          )
+
+          return {
+            Component,
+          }
+        },
+      },
+
+      {
         path: '/about',
         lazy: async () => {
           const { default: Component } =

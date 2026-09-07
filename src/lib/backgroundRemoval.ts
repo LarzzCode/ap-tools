@@ -403,10 +403,24 @@ async function removeQuality(
 
 
 export function supportsQualityBackgroundRemoval() {
-  return (
-    typeof navigator !==
-      'undefined' &&
+  if (typeof navigator === 'undefined') {
+    return false
+  }
+
+  const hasWebGPU =
     'gpu' in navigator
+
+  const userAgent =
+    navigator.userAgent.toLowerCase()
+
+  const isMobile =
+    /android|iphone|ipad|ipod|mobile/i.test(
+      userAgent,
+    )
+
+  return (
+    hasWebGPU &&
+    !isMobile
   )
 }
 
