@@ -76,7 +76,7 @@ export default function QrGenerator() {
 
     downloadDataUrl(
       qrDataUrl,
-      `ap-tools-qr-${size}.png`,
+      `ditya-tools-qr-${size}.png`,
     )
   }
 

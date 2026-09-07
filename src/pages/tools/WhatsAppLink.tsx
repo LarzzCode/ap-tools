@@ -96,7 +96,7 @@ export default function WhatsAppLink() {
 
     downloadDataUrl(
       qrDataUrl,
-      'ap-tools-whatsapp-qr.png',
+      'ditya-tools-whatsapp-qr.png',
     )
   }
 

@@ -328,7 +328,7 @@ export default function ImageToPdf() {
 
     downloadBlob(
       pdfBlob,
-      'ap-tools-images.pdf',
+      'ditya-tools-images.pdf',
     )
   }
 

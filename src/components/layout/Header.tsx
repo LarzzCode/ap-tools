@@ -1,4 +1,3 @@
-import { Boxes } from 'lucide-react'
 import { Link, NavLink } from 'react-router'
 
 import ThemeToggle from '../ui/ThemeToggle'
@@ -23,16 +22,12 @@ export default function Header() {
           to="/"
           className="flex items-center gap-3"
         >
-          <div
-            className="
-              flex h-9 w-9 items-center justify-center
-              rounded-xl
-              bg-[var(--primary-soft-strong)]
-              text-[var(--primary-strong)]
-            "
-          >
-            <Boxes size={19} />
-          </div>
+              <img
+                src="/favicon.svg"
+                alt="Ditya Tools"
+                className="h-9 w-9 rounded-2xl"
+              />
+  
 
           <span
             className="

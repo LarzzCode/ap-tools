@@ -389,7 +389,7 @@ def safe_filename(value: str) -> str:
     cleaned = cleaned.strip().rstrip(".")
 
     if not cleaned:
-        return "ap-tools-media"
+        return "ditya-tools-media"
 
     return cleaned[:120]
 
@@ -439,7 +439,7 @@ def prepare_youtube_download(
 
     temp_directory = Path(
         tempfile.mkdtemp(
-            prefix="ap-tools-media-",
+            prefix="ditya-tools-media-",
         )
     )
 
@@ -530,7 +530,7 @@ def prepare_youtube_download(
     )
 
     title = safe_filename(
-        title or "ap-tools-media"
+        title or "ditya-tools-media"
     )
 
     extension = (

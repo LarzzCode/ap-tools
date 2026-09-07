@@ -2,10 +2,13 @@ import { createBrowserRouter } from 'react-router'
 
 import AppLayout from '../components/layout/AppLayout'
 import Home from '../pages/Home'
+import AppError from '../pages/AppError'
 
 export const router = createBrowserRouter([
   {
     Component: AppLayout,
+
+    ErrorBoundary: AppError,
 
     children: [
       {
