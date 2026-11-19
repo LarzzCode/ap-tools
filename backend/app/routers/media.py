@@ -1,8 +1,14 @@
 import asyncio
+import shutil
+import tempfile
+from pathlib import Path
 
 from fastapi import (
     APIRouter,
+    File,
+    Form,
     HTTPException,
+    UploadFile,
 )
 
 from fastapi.responses import FileResponse
@@ -15,6 +21,7 @@ from app.models.media import (
     MediaDownloadRequest,
 )
 
+from app.services.converter import convert_local_media
 from app.services.media import (
     MediaAnalysisError,
     MediaDownloadError,
@@ -85,6 +92,46 @@ async def prepare_download(
             status_code=422,
             detail=str(error),
         ) from error
+
+
+@router.post(
+    "/local/convert",
+    response_model=MediaDownloadPrepared,
+)
+async def convert_media(
+    file: UploadFile = File(...),
+    output_format: str = Form("mp4"),
+    preset: str = Form("balanced"),
+    start_time: str | None = Form(None),
+    end_time: str | None = Form(None),
+):
+    upload_dir = Path(
+        tempfile.mkdtemp(prefix="ditya-tools-upload-")
+    )
+    suffix = Path(file.filename or "input.bin").suffix or ".bin"
+    source_path = upload_dir / f"source{suffix}"
+
+    try:
+        with source_path.open("wb") as handle:
+            shutil.copyfileobj(file.file, handle)
+
+        return await asyncio.to_thread(
+            convert_local_media,
+            source_path,
+            file.filename or "media",
+            output_format,
+            preset,
+            start_time,
+            end_time,
+        )
+    except MediaDownloadError as error:
+        raise HTTPException(
+            status_code=422,
+            detail=str(error),
+        ) from error
+    finally:
+        await file.close()
+        cleanup_directory(upload_dir)
 
 
 @router.get(

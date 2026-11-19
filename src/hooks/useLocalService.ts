@@ -50,8 +50,34 @@ export function useLocalService() {
     }, [])
 
   useEffect(() => {
-    void checkConnection()
-  }, [checkConnection])
+    let active = true
+
+    async function runInitialCheck() {
+      const controller = new AbortController()
+      const timeoutId = window.setTimeout(() => {
+        controller.abort()
+      }, 2500)
+
+      try {
+        const result = await checkLocalService(controller.signal)
+        if (!active) return
+        setHealth(result)
+        setStatus('connected')
+      } catch {
+        if (!active) return
+        setHealth(null)
+        setStatus('offline')
+      } finally {
+        window.clearTimeout(timeoutId)
+      }
+    }
+
+    void runInitialCheck()
+
+    return () => {
+      active = false
+    }
+  }, [])
 
   return {
     status,

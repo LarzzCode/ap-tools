@@ -1,9 +1,20 @@
 import {
+  Braces,
+  Eraser,
   FileImage,
+  FileSignature,
+  Film,
+  IdCard,
   Images,
+  Link2Off,
+  Merge,
   MessageCircle,
   Play,
   QrCode,
+  ScanLine,
+  Scissors,
+  ShieldCheck,
+  Type,
 } from 'lucide-react'
 
 interface ToolIconProps {
@@ -27,14 +38,47 @@ export default function ToolIcon({
     case 'image-compressor':
       return <Images {...props} />
 
+    case 'remove-background':
+      return <Eraser {...props} />
+
+    case 'pas-foto':
+      return <IdCard {...props} />
+
+    case 'image-privacy':
+      return <ShieldCheck {...props} />
+
+    case 'pdf-merge':
+      return <Merge {...props} />
+
+    case 'pdf-split':
+      return <Scissors {...props} />
+
+    case 'pdf-sign':
+      return <FileSignature {...props} />
+
+    case 'text-utilities':
+      return <Type {...props} />
+
+    case 'json-diff':
+      return <Braces {...props} />
+
     case 'qr-generator':
       return <QrCode {...props} />
+
+    case 'qr-scanner':
+      return <ScanLine {...props} />
 
     case 'whatsapp-link':
       return <MessageCircle {...props} />
 
+    case 'clean-url':
+      return <Link2Off {...props} />
+
     case 'youtube-downloader':
       return <Play {...props} />
+
+    case 'media-converter':
+      return <Film {...props} />
 
     default:
       return <FileImage {...props} />

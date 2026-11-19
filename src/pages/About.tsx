@@ -478,9 +478,9 @@ export default function About() {
               text-[var(--text-secondary)]
             "
           >
-            Ditya Tools currently includes
-            utilities across quick tasks,
-            images, PDFs, and media.
+            Ditya Tools includes
+            utilities across links,
+            images, PDFs, text, and media.
           </p>
 
 
@@ -490,150 +490,73 @@ export default function About() {
               grid
               gap-4
               sm:grid-cols-2
-              lg:grid-cols-4
+              lg:grid-cols-5
             "
           >
-            <div
-              className="
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--surface)]
-                p-5
-              "
-            >
-              <p
-                className="
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-wide
-                  text-[var(--text-muted)]
-                "
-              >
-                Quick
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+                Links
               </p>
-
-              <p
-                className="
-                  mt-3
-                  text-sm
-                  leading-6
-                  text-[var(--text-primary)]
-                "
-              >
+              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
                 QR Generator
                 <br />
+                QR Scanner
+                <br />
                 WhatsApp Link
+                <br />
+                Clean URL Stripper
               </p>
             </div>
 
-
-            <div
-              className="
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--surface)]
-                p-5
-              "
-            >
-              <p
-                className="
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-wide
-                  text-[var(--text-muted)]
-                "
-              >
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
                 Image
               </p>
-
-              <p
-                className="
-                  mt-3
-                  text-sm
-                  leading-6
-                  text-[var(--text-primary)]
-                "
-              >
+              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
                 Image Compressor
                 <br />
                 Remove Background
+                <br />
+                Pas Foto & Print Sheet
+                <br />
+                EXIF Stripper
               </p>
             </div>
 
-
-            <div
-              className="
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--surface)]
-                p-5
-              "
-            >
-              <p
-                className="
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-wide
-                  text-[var(--text-muted)]
-                "
-              >
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
                 PDF
               </p>
-
-              <p
-                className="
-                  mt-3
-                  text-sm
-                  leading-6
-                  text-[var(--text-primary)]
-                "
-              >
+              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
                 Image to PDF
                 <br />
                 PDF Merge
                 <br />
                 PDF Split
+                <br />
+                PDF Sign & Watermark
               </p>
             </div>
 
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
+                Text
+              </p>
+              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
+                Text Cleaner & Case
+                <br />
+                JSON Formatter & Diff
+              </p>
+            </div>
 
-            <div
-              className="
-                rounded-2xl
-                border
-                border-[var(--border)]
-                bg-[var(--surface)]
-                p-5
-              "
-            >
-              <p
-                className="
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-wide
-                  text-[var(--text-muted)]
-                "
-              >
+            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--text-muted)]">
                 Media
               </p>
-
-              <p
-                className="
-                  mt-3
-                  text-sm
-                  leading-6
-                  text-[var(--text-primary)]
-                "
-              >
-                YouTube Media
-                Downloader
+              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
+                YouTube Downloader
+                <br />
+                Media Clipper & Converter
               </p>
             </div>
           </div>

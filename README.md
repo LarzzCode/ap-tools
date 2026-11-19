@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# Ditya Tools (`ap-tools`)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simple, fast, privacy-focused everyday utilities — **No ads. No clutter. Just tools.**
 
-Currently, two official plugins are available:
+## Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend (`src/`)**: React 19 + TypeScript + Vite + Tailwind CSS v4.
+  - Most utilities run **100% locally in your browser** (`pdf-lib`, `qrcode`, `jsqr`, Canvas API, `@huggingface/transformers`).
+- **Local Service (`backend/`)**: FastAPI server running on `http://127.0.0.1:8787` for heavy media capabilities (`yt-dlp` and `ffmpeg`) without uploading your files to an external cloud server.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Running Frontend
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Cara Menyalakan Local Service (`http://127.0.0.1:8787`)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Media tools (**YouTube Downloader** & **Media Clipper & Converter**) membutuhkan **Local Service** berjalan di komputer kamu.
 
+### Prasyarat
+1. **Python 3.10+**
+2. **FFmpeg** terpasang dan ada di `PATH`:
+   - **Windows**: `winget install Gyan.FFmpeg` (lalu restart terminal)
+   - **macOS**: `brew install ffmpeg`
+   - **Linux (Ubuntu/Debian)**: `sudo apt install ffmpeg`
+
+### Setup Pertama Kali
+
+**Windows (PowerShell):**
+```powershell
+cd backend
+python -m venv .venv
+.\.venv\Scripts\pip install -r requirements.txt
 ```
+
+**macOS / Linux:**
+```bash
+cd backend
+python3 -m venv .venv
+./.venv/bin/pip install -r requirements.txt
+```
+
+### Menyalakan Local Service
+
+**Windows:**
+Dari root project:
+```powershell
+npm run backend
+```
+atau dari folder `backend`:
+```powershell
+.\.venv\Scripts\uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+**macOS / Linux:**
+Dari root project:
+```bash
+npm run backend:unix
+```
+atau dari folder `backend`:
+```bash
+./.venv/bin/uvicorn app.main:app --reload --host 127.0.0.1 --port 8787
+```
+
+Jika berhasil, buka `http://127.0.0.1:8787/health` atau klik **Check again** pada banner status di halaman tool media — status akan berubah menjadi **Local service connected**.

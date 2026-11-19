@@ -555,42 +555,39 @@ def prepare_youtube_download(
             "application/octet-stream"
         )
 
+    return register_download(
+        path=final_file,
+        directory=temp_directory,
+        filename=filename,
+        media_type=media_type,
+    )
+
+
+def register_download(
+    path: Path,
+    directory: Path,
+    filename: str,
+    media_type: str,
+) -> dict:
     download_id = uuid.uuid4().hex
 
     artifact = DownloadArtifact(
-        path=final_file,
-        directory=temp_directory,
+        path=path,
+        directory=directory,
         filename=filename,
         media_type=media_type,
         created_at=time.time(),
     )
 
     with _downloads_lock:
-        _downloads[
-            download_id
-        ] = artifact
+        _downloads[download_id] = artifact
 
     return {
-        "download_id":
-            download_id,
-
-        "filename":
-            filename,
-
-        "download_url":
-            f"/media/download/{download_id}",
+        "download_id": download_id,
+        "filename": filename,
+        "download_url": f"/media/download/{download_id}",
     }
 
-def take_download(
-    download_id: str,
-) -> DownloadArtifact | None:
-    cleanup_expired_downloads()
-
-    with _downloads_lock:
-        return _downloads.pop(
-            download_id,
-            None,
-        )
 
 def take_download(
     download_id: str,

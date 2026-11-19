@@ -4,95 +4,31 @@ export const tools: Tool[] = [
   {
     id: 'image-to-pdf',
     name: 'Image to PDF',
-    description:
-      'Combine multiple images into a single PDF file.',
+    description: 'Combine multiple images into a single PDF file.',
     category: 'image',
     runtime: 'browser',
     path: '/tools/image-to-pdf',
     keywords: ['image', 'pdf', 'jpg', 'png', 'convert'],
     featured: true,
   },
-
   {
     id: 'image-compressor',
     name: 'Image Compressor',
-    description:
-      'Reduce image file size directly in your browser.',
+    description: 'Reduce image file size directly in your browser.',
     category: 'image',
     runtime: 'browser',
     path: '/tools/image-compressor',
-    keywords: [
-      'image',
-      'compress',
-      'compression',
-      'jpg',
-      'png',
-      'size',
-    ],
-    featured: true,
-  },
-
-  {
-    id: 'qr-generator',
-    name: 'QR Code Generator',
-    description:
-      'Create clean QR codes for links and text.',
-    category: 'links',
-    runtime: 'browser',
-    path: '/tools/qr-generator',
-    keywords: ['qr', 'qrcode', 'url', 'link', 'text'],
-    featured: true,
-  },
-
-  {
-    id: 'whatsapp-link',
-    name: 'WhatsApp Link',
-    description:
-      'Create WhatsApp links with pre-filled messages.',
-    category: 'links',
-    runtime: 'browser',
-    path: '/tools/whatsapp-link',
-    keywords: [
-      'whatsapp',
-      'wa',
-      'message',
-      'link',
-      'chat',
-    ],
-    featured: true,
-  },
-
-  {
-    id: 'youtube-downloader',
-    name: 'YouTube Downloader',
-    description:
-      'Save authorized YouTube media with your local service.',
-    category: 'media',
-    runtime: 'local-service',
-    path: '/tools/youtube-downloader',
-    keywords: [
-      'youtube',
-      'video',
-      'audio',
-      'download',
-      'mp3',
-    ],
+    keywords: ['image', 'compress', 'compression', 'jpg', 'png', 'size'],
     featured: true,
   },
   {
     id: 'remove-background',
-
     name: 'Remove Background',
-
     description:
       'Remove image backgrounds locally and export transparent or solid-color photos.',
-
     category: 'image',
-
     runtime: 'browser',
-
     path: '/tools/remove-background',
-
     keywords: [
       'remove background',
       'background',
@@ -104,56 +40,185 @@ export const tools: Tool[] = [
       'blue background',
       'job application',
     ],
-
+    featured: true,
+  },
+  {
+    id: 'pas-foto',
+    name: 'Pas Foto & Print Sheet',
+    description:
+      'Crop 2×3, 3×4, 4×6 cm or visa ID photos and arrange 4R / A4 print sheets.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/pas-foto',
+    keywords: [
+      'pas foto',
+      'id photo',
+      '3x4',
+      '4x6',
+      '2x3',
+      'visa',
+      'print',
+      '4r',
+      'a4',
+      'crop',
+    ],
+    featured: true,
+  },
+  {
+    id: 'image-privacy',
+    name: 'EXIF Stripper & Converter',
+    description:
+      'Inspect and strip GPS/camera metadata, resize, and convert image formats.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/image-privacy',
+    keywords: [
+      'exif',
+      'metadata',
+      'gps',
+      'privacy',
+      'strip',
+      'convert',
+      'resize',
+      'webp',
+    ],
     featured: true,
   },
   {
     id: 'pdf-merge',
-
     name: 'PDF Merge',
-
     description:
       'Combine multiple PDF files into one document directly in your browser.',
-
     category: 'pdf',
-
     runtime: 'browser',
-
     path: '/tools/pdf-merge',
-
-    keywords: [
-      'pdf',
-      'merge',
-      'combine',
-      'join',
-      'document',
-    ],
-
+    keywords: ['pdf', 'merge', 'combine', 'join', 'document'],
     featured: true,
   },
   {
     id: 'pdf-split',
-
     name: 'PDF Split',
-
-    description:
-      'Extract selected pages from a PDF directly in your browser.',
-
+    description: 'Extract selected pages from a PDF directly in your browser.',
     category: 'pdf',
-
     runtime: 'browser',
-
     path: '/tools/pdf-split',
-
+    keywords: ['pdf', 'split', 'extract', 'pages', 'separate', 'document'],
+    featured: true,
+  },
+  {
+    id: 'pdf-sign',
+    name: 'PDF Sign & Watermark',
+    description:
+      'Draw or upload a signature and stamp watermarks onto PDF pages locally.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/pdf-sign',
+    keywords: ['pdf', 'sign', 'signature', 'watermark', 'stamp', 'tanda tangan'],
+    featured: true,
+  },
+  {
+    id: 'text-utilities',
+    name: 'Text Cleaner & Case',
+    description:
+      'Fix PDF copy-paste line breaks, convert letter casing, deduplicate, and count words.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/text-utilities',
     keywords: [
-      'pdf',
-      'split',
-      'extract',
-      'pages',
-      'separate',
-      'document',
+      'text',
+      'clean',
+      'case',
+      'uppercase',
+      'lowercase',
+      'word count',
+      'pdf copy',
+      'replace',
     ],
-
+    featured: true,
+  },
+  {
+    id: 'json-diff',
+    name: 'JSON Formatter & Diff',
+    description:
+      'Validate, format, sort, or minify JSON and compare text differences locally.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/json-diff',
+    keywords: ['json', 'format', 'validate', 'diff', 'compare', 'minify'],
+    featured: true,
+  },
+  {
+    id: 'qr-generator',
+    name: 'QR Code Generator',
+    description: 'Create clean QR codes for links and text.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/qr-generator',
+    keywords: ['qr', 'qrcode', 'url', 'link', 'text'],
+    featured: true,
+  },
+  {
+    id: 'qr-scanner',
+    name: 'QR Code Scanner',
+    description:
+      'Decode QR codes from uploaded images or your camera safely in the browser.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/qr-scanner',
+    keywords: ['qr', 'scan', 'scanner', 'decode', 'camera', 'qris'],
+    featured: true,
+  },
+  {
+    id: 'whatsapp-link',
+    name: 'WhatsApp Link',
+    description: 'Create WhatsApp links with pre-filled messages.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/whatsapp-link',
+    keywords: ['whatsapp', 'wa', 'message', 'link', 'chat'],
+    featured: true,
+  },
+  {
+    id: 'clean-url',
+    name: 'Clean URL Stripper',
+    description:
+      'Strip tracking parameters like utm_source, fbclid, and igsh before sharing links.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/clean-url',
+    keywords: ['url', 'link', 'clean', 'utm', 'tracking', 'privacy', 'share'],
+    featured: true,
+  },
+  {
+    id: 'youtube-downloader',
+    name: 'YouTube Downloader',
+    description: 'Save authorized YouTube media with your local service.',
+    category: 'media',
+    runtime: 'local-service',
+    path: '/tools/youtube-downloader',
+    keywords: ['youtube', 'video', 'audio', 'download', 'mp3'],
+    featured: true,
+  },
+  {
+    id: 'media-converter',
+    name: 'Media Clipper & Converter',
+    description:
+      'Trim, compress, and convert local video/audio files using FFmpeg on your machine.',
+    category: 'media',
+    runtime: 'local-service',
+    path: '/tools/media-converter',
+    keywords: [
+      'ffmpeg',
+      'video',
+      'audio',
+      'convert',
+      'trim',
+      'clip',
+      'mp4',
+      'mp3',
+      'gif',
+      'compress',
+    ],
     featured: true,
   },
 ]

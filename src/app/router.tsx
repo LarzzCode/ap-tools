@@ -7,7 +7,6 @@ import AppError from '../pages/AppError'
 export const router = createBrowserRouter([
   {
     Component: AppLayout,
-
     ErrorBoundary: AppError,
 
     children: [
@@ -15,154 +14,178 @@ export const router = createBrowserRouter([
         path: '/',
         Component: Home,
       },
-
       {
         path: '/tools',
         lazy: async () => {
-          const { default: Component } =
-            await import('../pages/AllTools')
-
+          const { default: Component } = await import('../pages/AllTools')
           return { Component }
         },
       },
-
       {
         path: '/tools/image-to-pdf',
         lazy: async () => {
-          const { default: Component } =
-            await import(
-              '../pages/tools/ImageToPdf'
-            )
-
+          const { default: Component } = await import(
+            '../pages/tools/ImageToPdf'
+          )
           return { Component }
         },
       },
-
       {
         path: '/tools/image-compressor',
         lazy: async () => {
-          const { default: Component } =
-            await import(
-              '../pages/tools/ImageCompressor'
-            )
-
+          const { default: Component } = await import(
+            '../pages/tools/ImageCompressor'
+          )
           return { Component }
         },
       },
-
-      {
-        path: '/tools/qr-generator',
-        lazy: async () => {
-          const { default: Component } =
-            await import(
-              '../pages/tools/QrGenerator'
-            )
-
-          return { Component }
-        },
-      },
-
-      {
-        path: '/tools/whatsapp-link',
-        lazy: async () => {
-          const { default: Component } =
-            await import(
-              '../pages/tools/WhatsAppLink'
-            )
-
-          return { Component }
-        },
-      },
-
-      {
-        path: '/tools/youtube-downloader',
-        lazy: async () => {
-          const { default: Component } =
-            await import(
-              '../pages/tools/YouTubeDownloader'
-            )
-
-          return { Component }
-        },
-      },
-
       {
         path: '/tools/remove-background',
         lazy: async () => {
-          const { default: Component } = 
-            await import(
+          const { default: Component } = await import(
             '../pages/tools/RemoveBackground'
-            )
-
+          )
           return { Component }
         },
       },
-
+      {
+        path: '/tools/pas-foto',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/PasFoto'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/image-privacy',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/ImagePrivacy'
+          )
+          return { Component }
+        },
+      },
       {
         path: '/tools/pdf-merge',
-
         lazy: async () => {
-          const {
-            default: Component,
-          } = await import(
+          const { default: Component } = await import(
             '../pages/tools/PdfMerge'
           )
-
-          return {
-            Component,
-          }
+          return { Component }
         },
       },
       {
         path: '/tools/pdf-split',
-
         lazy: async () => {
-          const {
-            default: Component,
-          } = await import(
+          const { default: Component } = await import(
             '../pages/tools/PdfSplit'
           )
-
-          return {
-            Component,
-          }
-        },
-      },
-
-      {
-        path: '/about',
-        lazy: async () => {
-          const { default: Component } =
-            await import('../pages/About')
-
           return { Component }
         },
       },
-
+      {
+        path: '/tools/pdf-sign',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/PdfSign'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/text-utilities',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/TextUtilities'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/json-diff',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/JsonDiff'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/qr-generator',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/QrGenerator'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/qr-scanner',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/QrScanner'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/whatsapp-link',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/WhatsAppLink'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/clean-url',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/CleanUrl'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/youtube-downloader',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/YouTubeDownloader'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/media-converter',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/MediaConverter'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/about',
+        lazy: async () => {
+          const { default: Component } = await import('../pages/About')
+          return { Component }
+        },
+      },
       {
         path: '/privacy',
         lazy: async () => {
-          const { default: Component } =
-            await import('../pages/Privacy')
-
+          const { default: Component } = await import('../pages/Privacy')
           return { Component }
         },
       },
     ],
   },
   {
-  path: '*',
-
-  lazy: async () => {
-    const {
-      default: Component,
-    } = await import(
-      '../pages/NotFound'
-    )
-
-    return {
-      Component,
-    }
+    path: '*',
+    lazy: async () => {
+      const { default: Component } = await import('../pages/NotFound')
+      return { Component }
+    },
   },
-},
 ])

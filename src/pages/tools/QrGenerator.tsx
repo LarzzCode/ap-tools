@@ -22,15 +22,16 @@ export default function QrGenerator() {
   const [value, setValue] = useState('')
   const [size, setSize] = useState(512)
 
-  const [qrDataUrl, setQrDataUrl] = useState('')
-  const [error, setError] = useState('')
+  const [generatedQrDataUrl, setGeneratedQrDataUrl] = useState('')
+  const [generationError, setGenerationError] = useState('')
+
+  const qrDataUrl = value.trim() ? generatedQrDataUrl : ''
+  const error = value.trim() ? generationError : ''
 
   useEffect(() => {
     const content = value.trim()
 
     if (!content) {
-      setQrDataUrl('')
-      setError('')
       return
     }
 
@@ -38,19 +39,18 @@ export default function QrGenerator() {
 
     async function generateQr() {
       try {
-        setError('')
-
-      const dataUrl = await generateQrCode(content, {
-        size,
-      })
+        const dataUrl = await generateQrCode(content, {
+          size,
+        })
 
         if (!cancelled) {
-          setQrDataUrl(dataUrl)
+          setGenerationError('')
+          setGeneratedQrDataUrl(dataUrl)
         }
       } catch {
         if (!cancelled) {
-          setQrDataUrl('')
-          setError(
+          setGeneratedQrDataUrl('')
+          setGenerationError(
             'We could not generate this QR code. Try different content.',
           )
         }
@@ -67,8 +67,8 @@ export default function QrGenerator() {
   function switchType(nextType: QrType) {
     setType(nextType)
     setValue('')
-    setQrDataUrl('')
-    setError('')
+    setGeneratedQrDataUrl('')
+    setGenerationError('')
   }
 
   function handleDownload() {

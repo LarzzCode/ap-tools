@@ -10,8 +10,20 @@ import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
 
+import type { ToolCategory } from '../types/tool'
+
+const HOME_CATEGORIES: Array<{ id: 'all' | ToolCategory; label: string }> = [
+  { id: 'all', label: 'All' },
+  { id: 'image', label: 'Image' },
+  { id: 'pdf', label: 'PDF' },
+  { id: 'text', label: 'Text' },
+  { id: 'links', label: 'Links' },
+  { id: 'media', label: 'Media' },
+]
+
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState<'all' | ToolCategory>('all')
 
   const {
     favoriteIds,
@@ -22,11 +34,15 @@ export default function Home() {
   const filteredTools = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
 
-    if (!query) {
-      return tools
-    }
-
     return tools.filter((tool) => {
+      if (!query && selectedCategory !== 'all' && tool.category !== selectedCategory) {
+        return false
+      }
+
+      if (!query) {
+        return true
+      }
+
       const searchableText = [
         tool.name,
         tool.description,
@@ -38,7 +54,7 @@ export default function Home() {
 
       return searchableText.includes(query)
     })
-  }, [searchQuery])
+  }, [searchQuery, selectedCategory])
 
   const favoriteTools = useMemo(() => {
     return tools.filter((tool) =>
@@ -321,8 +337,28 @@ export default function Home() {
                     ? 'tool'
                     : 'tools'
                 } found.`
-              : 'Six tools to start. More will come when they’re actually useful.'}
+              : `${tools.length} focused utilities — pick a tool and get it done.`}
           </p>
+
+          {!isSearching && (
+            <div className="mt-5 flex flex-wrap gap-2">
+              {HOME_CATEGORIES.map((category) => (
+                <button
+                  key={category.id}
+                  id={`home-category-${category.id}`}
+                  type="button"
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`rounded-full border px-4 py-1.5 text-xs font-medium transition ${
+                    selectedCategory === category.id
+                      ? 'border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]'
+                      : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] hover:border-[var(--primary-border)]'
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {filteredTools.length > 0 ? (

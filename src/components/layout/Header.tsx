@@ -39,13 +39,13 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-2">
-          <nav className="hidden items-center gap-1 sm:flex">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <nav className="flex items-center gap-1">
             <NavLink
               to="/tools"
               className={({ isActive }) =>
                 `
-                  rounded-xl px-4 py-2
+                  rounded-xl px-3 py-2 sm:px-4
                   text-sm font-medium
                   transition
                   ${
@@ -63,7 +63,7 @@ export default function Header() {
               to="/about"
               className={({ isActive }) =>
                 `
-                  rounded-xl px-4 py-2
+                  rounded-xl px-3 py-2 sm:px-4
                   text-sm font-medium
                   transition
                   ${

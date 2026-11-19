@@ -23,7 +23,7 @@ export default function WhatsAppLink() {
   const [phoneNumber, setPhoneNumber] = useState('')
   const [message, setMessage] = useState('')
 
-  const [qrDataUrl, setQrDataUrl] = useState('')
+  const [generatedQrDataUrl, setGeneratedQrDataUrl] = useState('')
   const [copied, setCopied] = useState(false)
   const [error, setError] = useState('')
 
@@ -34,6 +34,8 @@ export default function WhatsAppLink() {
     )
   }, [phoneNumber, message])
 
+  const qrDataUrl = whatsappLink ? generatedQrDataUrl : ''
+
   const normalizedPhone = useMemo(() => {
     return normalizeIndonesianPhoneNumber(
       phoneNumber,
@@ -42,7 +44,6 @@ export default function WhatsAppLink() {
 
   useEffect(() => {
     if (!whatsappLink) {
-      setQrDataUrl('')
       return
     }
 
@@ -50,15 +51,14 @@ export default function WhatsAppLink() {
 
     async function generateQr() {
       try {
-        
-        const dataUrl = await generateQrCode(whatsappLink,)
+        const dataUrl = await generateQrCode(whatsappLink)
 
         if (!cancelled) {
-          setQrDataUrl(dataUrl)
+          setGeneratedQrDataUrl(dataUrl)
         }
       } catch {
         if (!cancelled) {
-          setQrDataUrl('')
+          setGeneratedQrDataUrl('')
         }
       }
     }

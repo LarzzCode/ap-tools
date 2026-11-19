@@ -1,5 +1,6 @@
 import type {
   RawImage,
+  Tensor,
 } from '@huggingface/transformers'
 
 
@@ -279,12 +280,17 @@ async function removeQuality(
         pixelValues,
     })
 
-  const outputImage =
-    (
-      output as {
-        output_image?: any
+  const outputRecord = output as {
+    output_image?: Array<{
+      sigmoid: () => {
+        mul: (factor: number) => {
+          to: (dtype: 'uint8') => Tensor
+        }
       }
-    ).output_image
+    }>
+  }
+
+  const outputImage = outputRecord.output_image
 
   if (
     !outputImage ||

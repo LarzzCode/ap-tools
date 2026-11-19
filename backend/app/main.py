@@ -1,3 +1,5 @@
+import shutil
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -6,7 +8,7 @@ from app.routers.media import router as media_router
 
 app = FastAPI(
     title="Ditya Tools Local Service",
-    version="0.1.0",
+    version="0.2.0",
 )
 
 
@@ -48,5 +50,9 @@ def health():
     return {
         "status": "ok",
         "service": "ap-tools-local-service",
-        "version": "0.1.0",
+        "version": "0.2.0",
+        "capabilities": {
+            "yt_dlp": True,
+            "ffmpeg": shutil.which("ffmpeg") is not None,
+        },
     }

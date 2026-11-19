@@ -6,6 +6,10 @@ export interface LocalServiceHealth {
   status: string
   service: string
   version: string
+  capabilities?: {
+    yt_dlp?: boolean
+    ffmpeg?: boolean
+  }
 }
 
 
@@ -245,6 +249,71 @@ export async function prepareMediaDownload(
   return data
 }
 
+
+export type LocalConvertFormat =
+  | 'mp4'
+  | 'webm'
+  | 'mp3'
+  | 'm4a'
+  | 'wav'
+  | 'gif'
+
+export type LocalConvertPreset =
+  | 'original'
+  | 'balanced'
+  | 'compact'
+
+export interface LocalConvertRequest {
+  file: File
+  outputFormat: LocalConvertFormat
+  preset: LocalConvertPreset
+  startTime?: string
+  endTime?: string
+}
+
+export async function convertLocalMedia(
+  payload: LocalConvertRequest,
+  signal?: AbortSignal,
+): Promise<MediaDownloadPrepared> {
+  const formData = new FormData()
+  formData.append('file', payload.file)
+  formData.append('output_format', payload.outputFormat)
+  formData.append('preset', payload.preset)
+
+  if (payload.startTime?.trim()) {
+    formData.append('start_time', payload.startTime.trim())
+  }
+  if (payload.endTime?.trim()) {
+    formData.append('end_time', payload.endTime.trim())
+  }
+
+  const response = await localFetch('/media/local/convert', {
+    method: 'POST',
+    body: formData,
+    signal,
+  })
+
+  const data = (await response.json().catch(() => null)) as
+    | MediaDownloadPrepared
+    | ApiErrorResponse
+    | null
+
+  if (!response.ok) {
+    const message =
+      data && 'detail' in data && typeof data.detail === 'string'
+        ? data.detail
+        : `Conversion failed with status ${response.status}.`
+    throw new Error(message)
+  }
+
+  if (!data || !('download_url' in data)) {
+    throw new Error(
+      'Local service returned an unexpected conversion response.',
+    )
+  }
+
+  return data
+}
 
 export function getLocalDownloadUrl(
   downloadUrl: string,

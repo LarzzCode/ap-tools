@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useMemo,
   useState,
 } from 'react'
@@ -72,7 +71,7 @@ export default function YouTubeDownloader() {
   const [downloadMode, setDownloadMode] =
     useState<MediaDownloadMode>('video')
 
-  const [selectedQuality, setSelectedQuality] =
+  const [rawSelectedQuality, setSelectedQuality] =
     useState<number | null>(null)
 
   const [audioFormat, setAudioFormat] =
@@ -121,6 +120,12 @@ export default function YouTubeDownloader() {
         .sort((a, b) => b - a)
     }, [analysis])
 
+  const selectedQuality =
+    rawSelectedQuality !== null &&
+    supportedVideoQualities.includes(rawSelectedQuality)
+      ? rawSelectedQuality
+      : (supportedVideoQualities[0] ?? null)
+
 
   const audioExtensions =
     useMemo(() => {
@@ -146,20 +151,6 @@ export default function YouTubeDownloader() {
 
       return Array.from(extensions)
     }, [analysis])
-
-
-  useEffect(() => {
-    if (
-      supportedVideoQualities.length === 0
-    ) {
-      setSelectedQuality(null)
-      return
-    }
-
-    setSelectedQuality(
-      supportedVideoQualities[0],
-    )
-  }, [supportedVideoQualities])
 
 
   async function handleAnalyze() {

@@ -375,6 +375,7 @@ export async function splitPdfPages(
 
     throw new Error(
       `Unable to extract pages from "${file.name}". The PDF may be damaged or protected.`,
+      { cause: error },
     )
   }
 }
