@@ -1,17 +1,27 @@
 {
-  "name": "Ditya Tools",
+  "id": "/",
+  "name": "Ditya Tools - Utilitas Harian Cepat & Privat",
   "short_name": "Ditya Tools",
-  "description": "No ads. No clutter. Just tools.",
+  "description": "Kumpulan alat harian foto, KTP, PDF, CV ATS, surat resmi, dan QR yang cepat, bebas iklan, dan 100% privat di browser.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#38BDF8",
+  "orientation": "portrait-primary",
+  "background_color": "#F2F2F7",
+  "theme_color": "#007AFF",
+  "categories": ["utilities", "productivity"],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }

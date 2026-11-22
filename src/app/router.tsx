@@ -94,6 +94,24 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: '/tools/color-palette',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/ColorPalette'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/pdf-to-image',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/PdfToImage'
+          )
+          return { Component }
+        },
+      },
+      {
         path: '/tools/pdf-merge',
         lazy: async () => {
           const { default: Component } = await import(

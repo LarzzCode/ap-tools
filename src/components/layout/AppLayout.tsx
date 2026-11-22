@@ -1,5 +1,6 @@
-import { useEffect, useMemo } from 'react'
-import { MotionConfig } from 'motion/react'
+import { useEffect, useMemo, useState } from 'react'
+import { AnimatePresence, motion, MotionConfig } from 'motion/react'
+import { CheckCircle2 } from 'lucide-react'
 import {
   Link,
   Outlet,
@@ -10,6 +11,11 @@ import {
 import { tools } from '../../data/tools'
 import { useLanguage } from '../../hooks/useLanguage'
 import { usePageMeta } from '../../hooks/usePageMeta'
+import { recordRecentToolId } from '../../hooks/useRecentTools'
+import {
+  consumePendingSmartFile,
+  getPendingSmartFile,
+} from '../../lib/smartFileStore'
 import ToolGuide from '../tools/ToolGuide'
 import Header from './Header'
 
@@ -21,10 +27,90 @@ export default function AppLayout() {
   const location = useLocation()
   const navigationType = useNavigationType()
   const { t } = useLanguage()
+  const [autoLoadedFileName, setAutoLoadedFileName] = useState('')
 
   const activeTool = useMemo(() => {
     return tools.find((tool) => tool.path === location.pathname) ?? null
   }, [location.pathname])
+
+  // Feature #12: Record recently visited tool IDs automatically
+  useEffect(() => {
+    if (activeTool) {
+      recordRecentToolId(activeTool.id)
+    }
+  }, [activeTool])
+
+  // Feature #9: Auto-Carry pending file from Home Smart File Drop into the opened tool
+  useEffect(() => {
+    if (!activeTool) return
+    const pending = getPendingSmartFile()
+    if (!pending) return
+
+    let attempts = 0
+    let timerId: number | undefined
+
+    const tryInjectFile = () => {
+      attempts += 1
+      const fileInput = document.querySelector<HTMLInputElement>(
+        'main input[type="file"]',
+      )
+
+      if (fileInput) {
+        const file = consumePendingSmartFile()
+        if (!file) return
+
+        try {
+          const dt = new DataTransfer()
+          dt.items.add(file)
+          fileInput.files = dt.files
+          fileInput.dispatchEvent(new Event('change', { bubbles: true }))
+          setAutoLoadedFileName(file.name)
+        } catch {
+          // Ignore if browser restricts programmatic FileList
+        }
+        return
+      }
+
+      if (activeTool.id === 'text-utilities') {
+        const textarea = document.querySelector<HTMLTextAreaElement>(
+          'main textarea',
+        )
+        if (textarea) {
+          const file = consumePendingSmartFile()
+          if (!file) return
+          void file.text().then((content) => {
+            const setter = Object.getOwnPropertyDescriptor(
+              window.HTMLTextAreaElement.prototype,
+              'value',
+            )?.set
+            setter?.call(textarea, content)
+            textarea.dispatchEvent(new Event('input', { bubbles: true }))
+            setAutoLoadedFileName(file.name)
+          })
+          return
+        }
+      }
+
+      if (attempts < 15) {
+        timerId = window.setTimeout(tryInjectFile, 70)
+      }
+    }
+
+    timerId = window.setTimeout(tryInjectFile, 50)
+    return () => {
+      if (timerId !== undefined) {
+        window.clearTimeout(timerId)
+      }
+    }
+  }, [activeTool])
+
+  useEffect(() => {
+    if (!autoLoadedFileName) return
+    const id = window.setTimeout(() => {
+      setAutoLoadedFileName('')
+    }, 3400)
+    return () => window.clearTimeout(id)
+  }, [autoLoadedFileName])
 
   // Record live scroll position on every page so returning via Back restores exact scroll
   useEffect(() => {
@@ -67,6 +153,27 @@ export default function AppLayout() {
     <MotionConfig reducedMotion="user">
       <div className="flex min-h-dvh flex-col bg-[var(--background)] pb-16 sm:pb-0">
         <Header />
+
+        <AnimatePresence>
+          {autoLoadedFileName && (
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              className="fixed left-1/2 top-16 z-50 -translate-x-1/2 px-4"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-border)] bg-[var(--surface)] px-4 py-2 text-xs font-bold text-[var(--primary)] shadow-md">
+                <CheckCircle2 size={14} className="shrink-0 text-[var(--success)]" />
+                <span className="max-w-[260px] truncate sm:max-w-xs">
+                  {t(
+                    `File "${autoLoadedFileName}" otomatis dimuat`,
+                    `"${autoLoadedFileName}" automatically loaded`,
+                  )}
+                </span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="flex-1">
           <Outlet />

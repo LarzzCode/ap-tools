@@ -10,11 +10,13 @@ import {
   FileText,
   Film,
   IdCard,
+  ImageDown,
   Images,
   Layers,
   Link2Off,
   Merge,
   MessageCircle,
+  Palette,
   Play,
   QrCode,
   ScanLine,
@@ -46,6 +48,9 @@ export default function ToolIcon({
     case 'image-to-pdf':
       return <FileImage {...props} />
 
+    case 'pdf-to-image':
+      return <ImageDown {...props} />
+
     case 'image-compressor':
       return <Images {...props} />
 
@@ -63,6 +68,9 @@ export default function ToolIcon({
 
     case 'aspect-cropper':
       return <Crop {...props} />
+
+    case 'color-palette':
+      return <Palette {...props} />
 
     case 'pdf-merge':
       return <Merge {...props} />

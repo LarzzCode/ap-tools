@@ -369,6 +369,110 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'color-palette',
+    name: 'Color Picker & Photo Palette Extractor',
+    nameId: 'Color Picker & Ekstrak Palet Warna Foto',
+    description:
+      'Extract 8 dominant harmonious colors from any photo or poster, sample exact pixel colors with an interactive eyedropper, and export HEX/RGB/HSL or a palette card PNG.',
+    descriptionId:
+      'Ekstrak 8 warna dominan dari foto atau poster, ambil kode warna dari titik mana pun dengan pipet (Eyedropper), lalu salin kode HEX/RGB/HSL atau unduh kartu palet PNG.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/color-palette',
+    keywords: [
+      'color',
+      'palette',
+      'color picker',
+      'eyedropper',
+      'hex',
+      'rgb',
+      'hsl',
+      'warna',
+      'palet warna',
+      'desain',
+      'ppt',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Sedang membuat slide presentasi PPT, poster organisasi, atau desain UI dan ingin memakai kombinasi warna dari sebuah foto referensi? Alat ini otomatis mengekstrak 8 warna dominan paling harmonis dari gambar Anda sekaligus menyediakan pipet warna (Eyedropper) interaktif untuk mengambil kode HEX, RGB, dan HSL dari titik piksel mana pun.',
+      overviewEn:
+        'Designing slides, social graphics, or websites and want to match colors from a reference image? This tool automatically extracts 8 harmonious dominant colors from any photo and includes an interactive pixel eyedropper with one-tap HEX, RGB, HSL, and CSS variable export.',
+      stepsId: [
+        'Pilih atau tarik foto referensi, poster, atau logo ke area kanvas.',
+        'Lihat 8 warna dominan yang otomatis diekstrak; ketuk kotak warna mana saja untuk langsung menyalin kode HEX-nya.',
+        'Ketuk titik mana pun langsung pada gambar di kanvas untuk mengambil warna spesifik dari titik tersebut menggunakan fitur Pipet (Eyedropper).',
+        'Salin kode HEX, RGB, HSL, variabel CSS, atau klik "Unduh Kartu Palet Warna + Foto (PNG)" untuk disimpan.',
+      ],
+      stepsEn: [
+        'Select or drop a reference photo, poster, or logo onto the canvas.',
+        'Browse the 8 automatically extracted dominant colors; tap any swatch to copy its HEX code immediately.',
+        'Click or tap anywhere directly on the image canvas to sample that exact pixel with the interactive eyedropper.',
+        'Copy HEX, RGB, HSL, CSS variables, or download the combined Photo + Palette Card PNG.',
+      ],
+      tipsId: [
+        'Kartu Palet PNG yang diunduh sudah memuat foto referensi beserta deretan warna HEX di bawahnya — sangat praktis untuk dikirim ke tim desain.',
+        'Gunakan tombol "Salin CSS" jika Anda sedang membuat website dan butuh variabel `--palette-1` hingga `--palette-8`.',
+        'Semua analisis piksel berlangsung 100% di dalam browser Anda.',
+      ],
+      tipsEn: [
+        'The downloadable Palette Card PNG pairs your reference image with labeled HEX swatches for easy moodboard sharing.',
+        'Use the "Copy CSS" button to grab ready-to-paste `:root` CSS custom properties.',
+        'All pixel sampling runs 100% locally in your browser.',
+      ],
+    },
+  },
+  {
+    id: 'pdf-to-image',
+    name: 'PDF to Image (JPG / PNG HD)',
+    nameId: 'PDF ke Gambar (Ubah PDF jadi JPG/PNG)',
+    description:
+      'Convert PDF document pages into high-resolution JPG, PNG, or WebP images directly in your browser for WhatsApp sharing or portal uploads.',
+    descriptionId:
+      'Ubah setiap halaman dokumen PDF menjadi file gambar JPG, PNG, atau WebP beresolusi tinggi (HD) langsung di browser tanpa upload ke server.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/pdf-to-image',
+    keywords: [
+      'pdf to jpg',
+      'pdf to png',
+      'pdf ke gambar',
+      'pdf ke foto',
+      'ubah pdf jadi jpg',
+      'convert pdf',
+      'sertifikat',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Kebalikan dari fitur Gambar ke PDF: alat ini mengubah halaman-halaman di dalam file PDF Anda menjadi gambar JPG, PNG, atau WebP yang tajam. Sangat berguna saat portal pendaftaran meminta unggahan dalam format `.JPG` padahal berkas scan Anda berbentuk `.PDF`, atau saat Anda ingin mengirim halaman dokumen ke grup WhatsApp agar langsung tampil sebagai gambar.',
+      overviewEn:
+        'The reverse of Image to PDF: render every page (or selected pages) of a PDF document into crisp JPG, PNG, or WebP images. Ideal when a registration form only accepts .JPG uploads or when sharing a document page directly inside a WhatsApp chat.',
+      stepsId: [
+        'Pilih atau tarik file PDF yang ingin diubah menjadi gambar.',
+        'Pilih format gambar keluaran (JPG untuk ukuran hemat, PNG untuk ketajaman teks maksimal, atau WebP) serta tingkat resolusi (Standar, HD Tajam, atau Ultra HD).',
+        'Kosongkan kolom halaman untuk mengubah seluruh halaman, atau ketik nomor halaman tertentu (misalnya: "1, 3-5").',
+        'Klik "Ubah PDF ke Gambar", lalu unduh gambar per halaman atau klik "Unduh Semua" sekaligus.',
+      ],
+      stepsEn: [
+        'Select or drop the PDF document you want to convert.',
+        'Choose your output image format (JPG, PNG, or WebP) and resolution quality (Standard, HD Crisp, or Ultra HD).',
+        'Leave the page range blank to convert all pages, or specify pages like "1, 3-5".',
+        'Click Convert PDF to Images, then download individual pages or click Download All.',
+      ],
+      tipsId: [
+        'Pilih kualitas "HD Tajam" untuk dokumen teks atau surat agar hurufnya tetap jelas saat diperbesar.',
+        'Pilih kualitas "Ultra HD" jika Anda ingin mengubah PDF sertifikat atau poster menjadi gambar siap cetak.',
+        'Proses render halaman PDF dilakukan 100% secara lokal di perangkat Anda.',
+      ],
+      tipsEn: [
+        'Use "HD Crisp" for text documents and forms so small typography remains sharp.',
+        'Use "Ultra HD" when converting PDF certificates or posters for printing.',
+        'PDF rendering runs 100% locally inside your browser.',
+      ],
+    },
+  },
+  {
     id: 'image-to-pdf',
     name: 'Image to PDF Converter',
     nameId: 'Gabung Gambar ke PDF',
@@ -961,12 +1065,12 @@ export const tools: Tool[] = [
   },
   {
     id: 'whatsapp-link',
-    name: 'WhatsApp Direct Link & QR',
-    nameId: 'Pembuat Link Chat WhatsApp & QR',
+    name: 'WhatsApp Link & QR Card Maker',
+    nameId: 'Pembuat Link & Kartu QR WhatsApp',
     description:
-      'Create instant wa.me click-to-chat links with pre-filled greeting messages and automatic Indonesian (+62) phone formatting plus a ready-to-share QR code.',
+      'Create instant wa.me click-to-chat links with preset greeting templates, automatic Indonesian (+62) phone formatting, and a printable WhatsApp QR Card PNG.',
     descriptionId:
-      'Buat tautan klik-langsung-chat WhatsApp (wa.me) lengkap dengan pesan pembuka otomatis, format nomor Indonesia (+62), dan kode QR siap pakai.',
+      'Buat tautan klik-langsung-chat WhatsApp (wa.me) lengkap dengan preset pesan otomatis, format nomor Indonesia (+62), dan Kartu QR WhatsApp siap cetak.',
     category: 'links',
     runtime: 'browser',
     path: '/tools/whatsapp-link',

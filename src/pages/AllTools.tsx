@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import { Search, SearchX, X } from 'lucide-react'
-import { useSearchParams } from 'react-router'
+import { Clock, Search, SearchX, X } from 'lucide-react'
+import { Link, useSearchParams } from 'react-router'
 
 import ToolGrid from '../components/tools/ToolGrid'
+import ToolIcon from '../components/tools/ToolIcon'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
 import { useLanguage } from '../hooks/useLanguage'
-import type { ToolCategory, ToolRuntime } from '../types/tool'
+import { useRecentTools } from '../hooks/useRecentTools'
+import type { Tool, ToolCategory, ToolRuntime } from '../types/tool'
 
 type CategoryFilter = 'all' | ToolCategory
 type RuntimeFilter = 'all' | ToolRuntime
@@ -55,6 +57,13 @@ export default function AllTools() {
 
   const { language, t } = useLanguage()
   const { isFavorite, toggleFavorite } = useFavorites()
+  const { recentIds, clearRecentTools } = useRecentTools()
+
+  const recentTools = useMemo(() => {
+    return recentIds
+      .map((id) => tools.find((tool) => tool.id === id))
+      .filter((item): item is Tool => Boolean(item))
+  }, [recentIds])
 
   const filteredTools = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
@@ -104,6 +113,41 @@ export default function AllTools() {
             )}
           </p>
         </div>
+
+        {/* Feature #12: Recently Used Tools Bar */}
+        {recentTools.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)]/80 p-3.5 sm:p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-[var(--text-secondary)]">
+                <Clock size={14} className="text-[var(--primary)]" />
+                <span>{t('Terakhir Dipakai', 'Recently Used')}</span>
+              </div>
+
+              <button
+                type="button"
+                onClick={clearRecentTools}
+                className="text-[11px] font-semibold text-[var(--text-muted)] transition hover:text-[var(--text-primary)]"
+              >
+                {t('Bersihkan', 'Clear')}
+              </button>
+            </div>
+
+            <div className="mt-2.5 -mx-1 flex gap-2 overflow-x-auto px-1 pb-0.5 no-scrollbar">
+              {recentTools.map((tool) => (
+                <Link
+                  key={tool.id}
+                  to={tool.path}
+                  className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-3.5 py-1.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+                >
+                  <span className="text-[var(--primary)]">
+                    <ToolIcon toolId={tool.id} size={14} />
+                  </span>
+                  <span>{language === 'id' ? tool.nameId : tool.name}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Search & Filters */}
         <div className="mt-8 space-y-4">

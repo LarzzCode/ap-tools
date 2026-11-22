@@ -8,6 +8,7 @@ import { Link, NavLink } from 'react-router'
 
 import { useLanguage } from '../../hooks/useLanguage'
 import ThemeToggle from '../ui/ThemeToggle'
+import PwaInstallButton from './PwaInstallButton'
 
 export default function Header() {
   const { language, setLanguage, t } = useLanguage()
@@ -53,7 +54,7 @@ export default function Header() {
             </div>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Desktop Segmented Navigation */}
             <nav
               aria-label={t('Navigasi utama', 'Main navigation')}
@@ -133,6 +134,8 @@ export default function Header() {
                 {t('Tentang', 'About')}
               </NavLink>
             </nav>
+
+            <PwaInstallButton />
 
             {/* iOS Segmented Language Switcher */}
             <div

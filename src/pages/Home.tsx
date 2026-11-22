@@ -20,6 +20,7 @@ import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
 import { useLanguage } from '../hooks/useLanguage'
+import { setPendingSmartFile } from '../lib/smartFileStore'
 import type { Tool } from '../types/tool'
 import { formatFileSize } from '../utils/file'
 
@@ -53,6 +54,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   if (type === 'application/pdf' || name.endsWith('.pdf')) {
     const ids = [
       'pdf-compressor',
+      'pdf-to-image',
       'pdf-merge',
       'pdf-split',
       'pdf-organizer',
@@ -72,6 +74,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
       'image-compressor',
       'aspect-cropper',
       'image-stitcher',
+      'color-palette',
       'image-to-pdf',
       'image-privacy',
       'qr-scanner',
@@ -118,6 +121,7 @@ export default function Home() {
     event.target.value = ''
     if (selected) {
       setSmartFile(selected)
+      setPendingSmartFile(selected)
     }
   }
 
@@ -127,6 +131,7 @@ export default function Home() {
     const dropped = event.dataTransfer.files?.[0]
     if (dropped) {
       setSmartFile(dropped)
+      setPendingSmartFile(dropped)
     }
   }
 
@@ -222,20 +227,23 @@ export default function Home() {
                 <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
                   <div className="min-w-0">
                     <p className="truncate text-xs font-bold text-[var(--primary)]">
-                      {t('File Terdeteksi:', 'Detected File:')} {smartFile.name}
+                      {t('File Siap Dibawa:', 'File Ready to Load:')} {smartFile.name}
                     </p>
                     <p className="text-[11px] text-[var(--text-muted)]">
                       {formatFileSize(smartFile.size)} •{' '}
                       {t(
-                        `${matchingTools.length} alat cocok untuk file ini`,
-                        `${matchingTools.length} matching utilities`,
+                        'Ketuk alat di bawah, file ini otomatis langsung masuk',
+                        'Tap any tool below to auto-load this file inside it',
                       )}
                     </p>
                   </div>
 
                   <button
                     type="button"
-                    onClick={() => setSmartFile(null)}
+                    onClick={() => {
+                      setSmartFile(null)
+                      setPendingSmartFile(null)
+                    }}
                     className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--surface-soft)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                     aria-label="Clear file"
                   >
