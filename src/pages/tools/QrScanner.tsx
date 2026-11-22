@@ -11,18 +11,15 @@ import jsQR from 'jsqr'
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Camera,
   CameraOff,
   Check,
   Copy,
   ExternalLink,
-  ScanLine,
-  ShieldCheck,
   Upload,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 function isHttpUrl(value: string): boolean {
   try {
@@ -204,32 +201,7 @@ export default function QrScanner() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--primary-text)]"
-        >
-          <ArrowLeft size={16} />
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]">
-            <ScanLine size={22} />
-          </div>
-
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            QR Code Scanner
-          </h1>
-
-          <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Read QR codes from screenshots, photos, or your webcam directly in your browser before opening any link.
-          </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
-            <ShieldCheck size={14} className="text-[var(--success)]" />
-            Decoded locally in your browser
-          </div>
-        </div>
+        <ToolPageHeader toolId="qr-scanner" />
 
         <input
           id="qr-scanner-file-input"

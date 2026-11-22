@@ -3,18 +3,15 @@ import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
   Copy,
   Download,
   Replace,
-  ShieldCheck,
   Sparkles,
   Trash2,
-  Type,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import {
   collapseExtraSpaces,
@@ -81,32 +78,7 @@ export default function TextUtilities() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--primary-text)]"
-        >
-          <ArrowLeft size={16} />
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]">
-            <Type size={22} />
-          </div>
-
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Text Cleaner & Case Tools
-          </h1>
-
-          <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Clean messy PDF copy-pastes, normalize spacing, transform letter casing, deduplicate lines, and count words or characters.
-          </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
-            <ShieldCheck size={14} className="text-[var(--success)]" />
-            Runs offline in your browser
-          </div>
-        </div>
+        <ToolPageHeader toolId="text-utilities" />
 
         {/* Stats strip */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">

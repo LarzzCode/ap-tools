@@ -1,24 +1,27 @@
 import { useMemo, useState } from 'react'
-
 import { motion } from 'motion/react'
-
 import { Search, SearchX, X } from 'lucide-react'
 
 import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
+import { useLanguage } from '../hooks/useLanguage'
 import type { ToolCategory, ToolRuntime } from '../types/tool'
 
 type CategoryFilter = 'all' | ToolCategory
 type RuntimeFilter = 'all' | ToolRuntime
 
-const CATEGORY_TABS: Array<{ id: CategoryFilter; label: string }> = [
-  { id: 'all', label: 'All' },
-  { id: 'image', label: 'Image' },
-  { id: 'pdf', label: 'PDF' },
-  { id: 'text', label: 'Text' },
-  { id: 'links', label: 'Links' },
-  { id: 'media', label: 'Media' },
+const CATEGORY_TABS: Array<{
+  id: CategoryFilter
+  labelId: string
+  labelEn: string
+}> = [
+  { id: 'all', labelId: 'Semua', labelEn: 'All' },
+  { id: 'image', labelId: 'Gambar & KTP', labelEn: 'Image & ID' },
+  { id: 'pdf', labelId: 'PDF & Invoice', labelEn: 'PDF & Invoice' },
+  { id: 'links', labelId: 'QR & Wi-Fi', labelEn: 'QR & Wi-Fi' },
+  { id: 'text', labelId: 'Teks', labelEn: 'Text' },
+  { id: 'media', labelId: 'Media', labelEn: 'Media' },
 ]
 
 export default function AllTools() {
@@ -26,6 +29,7 @@ export default function AllTools() {
   const [category, setCategory] = useState<CategoryFilter>('all')
   const [runtime, setRuntime] = useState<RuntimeFilter>('all')
 
+  const { language, t } = useLanguage()
   const { isFavorite, toggleFavorite } = useFavorites()
 
   const filteredTools = useMemo(() => {
@@ -42,7 +46,9 @@ export default function AllTools() {
 
       const searchable = [
         tool.name,
+        tool.nameId,
         tool.description,
+        tool.descriptionId,
         tool.category,
         ...tool.keywords,
       ]
@@ -61,36 +67,42 @@ export default function AllTools() {
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--primary-text)]">
-            Directory
+          <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
+            {t('DIREKTORI LENGKAP', 'DIRECTORY')}
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            All Tools
+            {t('Semua Alat Utilitas', 'All Utilities')}
           </h1>
           <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Browse all {tools.length} utilities across image, PDF, text, links, and local media processing.
+            {t(
+              `Jelajahi ${tools.length} alat untuk foto, pelindung KTP, dokumen PDF, pembuatan invoice, kartu QR Wi-Fi, pembersih teks, dan konversi media.`,
+              `Browse all ${tools.length} utilities across ID protection, photos, PDFs, invoices, Wi-Fi QR cards, text cleanup, and media processing.`,
+            )}
           </p>
         </div>
 
         {/* Search & Filters */}
         <div className="mt-8 space-y-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-1 items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 focus-within:border-[var(--primary-border)]">
+            <div className="ios-card flex flex-1 items-center gap-3 px-4 py-3 focus-within:border-[var(--primary-border)]">
               <Search size={18} className="shrink-0 text-[var(--text-muted)]" />
               <input
                 id="all-tools-search"
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Filter by tool name or keyword..."
-                aria-label="Filter tools"
+                placeholder={t(
+                  'Cari nama alat atau kata kunci...',
+                  'Filter by tool name or keyword...',
+                )}
+                aria-label={t('Cari alat', 'Filter tools')}
                 className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  aria-label="Clear filter"
+                  aria-label={t('Bersihkan pencarian', 'Clear filter')}
                   className="text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                 >
                   <X size={16} />
@@ -98,12 +110,12 @@ export default function AllTools() {
               )}
             </div>
 
-            <div className="inline-flex rounded-xl border border-[var(--border)] bg-[var(--surface)] p-1">
+            <div className="ios-segmented inline-flex self-start">
               {(
                 [
-                  ['all', 'All runtimes'],
-                  ['browser', 'Browser'],
-                  ['local-service', 'Local service'],
+                  ['all', t('Semua Mode', 'All Modes')],
+                  ['browser', t('Instan Browser', 'Browser')],
+                  ['local-service', t('Pendamping', 'Companion')],
                 ] as const
               ).map(([value, label]) => (
                 <button
@@ -111,9 +123,9 @@ export default function AllTools() {
                   id={`all-tools-runtime-${value}`}
                   type="button"
                   onClick={() => setRuntime(value)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                     runtime === value
-                      ? 'bg-[var(--primary-soft)] text-[var(--primary-text)]'
+                      ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
@@ -123,20 +135,20 @@ export default function AllTools() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="ios-segmented inline-flex flex-wrap gap-1">
             {CATEGORY_TABS.map((tab) => (
               <button
                 key={tab.id}
                 id={`all-tools-category-${tab.id}`}
                 type="button"
                 onClick={() => setCategory(tab.id)}
-                className={`rounded-full border px-4 py-1.5 text-xs font-medium transition ${
+                className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                   category === tab.id
-                    ? 'border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]'
-                    : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] hover:border-[var(--primary-border)]'
+                    ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                {tab.label}
+                {language === 'id' ? tab.labelId : tab.labelEn}
               </button>
             ))}
           </div>
@@ -150,15 +162,18 @@ export default function AllTools() {
               onToggleFavorite={toggleFavorite}
             />
           ) : (
-            <div className="rounded-2xl border border-dashed border-[var(--border)] bg-[var(--surface)] px-6 py-16 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary-text)]">
+            <div className="ios-card px-6 py-16 text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
                 <SearchX size={22} />
               </div>
-              <h2 className="mt-4 text-base font-semibold text-[var(--text-primary)]">
-                No matching tools
+              <h2 className="mt-4 text-base font-bold text-[var(--text-primary)]">
+                {t('Tidak ada alat yang cocok', 'No matching tools')}
               </h2>
               <p className="mx-auto mt-2 max-w-sm text-sm text-[var(--text-secondary)]">
-                Try clearing your search or switching category filters.
+                {t(
+                  'Coba hapus kata kunci pencarian atau pilih kategori lain.',
+                  'Try clearing your search or switching category filters.',
+                )}
               </p>
             </div>
           )}

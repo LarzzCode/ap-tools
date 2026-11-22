@@ -1,21 +1,17 @@
-import { useState } from 'react'
-
 import { motion } from 'motion/react'
+import { Link } from 'react-router'
 
 import {
-  Check,
-  ChevronDown,
-  ChevronUp,
-  CircleAlert,
-  Copy,
+  Compass,
+  Laptop,
   LoaderCircle,
   RefreshCcw,
-  Terminal,
   Wifi,
 } from 'lucide-react'
 
-import type { LocalServiceHealth } from '../../lib/localService'
 import type { LocalServiceStatus as LocalServiceStatusValue } from '../../hooks/useLocalService'
+import { useLanguage } from '../../hooks/useLanguage'
+import type { LocalServiceHealth } from '../../lib/localService'
 
 interface LocalServiceStatusProps {
   status: LocalServiceStatusValue
@@ -23,45 +19,34 @@ interface LocalServiceStatusProps {
   onRetry: () => void | Promise<void>
 }
 
-const WINDOWS_CMD =
-  'cd backend && python -m venv .venv && .\\.venv\\Scripts\\pip install -r requirements.txt && .\\.venv\\Scripts\\uvicorn app.main:app --reload --host 127.0.0.1 --port 8787'
-
-const UNIX_CMD =
-  'cd backend && python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt && ./.venv/bin/uvicorn app.main:app --reload --host 127.0.0.1 --port 8787'
-
 export default function LocalServiceStatus({
   status,
   health,
   onRetry,
 }: LocalServiceStatusProps) {
-  const [showGuide, setShowGuide] = useState(false)
-  const [copiedId, setCopiedId] = useState<string | null>(null)
-
-  async function copyCommand(id: string, command: string) {
-    try {
-      await navigator.clipboard.writeText(command)
-      setCopiedId(id)
-      window.setTimeout(() => setCopiedId(null), 1800)
-    } catch {
-      // Ignore clipboard failures
-    }
-  }
+  const { t } = useLanguage()
 
   if (status === 'checking') {
     return (
-      <div className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-3">
+      <div className="ios-card flex items-center gap-3.5 px-5 py-4">
         <LoaderCircle
-          size={17}
-          className="animate-spin text-[var(--text-muted)]"
+          size={19}
+          className="animate-spin text-[var(--primary)]"
         />
 
         <div>
-          <p className="text-sm font-medium text-[var(--text-primary)]">
-            Checking local service...
+          <p className="text-sm font-semibold text-[var(--text-primary)]">
+            {t(
+              'Memeriksa Pendamping Perangkat...',
+              'Checking Device Companion...',
+            )}
           </p>
 
           <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-            Looking for Ditya Tools on this device (127.0.0.1:8787).
+            {t(
+              'Menghubungkan ke layanan media di perangkat Anda.',
+              'Connecting to the media companion on your device.',
+            )}
           </p>
         </div>
       </div>
@@ -73,21 +58,23 @@ export default function LocalServiceStatus({
       <motion.div
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-3 rounded-xl border border-green-500/20 bg-green-500/5 px-4 py-3"
+        className="ios-card flex items-center gap-3.5 border-green-500/25 bg-green-500/5 px-5 py-4"
       >
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-500/10 text-green-500">
-          <Wifi size={17} />
+        <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-green-500/15 text-[var(--success)]">
+          <Wifi size={18} />
         </div>
 
         <div>
-          <p className="text-sm font-medium text-[var(--text-primary)]">
-            Local service connected
+          <p className="text-sm font-semibold text-[var(--text-primary)]">
+            {t(
+              'Pendamping Perangkat Terhubung',
+              'Device Companion Connected',
+            )}
           </p>
 
           <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-            Version {health?.version ?? 'unknown'}
-            {health?.capabilities?.ffmpeg !== undefined &&
-              ` • FFmpeg ${health.capabilities.ffmpeg ? 'ready' : 'not found'}`}
+            {t('Siap memproses media', 'Ready for media tasks')} • v
+            {health?.version ?? '0.2.0'}
           </p>
         </div>
       </motion.div>
@@ -98,91 +85,52 @@ export default function LocalServiceStatus({
     <motion.div
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4"
+      className="ios-card p-5 sm:p-6"
     >
-      <div className="flex gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-500">
-          <CircleAlert size={17} />
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
+          <Laptop size={20} />
         </div>
 
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-medium text-[var(--text-primary)]">
-            Local service is offline
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
+            {t('Khusus Pendamping Desktop', 'Desktop Companion Feature')}
+          </div>
+
+          <p className="mt-2 text-base font-bold text-[var(--text-primary)]">
+            {t(
+              'Pendamping Perangkat Belum Terhubung',
+              'Device Companion Is Not Connected Right Now',
+            )}
           </p>
 
-          <p className="mt-1 text-xs leading-5 text-[var(--text-muted)]">
-            Start Ditya Tools Local Service on <code className="font-mono">127.0.0.1:8787</code> before using media tools.
+          <p className="mt-1.5 text-sm leading-6 text-[var(--text-secondary)]">
+            {t(
+              'Alat media ini memproses video dan audio berukuran besar langsung di komputer pribadi agar tetap cepat dan menjaga privasi Anda. Jika Anda sedang membuka web ini dari smartphone atau pendamping perangkat sedang tidak aktif, Anda tetap dapat menggunakan seluruh alat gambar, PDF, QR, dan teks lainnya secara instan di browser.',
+              'This media utility processes large video and audio files through your desktop companion so everything stays fast and private. If you are browsing on a phone or the companion is currently inactive, you can still use all of our image, PDF, QR, and text tools right in your browser.',
+            )}
           </p>
 
-          <div className="mt-3 flex flex-wrap items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2.5">
             <button
               type="button"
               onClick={() => {
                 void onRetry()
               }}
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] transition hover:border-[var(--primary-border)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-text)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2 text-xs font-semibold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
             >
               <RefreshCcw size={14} />
-              Check again
+              {t('Coba Hubungkan Ulang', 'Try Reconnecting')}
             </button>
 
-            <button
-              id="local-service-toggle-guide"
-              type="button"
-              onClick={() => setShowGuide((prev) => !prev)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary-text)]"
+            <Link
+              to="/tools"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-semibold text-[var(--text-primary)] transition hover:border-[var(--primary-border)]"
             >
-              <Terminal size={14} />
-              How to start
-              {showGuide ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            </button>
+              <Compass size={14} />
+              {t('Jelajahi Alat Instan Browser', 'Explore Instant Browser Tools')}
+            </Link>
           </div>
-
-          {showGuide && (
-            <div className="mt-4 space-y-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3.5 text-xs">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[var(--text-primary)]">
-                    Windows (PowerShell)
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => void copyCommand('win', WINDOWS_CMD)}
-                    className="inline-flex items-center gap-1 text-[var(--primary-text)] hover:underline"
-                  >
-                    {copiedId === 'win' ? <Check size={12} /> : <Copy size={12} />}
-                    {copiedId === 'win' ? 'Copied' : 'Copy'}
-                  </button>
-                </div>
-                <pre className="mt-1.5 overflow-x-auto rounded-lg bg-[var(--surface-soft)] p-2.5 font-mono text-[11px] text-[var(--text-secondary)]">
-                  {WINDOWS_CMD}
-                </pre>
-              </div>
-
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-semibold text-[var(--text-primary)]">
-                    macOS / Linux
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => void copyCommand('unix', UNIX_CMD)}
-                    className="inline-flex items-center gap-1 text-[var(--primary-text)] hover:underline"
-                  >
-                    {copiedId === 'unix' ? <Check size={12} /> : <Copy size={12} />}
-                    {copiedId === 'unix' ? 'Copied' : 'Copy'}
-                  </button>
-                </div>
-                <pre className="mt-1.5 overflow-x-auto rounded-lg bg-[var(--surface-soft)] p-2.5 font-mono text-[11px] text-[var(--text-secondary)]">
-                  {UNIX_CMD}
-                </pre>
-              </div>
-
-              <p className="text-[11px] leading-5 text-[var(--text-muted)]">
-                Tip: If you already set up the virtual environment on Windows, just run <code className="font-mono">npm run backend</code> from the project root. Make sure <code className="font-mono">ffmpeg</code> is installed on your PATH.
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </motion.div>

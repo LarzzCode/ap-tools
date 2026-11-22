@@ -10,20 +10,20 @@ import {
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
   Download,
   FileText,
   Grid2x2,
   IdCard,
   RotateCcw,
-  ShieldCheck,
   Upload,
   X,
   ZoomIn,
 } from 'lucide-react'
 
 import { Link } from 'react-router'
+
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import {
   PAS_FOTO_PRESETS,
@@ -249,32 +249,7 @@ export default function PasFoto() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--primary-text)]"
-        >
-          <ArrowLeft size={16} />
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]">
-            <IdCard size={22} />
-          </div>
-
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Pas Foto & Print Sheet
-          </h1>
-
-          <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Crop ID photos to standard 2×3, 3×4, 4×6 cm, or visa ratios at 300 DPI and arrange them onto a ready-to-print 4R or A4 sheet.
-          </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
-            <ShieldCheck size={14} className="text-[var(--success)]" />
-            Processed locally in your browser
-          </div>
-        </div>
+        <ToolPageHeader toolId="pas-foto" />
 
         <input
           id="pas-foto-file-input"

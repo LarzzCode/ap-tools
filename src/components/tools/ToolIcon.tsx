@@ -1,11 +1,12 @@
 import {
-  Braces,
   Eraser,
   FileImage,
   FileSignature,
+  FileSpreadsheet,
   Film,
   IdCard,
   Images,
+  Layers,
   Link2Off,
   Merge,
   MessageCircle,
@@ -13,8 +14,10 @@ import {
   QrCode,
   ScanLine,
   Scissors,
+  ShieldAlert,
   ShieldCheck,
   Type,
+  Wifi,
 } from 'lucide-react'
 
 interface ToolIconProps {
@@ -32,6 +35,9 @@ export default function ToolIcon({
   }
 
   switch (toolId) {
+    case 'ktp-watermark':
+      return <ShieldAlert {...props} />
+
     case 'image-to-pdf':
       return <FileImage {...props} />
 
@@ -53,14 +59,20 @@ export default function ToolIcon({
     case 'pdf-split':
       return <Scissors {...props} />
 
+    case 'pdf-organizer':
+      return <Layers {...props} />
+
     case 'pdf-sign':
       return <FileSignature {...props} />
+
+    case 'invoice-generator':
+      return <FileSpreadsheet {...props} />
 
     case 'text-utilities':
       return <Type {...props} />
 
-    case 'json-diff':
-      return <Braces {...props} />
+    case 'wifi-qr':
+      return <Wifi {...props} />
 
     case 'qr-generator':
       return <QrCode {...props} />

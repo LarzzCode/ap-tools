@@ -26,19 +26,16 @@ import {
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Download,
   FileText,
   Images,
   LoaderCircle,
   Plus,
-  ShieldCheck,
   Trash2,
   Upload,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
-
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 import SortableImageCard from '../../components/tools/SortableImageCard'
 
 import {
@@ -103,14 +100,12 @@ export default function ImageToPdf() {
   )
 
   useEffect(() => {
+    const urls = previewUrlsRef.current
     return () => {
-      previewUrlsRef.current.forEach(
-        (url) => {
-          URL.revokeObjectURL(url)
-        },
-      )
-
-      previewUrlsRef.current.clear()
+      urls.forEach((url) => {
+        URL.revokeObjectURL(url)
+      })
+      urls.clear()
     }
   }, [])
 
@@ -362,70 +357,7 @@ export default function ImageToPdf() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <Link
-          to="/"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium
-            text-[var(--text-secondary)]
-            transition
-            hover:text-[var(--primary-text)]
-          "
-        >
-          <ArrowLeft size={16} />
-
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div
-            className="
-              mb-5 flex h-12 w-12
-              items-center justify-center
-              rounded-2xl
-              border border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              text-[var(--primary-text)]
-            "
-          >
-            <FileText size={24} />
-          </div>
-
-          <h1
-            className="
-              text-3xl font-bold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-4xl
-            "
-          >
-            Image to PDF
-          </h1>
-
-          <p
-            className="
-              mt-3 text-base leading-7
-              text-[var(--text-secondary)]
-            "
-          >
-            Combine multiple images into one
-            clean PDF document.
-          </p>
-
-          <div
-            className="
-              mt-4 inline-flex items-center gap-2
-              text-sm
-              text-[var(--text-muted)]
-            "
-          >
-            <ShieldCheck
-              size={15}
-              className="text-[var(--success)]"
-            />
-
-            Your images never leave your device.
-          </div>
-        </div>
+        <ToolPageHeader toolId="image-to-pdf" />
 
         <div
           className="

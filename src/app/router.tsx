@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router'
 
 import AppLayout from '../components/layout/AppLayout'
-import Home from '../pages/Home'
 import AppError from '../pages/AppError'
+import Home from '../pages/Home'
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +18,15 @@ export const router = createBrowserRouter([
         path: '/tools',
         lazy: async () => {
           const { default: Component } = await import('../pages/AllTools')
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/ktp-watermark',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/KtpWatermark'
+          )
           return { Component }
         },
       },
@@ -85,10 +94,28 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: '/tools/pdf-organizer',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/PdfOrganizer'
+          )
+          return { Component }
+        },
+      },
+      {
         path: '/tools/pdf-sign',
         lazy: async () => {
           const { default: Component } = await import(
             '../pages/tools/PdfSign'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/invoice-generator',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/InvoiceGenerator'
           )
           return { Component }
         },
@@ -103,10 +130,10 @@ export const router = createBrowserRouter([
         },
       },
       {
-        path: '/tools/json-diff',
+        path: '/tools/wifi-qr',
         lazy: async () => {
           const { default: Component } = await import(
-            '../pages/tools/JsonDiff'
+            '../pages/tools/WifiQr'
           )
           return { Component }
         },

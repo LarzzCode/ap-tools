@@ -6,9 +6,7 @@ import {
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
-  CirclePlay,
   Clock3,
   Download,
   FileAudio,
@@ -19,8 +17,7 @@ import {
   Video,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
-
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 import LocalServiceStatus from '../../components/tools/LocalServiceStatus'
 
 import { useLocalService } from '../../hooks/useLocalService'
@@ -347,61 +344,7 @@ export default function YouTubeDownloader() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        {/* BACK */}
-
-        <Link
-          to="/"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium
-            text-[var(--text-secondary)]
-            transition
-            hover:text-[var(--primary-text)]
-          "
-        >
-          <ArrowLeft size={16} />
-
-          All tools
-        </Link>
-
-
-        {/* PAGE HEADER */}
-
-        <div className="mt-8 max-w-2xl">
-          <div
-            className="
-              mb-5 flex h-12 w-12
-              items-center justify-center
-              rounded-2xl
-              border border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              text-[var(--primary-text)]
-            "
-          >
-            <CirclePlay size={24} />
-          </div>
-
-          <h1
-            className="
-              text-3xl font-bold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-4xl
-            "
-          >
-            YouTube Media Downloader
-          </h1>
-
-          <p
-            className="
-              mt-3 text-base leading-7
-              text-[var(--text-secondary)]
-            "
-          >
-            Analyze and save media you own
-            or have permission to download
-            using your local service.
-          </p>
-        </div>
+        <ToolPageHeader toolId="youtube-downloader" />
 
 
         {/* LOCAL SERVICE */}

@@ -8,76 +8,108 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ================================
-   Ditya TOOLS DESIGN TOKENS
+   DITYA TOOLS — iOS / CUPERTINO DESIGN TOKENS
 ================================ */
 
 :root {
-  --background: #f8fafc;
+  --background: #f2f2f7;
 
   --surface: #ffffff;
-  --surface-soft: #f8fafc;
-  --surface-hover: #f0f9ff;
+  --surface-soft: #f5f5fa;
+  --surface-hover: #eef4ff;
+  --surface-glass: rgba(255, 255, 255, 0.78);
+  --segmented-bg: rgba(118, 118, 128, 0.12);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-primary: #1c1c1e;
+  --text-secondary: #48484a;
+  --text-muted: #8e8e93;
 
-  --border: #e2e8f0;
-  --border-hover: #bae6fd;
+  --border: rgba(60, 60, 67, 0.12);
+  --border-hover: rgba(0, 122, 255, 0.35);
 
-  --primary: #38bdf8;
-  --primary-hover: #0ea5e9;
-  --primary-strong: #0284c7;
+  --primary: #007aff;
+  --primary-hover: #0062cc;
+  --primary-strong: #0051a8;
 
-  --primary-soft: #f0f9ff;
-  --primary-soft-strong: #e0f2fe;
-  --primary-border: #bae6fd;
-  --primary-text: #0369a1;
+  --primary-soft: rgba(0, 122, 255, 0.11);
+  --primary-soft-strong: rgba(0, 122, 255, 0.18);
+  --primary-border: rgba(0, 122, 255, 0.26);
+  --primary-text: #0066dc;
 
-  --accent: #818cf8;
+  --accent: #32ade6;
 
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --error: #ef4444;
+  --success: #34c759;
+  --warning: #ff9500;
+  --error: #ff3b30;
+
+  --ios-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.03),
+    0 12px 28px rgba(15, 23, 42, 0.04);
+  --ios-shadow-hover:
+    0 6px 18px rgba(0, 122, 255, 0.08),
+    0 16px 36px rgba(15, 23, 42, 0.07);
 }
 
 .dark {
-  --background: #080d14;
+  --background: #000000;
 
-  --surface: #0f172a;
-  --surface-soft: #111827;
-  --surface-hover: #111e2e;
+  --surface: #1c1c1e;
+  --surface-soft: #2c2c2e;
+  --surface-hover: #242933;
+  --surface-glass: rgba(28, 28, 30, 0.78);
+  --segmented-bg: rgba(118, 118, 128, 0.24);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
+  --text-primary: #f5f5f7;
+  --text-secondary: #AEAEB2;
+  --text-muted: #8e8e93;
 
-  --border: #1e293b;
-  --border-hover: #164e63;
+  --border: rgba(84, 84, 88, 0.45);
+  --border-hover: rgba(10, 132, 255, 0.5);
 
-  --primary: #38bdf8;
-  --primary-hover: #7dd3fc;
-  --primary-strong: #7dd3fc;
+  --primary: #0a84ff;
+  --primary-hover: #409cff;
+  --primary-strong: #64d2ff;
 
-  --primary-soft: #0c2230;
-  --primary-soft-strong: #0f2d40;
-  --primary-border: #164e63;
-  --primary-text: #7dd3fc;
+  --primary-soft: rgba(10, 132, 255, 0.18);
+  --primary-soft-strong: rgba(10, 132, 255, 0.26);
+  --primary-border: rgba(10, 132, 255, 0.36);
+  --primary-text: #64b5ff;
 
-  --accent: #818cf8;
+  --accent: #64d2ff;
+
+  --success: #30d158;
+  --warning: #ff9f0a;
+  --error: #ff453a;
+
+  --ios-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --ios-shadow-hover:
+    0 10px 28px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
 }
 
 /* ================================
-   GLOBAL BASE
+   GLOBAL BASE & iOS MATERIALS
 ================================ */
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
-  font-family: "Inter", sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Inter",
+    system-ui,
+    sans-serif;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -89,8 +121,8 @@ body {
   color: var(--text-primary);
 
   transition:
-    background-color 180ms ease,
-    color 180ms ease;
+    background-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 button,
@@ -104,7 +136,34 @@ button {
   cursor: pointer;
 }
 
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.ios-glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(24px) saturate(185%);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
+}
+
+.ios-card {
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--ios-shadow);
+  transition:
+    border-color 200ms ease,
+    box-shadow 220ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ios-segmented {
+  background: var(--segmented-bg);
+  border-radius: 9999px;
+  padding: 4px;
 }

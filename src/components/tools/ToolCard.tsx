@@ -1,10 +1,11 @@
-import { ArrowUpRight, Star } from 'lucide-react'
+import { ChevronRight, Star } from 'lucide-react'
 import { Link } from 'react-router'
+import { motion } from 'motion/react'
 
-import type { Tool } from '../../types/tool'
+import { useLanguage } from '../../hooks/useLanguage'
+import type { Tool, ToolCategory } from '../../types/tool'
 import RuntimeBadge from './RuntimeBadge'
 import ToolIcon from './ToolIcon'
-import { motion } from 'motion/react'
 
 interface ToolCardProps {
   tool: Tool
@@ -12,135 +13,149 @@ interface ToolCardProps {
   onToggleFavorite: (toolId: string) => void
 }
 
+const CATEGORY_LABELS: Record<ToolCategory, { id: string; en: string }> = {
+  image: { id: 'Gambar & Foto', en: 'Image & Photo' },
+  pdf: { id: 'Dokumen PDF', en: 'PDF Document' },
+  links: { id: 'QR & Tautan', en: 'QR & Links' },
+  text: { id: 'Teks', en: 'Text' },
+  media: { id: 'Video & Audio', en: 'Video & Audio' },
+}
+
 export default function ToolCard({
   tool,
   isFavorite,
   onToggleFavorite,
 }: ToolCardProps) {
+  const { language, t } = useLanguage()
+
+  const displayName = language === 'id' ? tool.nameId : tool.name
+  const displayDescription =
+    language === 'id' ? tool.descriptionId : tool.description
+  const categoryLabel =
+    language === 'id'
+      ? CATEGORY_LABELS[tool.category].id
+      : CATEGORY_LABELS[tool.category].en
+
   return (
     <motion.article
-      whileHover={{
-        y: -4,
-      }}
+      whileHover={{ y: -3 }}
       transition={{
         type: 'spring',
         stiffness: 420,
-        damping: 28,
+        damping: 30,
       }}
       className="
-        group relative
-        rounded-2xl
-        border border-[var(--border)]
-        bg-[var(--surface)]
-        p-5
-        transition-colors duration-200
+        ios-card
+        group relative flex h-full flex-col justify-between
+        p-5 sm:p-6
         hover:border-[var(--primary-border)]
-        hover:shadow-lg
-        hover:shadow-sky-500/5
       "
     >
-      <div className="flex items-start justify-between">
-        <div
-          className="
-            flex h-11 w-11
-            items-center justify-center
-            rounded-xl
-            border border-[var(--primary-border)]
-            bg-[var(--primary-soft)]
-            text-[var(--primary-text)]
-          "
-        >
-          <ToolIcon toolId={tool.id} />
-        </div>
+      <div>
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div
+              className="
+                flex h-12 w-12 shrink-0
+                items-center justify-center
+                rounded-[15px]
+                border border-[var(--primary-border)]
+                bg-[var(--primary-soft)]
+                text-[var(--primary)]
+                shadow-xs
+              "
+            >
+              <ToolIcon toolId={tool.id} size={22} />
+            </div>
 
-        <motion.button
-          type="button"
-          onClick={() => onToggleFavorite(tool.id)}
-          whileTap={{
-            scale: 0.82,
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 500,
-            damping: 22,
-          }}
-          aria-pressed={isFavorite}
-          aria-label={
-            isFavorite
-              ? `Remove ${tool.name} from favorites`
-              : `Add ${tool.name} to favorites`
-          }
-          className={`
-            flex h-9 w-9
-            items-center justify-center
-            rounded-lg
-            transition-colors
-            ${
+            <span className="rounded-full bg-[var(--surface-soft)] px-2.5 py-1 text-[11px] font-semibold text-[var(--text-muted)]">
+              {categoryLabel}
+            </span>
+          </div>
+
+          <motion.button
+            type="button"
+            onClick={() => onToggleFavorite(tool.id)}
+            whileTap={{ scale: 0.85 }}
+            aria-pressed={isFavorite}
+            aria-label={
               isFavorite
-                ? 'bg-[var(--primary-soft)] text-[var(--primary-text)]'
-                : 'text-[var(--text-muted)] hover:bg-[var(--primary-soft)] hover:text-[var(--primary-text)]'
+                ? t(
+                    `Hapus ${displayName} dari favorit`,
+                    `Remove ${displayName} from favorites`,
+                  )
+                : t(
+                    `Simpan ${displayName} ke favorit`,
+                    `Add ${displayName} to favorites`,
+                  )
             }
-          `}
-        >
-          <motion.div
-            animate={{
-              rotate: isFavorite ? 72 : 0,
-              scale: isFavorite ? 1.08 : 1,
-            }}
-            transition={{
-              type: 'spring',
-              stiffness: 400,
-              damping: 22,
-            }}
+            className={`
+              flex h-9 w-9 shrink-0
+              items-center justify-center
+              rounded-full
+              transition-colors
+              ${
+                isFavorite
+                  ? 'bg-[var(--primary-soft)] text-[var(--primary)]'
+                  : 'text-[var(--text-muted)] hover:bg-[var(--surface-soft)] hover:text-[var(--text-primary)]'
+              }
+            `}
           >
             <Star
               size={17}
               fill={isFavorite ? 'currentColor' : 'none'}
             />
-          </motion.div>
-        </motion.button>
-      </div>
-
-      <Link
-        to={tool.path}
-        className="mt-5 block"
-      >
-        <div className="flex items-center gap-2">
-          <h3
-            className="
-              text-base font-semibold
-              text-[var(--text-primary)]
-            "
-          >
-            {tool.name}
-          </h3>
-
-          <ArrowUpRight
-            size={15}
-            className="
-              text-[var(--text-muted)]
-              opacity-0
-              transition
-              group-hover:translate-x-0.5
-              group-hover:-translate-y-0.5
-              group-hover:opacity-100
-            "
-          />
+          </motion.button>
         </div>
 
-        <p
-          className="
-            mt-2 min-h-10
-            text-sm leading-5
-            text-[var(--text-secondary)]
-          "
+        <Link
+          to={tool.path}
+          className="mt-4 block"
         >
-          {tool.description}
-        </p>
-      </Link>
+          <div className="flex items-center justify-between gap-2">
+            <h3
+              className="
+                text-base font-bold tracking-tight
+                text-[var(--text-primary)]
+                group-hover:text-[var(--primary)]
+                transition-colors
+              "
+            >
+              {displayName}
+            </h3>
 
-      <div className="mt-5">
+            <ChevronRight
+              size={17}
+              className="
+                shrink-0 text-[var(--text-muted)]
+                transition-transform
+                group-hover:translate-x-0.5
+                group-hover:text-[var(--primary)]
+              "
+            />
+          </div>
+
+          <p
+            className="
+              mt-2.5
+              text-sm leading-6
+              text-[var(--text-secondary)]
+            "
+          >
+            {displayDescription}
+          </p>
+        </Link>
+      </div>
+
+      <div className="mt-5 flex items-center justify-between border-t border-[var(--border)] pt-3.5">
         <RuntimeBadge runtime={tool.runtime} />
+
+        <Link
+          to={tool.path}
+          className="text-xs font-semibold text-[var(--primary)] hover:underline"
+        >
+          {t('Buka Alat', 'Open Tool')}
+        </Link>
       </div>
     </motion.article>
   )

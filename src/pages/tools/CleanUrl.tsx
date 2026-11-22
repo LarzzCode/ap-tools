@@ -3,16 +3,13 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
   Copy,
   ExternalLink,
-  Link2Off,
-  ShieldCheck,
   Trash2,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import { generateQrCode } from '../../lib/qr'
 import { cleanTrackingUrl } from '../../lib/urlCleaner'
@@ -69,32 +66,7 @@ export default function CleanUrl() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--primary-text)]"
-        >
-          <ArrowLeft size={16} />
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]">
-            <Link2Off size={22} />
-          </div>
-
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Clean URL & Tracking Stripper
-          </h1>
-
-          <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Remove tracking parameters like <code className="text-sm">utm_source</code>, <code className="text-sm">fbclid</code>, <code className="text-sm">igsh</code>, and <code className="text-sm">si</code> before sharing links.
-          </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
-            <ShieldCheck size={14} className="text-[var(--success)]" />
-            Processed locally in your browser
-          </div>
-        </div>
+        <ToolPageHeader toolId="clean-url" />
 
         <section className="mt-10 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
           <div className="flex items-center justify-between gap-2">

@@ -9,18 +9,16 @@ import {
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
   Download,
   LoaderCircle,
   ShieldAlert,
   ShieldCheck,
-  Sparkles,
   Upload,
   X,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import {
   inspectImageMetadata,
@@ -176,32 +174,7 @@ export default function ImagePrivacy() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition hover:text-[var(--primary-text)]"
-        >
-          <ArrowLeft size={16} />
-          All tools
-        </Link>
-
-        <div className="mt-8 max-w-2xl">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]">
-            <Sparkles size={22} />
-          </div>
-
-          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
-            Image EXIF Stripper & Converter
-          </h1>
-
-          <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">
-            Inspect and remove hidden EXIF, GPS location, camera model, and metadata tags from photos before sharing — plus resize or convert format.
-          </p>
-
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-medium text-[var(--text-secondary)]">
-            <ShieldCheck size={14} className="text-[var(--success)]" />
-            Processed locally in your browser
-          </div>
-        </div>
+        <ToolPageHeader toolId="image-privacy" />
 
         <input
           id="image-privacy-file-input"

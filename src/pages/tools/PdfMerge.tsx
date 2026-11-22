@@ -28,14 +28,11 @@ import {
 } from '@dnd-kit/utilities'
 
 import {
-  ArrowLeft,
   Download,
   FileText,
   GripVertical,
   LoaderCircle,
-  Merge,
   Plus,
-  ShieldCheck,
   Trash2,
   Upload,
   X,
@@ -45,9 +42,7 @@ import {
   motion,
 } from 'motion/react'
 
-import {
-  Link,
-} from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import {
   mergePdfFiles,
@@ -676,102 +671,7 @@ export default function PdfMerge() {
           ],
         }}
       >
-        <Link
-          to="/"
-          className="
-            inline-flex
-            items-center
-            gap-2
-            text-sm
-            font-medium
-            text-[var(--text-secondary)]
-            transition
-            hover:text-[var(--primary-text)]
-          "
-        >
-          <ArrowLeft
-            size={16}
-          />
-
-          All tools
-        </Link>
-
-
-        {/* HEADER */}
-
-        <div
-          className="
-            mt-8
-            max-w-2xl
-          "
-        >
-          <div
-            className="
-              mb-5
-              flex
-              h-12
-              w-12
-              items-center
-              justify-center
-              rounded-2xl
-              border
-              border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              text-[var(--primary-text)]
-            "
-          >
-            <Merge
-              size={23}
-            />
-          </div>
-
-          <h1
-            className="
-              text-3xl
-              font-bold
-              tracking-tight
-              text-[var(--text-primary)]
-              sm:text-4xl
-            "
-          >
-            PDF Merge
-          </h1>
-
-          <p
-            className="
-              mt-3
-              text-base
-              leading-7
-              text-[var(--text-secondary)]
-            "
-          >
-            Combine multiple PDF
-            files into one document.
-            Reorder them however
-            you want before merging.
-          </p>
-
-          <div
-            className="
-              mt-4
-              inline-flex
-              items-center
-              gap-2
-              text-sm
-              text-[var(--text-muted)]
-            "
-          >
-            <ShieldCheck
-              size={15}
-              className="
-                text-[var(--success)]
-              "
-            />
-
-            Your PDFs never leave
-            your device.
-          </div>
-        </div>
+        <ToolPageHeader toolId="pdf-merge" />
 
 
         {/* WORKSPACE */}

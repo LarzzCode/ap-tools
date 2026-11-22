@@ -2,16 +2,14 @@ import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { generateQrCode } from '../../lib/qr'
 import {
-  ArrowLeft,
   Check,
   Copy,
   Download,
   ExternalLink,
-  MessageCircle,
   QrCode,
-  ShieldCheck,
 } from 'lucide-react'
-import { Link } from 'react-router'
+
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import { downloadDataUrl } from '../../utils/download'
 import {
@@ -123,74 +121,7 @@ export default function WhatsAppLink() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        {/* Back */}
-
-        <Link
-          to="/"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium
-            text-[var(--text-secondary)]
-            transition
-            hover:text-[var(--primary-text)]
-          "
-        >
-          <ArrowLeft size={16} />
-
-          All tools
-        </Link>
-
-        {/* Header */}
-
-        <div className="mt-8 max-w-2xl">
-          <div
-            className="
-              mb-5 flex h-12 w-12
-              items-center justify-center
-              rounded-2xl
-              border border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              text-[var(--primary-text)]
-            "
-          >
-            <MessageCircle size={24} />
-          </div>
-
-          <h1
-            className="
-              text-3xl font-bold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-4xl
-            "
-          >
-            WhatsApp Link Generator
-          </h1>
-
-          <p
-            className="
-              mt-3 text-base leading-7
-              text-[var(--text-secondary)]
-            "
-          >
-            Create a WhatsApp chat link with an
-            optional pre-filled message.
-          </p>
-
-          <div
-            className="
-              mt-4 inline-flex items-center gap-2
-              text-sm
-              text-[var(--text-muted)]
-            "
-          >
-            <ShieldCheck
-              size={15}
-              className="text-[var(--success)]"
-            />
-
-            Everything is generated in your browser.
-          </div>
-        </div>
+        <ToolPageHeader toolId="whatsapp-link" />
 
         {/* Workspace */}
 

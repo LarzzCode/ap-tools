@@ -1,41 +1,52 @@
 import { useMemo, useState } from 'react'
 import {
+  Lock,
   Search,
   SearchX,
+  Sparkles,
   Star,
   X,
+  Zap,
 } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
+
 import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
-
+import { useLanguage } from '../hooks/useLanguage'
 import type { ToolCategory } from '../types/tool'
 
-const HOME_CATEGORIES: Array<{ id: 'all' | ToolCategory; label: string }> = [
-  { id: 'all', label: 'All' },
-  { id: 'image', label: 'Image' },
-  { id: 'pdf', label: 'PDF' },
-  { id: 'text', label: 'Text' },
-  { id: 'links', label: 'Links' },
-  { id: 'media', label: 'Media' },
+const HOME_CATEGORIES: Array<{
+  id: 'all' | ToolCategory
+  labelId: string
+  labelEn: string
+}> = [
+  { id: 'all', labelId: 'Semua', labelEn: 'All' },
+  { id: 'image', labelId: 'Gambar & KTP', labelEn: 'Image & ID' },
+  { id: 'pdf', labelId: 'PDF & Invoice', labelEn: 'PDF & Invoice' },
+  { id: 'links', labelId: 'QR & Wi-Fi', labelEn: 'QR & Wi-Fi' },
+  { id: 'text', labelId: 'Teks', labelEn: 'Text' },
+  { id: 'media', labelId: 'Media', labelEn: 'Media' },
 ]
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState<'all' | ToolCategory>('all')
+  const [selectedCategory, setSelectedCategory] = useState<
+    'all' | ToolCategory
+  >('all')
 
-  const {
-    favoriteIds,
-    toggleFavorite,
-    isFavorite,
-  } = useFavorites()
+  const { language, t } = useLanguage()
+  const { favoriteIds, toggleFavorite, isFavorite } = useFavorites()
 
   const filteredTools = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
 
     return tools.filter((tool) => {
-      if (!query && selectedCategory !== 'all' && tool.category !== selectedCategory) {
+      if (
+        !query &&
+        selectedCategory !== 'all' &&
+        tool.category !== selectedCategory
+      ) {
         return false
       }
 
@@ -45,7 +56,9 @@ export default function Home() {
 
       const searchableText = [
         tool.name,
+        tool.nameId,
         tool.description,
+        tool.descriptionId,
         tool.category,
         ...tool.keywords,
       ]
@@ -57,304 +70,182 @@ export default function Home() {
   }, [searchQuery, selectedCategory])
 
   const favoriteTools = useMemo(() => {
-    return tools.filter((tool) =>
-      favoriteIds.includes(tool.id),
-    )
+    return tools.filter((tool) => favoriteIds.includes(tool.id))
   }, [favoriteIds])
 
   const isSearching = searchQuery.trim().length > 0
 
   return (
     <main>
-      <section
-        className="
-          relative overflow-hidden
-          px-4 py-20
-          sm:px-6 sm:py-24
-          lg:px-8
-        "
-      >
-      <motion.div
-        aria-hidden="true"
-        animate={{
-          scale: [1, 1.08, 1],
-          opacity: [0.6, 0.9, 0.6],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="
-          pointer-events-none
-          absolute left-1/2 top-0
-          -z-10
-          h-72 w-72
-          -translate-x-1/2
-          rounded-full
-          bg-sky-300/20
-          blur-3xl
-        "
-      />
+      {/* iOS Spotlight Hero Section */}
+      <section className="relative overflow-hidden px-4 pt-12 pb-14 sm:px-6 sm:pt-16 sm:pb-16 lg:px-8">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-64 w-96 -translate-x-1/2 rounded-full bg-[var(--primary)]/12 blur-3xl"
+        />
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 18,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-3xl text-center"
         >
-          <div
-            className="
-              mb-6 inline-flex
-              rounded-full
-              border border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              px-4 py-2
-              text-sm font-medium
-              text-[var(--primary-text)]
-            "
-          >
-            No ads. Ever.
-          </div>
-
-          <h1
-            className="
-              text-4xl font-bold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-5xl
-              lg:text-6xl
-            "
-          >
-            Your everyday{' '}
+          <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+            {t('Alat harian Anda,', 'Your everyday tools,')}{' '}
             <span className="text-[var(--primary)]">
-              tools.
+              {t('cepat & privat.', 'fast & private.')}
             </span>
           </h1>
 
-          <p
-            className="
-              mx-auto mt-6 max-w-xl
-              text-base leading-7
-              text-[var(--text-secondary)]
-              sm:text-lg
-            "
-          >
-            Simple utilities for everyday digital
-            tasks. No ads, no clutter, and no
-            unnecessary accounts.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--text-secondary)] sm:text-lg">
+            {t(
+              'Kumpulan utilitas praktis untuk mengolah foto, watermark KTP, pas foto, dokumen PDF, invoice, hingga kartu QR Wi-Fi langsung di perangkat Anda. Tanpa iklan, tanpa daftar akun.',
+              'Practical utilities for ID photo watermarks, pas foto print sheets, PDF documents, invoices, and Wi-Fi QR cards right on your device. No ads, no accounts.',
+            )}
           </p>
 
-          <div
-            className="
-              mx-auto mt-10 flex max-w-2xl
-              items-center gap-3
-              rounded-2xl
-              border border-[var(--border)]
-              bg-[var(--surface)]
-              px-5 py-4
-              shadow-sm
-              transition
-              focus-within:border-[var(--primary-border)]
-              focus-within:ring-4
-              focus-within:ring-sky-100/50
-              dark:focus-within:ring-sky-900/20
-            "
-          >
+          {/* iOS Spotlight Search Bar */}
+          <div className="ios-card mx-auto mt-8 flex max-w-2xl items-center gap-3 px-5 py-3.5 focus-within:border-[var(--primary-border)]">
             <Search
-              size={20}
-              className="
-                shrink-0
-                text-[var(--text-muted)]
-              "
+              size={19}
+              className="shrink-0 text-[var(--text-muted)]"
             />
 
             <input
+              id="home-spotlight-search"
               type="search"
               value={searchQuery}
-              onChange={(event) =>
-                setSearchQuery(event.target.value)
-              }
-              placeholder="Search tools..."
-              aria-label="Search tools"
-              className="
-                w-full bg-transparent
-                text-[var(--text-primary)]
-                outline-none
-                placeholder:text-[var(--text-muted)]
-              "
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder={t(
+                'Cari alat (misal: Watermark KTP, Pas Foto, Gabung PDF, QR Wi-Fi)...',
+                'Search tools (e.g. ID Watermark, Pas Foto, PDF Merge, Wi-Fi QR)...',
+              )}
+              aria-label={t('Cari alat', 'Search tools')}
+              className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] sm:text-base"
             />
 
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-                className="
-                  flex h-8 w-8 shrink-0
-                  items-center justify-center
-                  rounded-lg
-                  text-[var(--text-muted)]
-                  transition
-                  hover:bg-[var(--primary-soft)]
-                  hover:text-[var(--primary-text)]
-                "
+                aria-label={t('Hapus pencarian', 'Clear search')}
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--surface-soft)] text-[var(--text-muted)] transition hover:text-[var(--text-primary)]"
               >
-                <X size={16} />
+                <X size={14} />
               </button>
             )}
           </div>
 
-          <div
-            className="
-              mt-5 flex flex-wrap
-              items-center justify-center
-              gap-x-5 gap-y-2
-              text-sm
-              text-[var(--text-muted)]
-            "
-          >
-            <span>Private by design</span>
-            <span>•</span>
-            <span>Fast</span>
-            <span>•</span>
-            <span>No account required</span>
+          {/* iOS Feature Highlights */}
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs font-medium text-[var(--text-secondary)]">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1">
+              <Lock size={12} className="text-[var(--success)]" />
+              {t('Privasi Aman di Perangkat', 'Private on Your Device')}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1">
+              <Zap size={12} className="text-[var(--primary)]" />
+              {t('Tanpa Iklan Selamanya', 'No Ads Ever')}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1">
+              <Sparkles size={12} className="text-[var(--primary)]" />
+              {t('Langsung Pakai Tanpa Login', 'Instant Use, No Login')}
+            </span>
           </div>
         </motion.div>
       </section>
 
+      {/* Favorites Section */}
       <AnimatePresence>
         {!isSearching && favoriteTools.length > 0 && (
           <motion.section
-            initial={{
-              opacity: 0,
-              y: 12,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: -8,
-            }}
-            transition={{
-              duration: 0.25,
-            }}
-            className="
-              mx-auto max-w-7xl
-              px-4 pb-14
-              sm:px-6
-              lg:px-8
-            "
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+            className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8"
           >
-          <div className="mb-6">
-            <div className="flex items-center gap-2">
-              <Star
-                size={18}
-                fill="currentColor"
-                className="text-[var(--primary)]"
-              />
+            <div className="mb-5">
+              <div className="flex items-center gap-2">
+                <Star
+                  size={18}
+                  fill="currentColor"
+                  className="text-[var(--primary)]"
+                />
 
-              <h2
-                className="
-                  text-xl font-semibold tracking-tight
-                  text-[var(--text-primary)]
-                "
-              >
-                Favorites
-              </h2>
+                <h2 className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+                  {t('Alat Favorit Anda', 'Your Favorites')}
+                </h2>
+              </div>
+
+              <p className="mt-1 text-sm text-[var(--text-secondary)]">
+                {t(
+                  'Akses cepat ke alat yang paling sering Anda gunakan.',
+                  'Quick access to your most-used utilities.',
+                )}
+              </p>
             </div>
 
-            <p
-              className="
-                mt-2 text-sm
-                text-[var(--text-secondary)]
-              "
-            >
-              Your most-used tools, ready when you
-              need them.
+            <ToolGrid
+              tools={favoriteTools}
+              isFavorite={isFavorite}
+              onToggleFavorite={toggleFavorite}
+            />
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* Main Toolbox */}
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
+              {isSearching
+                ? t('HASIL PENCARIAN', 'SEARCH RESULTS')
+                : t('KATALOG ALAT', 'TOOLBOX')}
+            </p>
+
+            <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
+              {isSearching
+                ? t(
+                    `Hasil untuk "${searchQuery}"`,
+                    `Results for "${searchQuery}"`,
+                  )
+                : t(
+                    'Pilih alat dan selesaikan tugas Anda.',
+                    'Pick a tool and get it done.',
+                  )}
+            </h2>
+
+            <p className="mt-1.5 text-sm text-[var(--text-secondary)]">
+              {isSearching
+                ? t(
+                    `${filteredTools.length} alat ditemukan.`,
+                    `${filteredTools.length} ${
+                      filteredTools.length === 1 ? 'tool' : 'tools'
+                    } found.`,
+                  )
+                : t(
+                    `${tools.length} utilitas lengkap dengan panduan langkah demi langkah di setiap halaman.`,
+                    `${tools.length} utilities with detailed step-by-step guides on every page.`,
+                  )}
             </p>
           </div>
 
-          <ToolGrid
-            tools={favoriteTools}
-            isFavorite={isFavorite}
-            onToggleFavorite={toggleFavorite}
-          />
-            </motion.section>
-          )}
-        </AnimatePresence>
-
-      <section
-        className="
-          mx-auto max-w-7xl
-          px-4 pb-20
-          sm:px-6
-          lg:px-8
-        "
-      >
-        <div className="mb-8">
-          <p
-            className="
-              text-sm font-medium
-              text-[var(--primary-text)]
-            "
-          >
-            {isSearching ? 'SEARCH RESULTS' : 'TOOLBOX'}
-          </p>
-
-          <h2
-            className="
-              mt-2
-              text-2xl font-semibold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-3xl
-            "
-          >
-            {isSearching
-              ? `Results for "${searchQuery}"`
-              : 'Pick a tool and get it done.'}
-          </h2>
-
-          <p
-            className="
-              mt-2 text-sm
-              text-[var(--text-secondary)]
-            "
-          >
-            {isSearching
-              ? `${filteredTools.length} ${
-                  filteredTools.length === 1
-                    ? 'tool'
-                    : 'tools'
-                } found.`
-              : `${tools.length} focused utilities — pick a tool and get it done.`}
-          </p>
-
           {!isSearching && (
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="ios-segmented flex flex-wrap gap-1 self-start">
               {HOME_CATEGORIES.map((category) => (
                 <button
                   key={category.id}
                   id={`home-category-${category.id}`}
                   type="button"
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`rounded-full border px-4 py-1.5 text-xs font-medium transition ${
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                     selectedCategory === category.id
-                      ? 'border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary-text)]'
-                      : 'border-[var(--border)] bg-[var(--surface)] text-[var(--text-secondary)] hover:border-[var(--primary-border)]'
+                      ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
-                  {category.label}
+                  {language === 'id' ? category.labelId : category.labelEn}
                 </button>
               ))}
             </div>
@@ -368,48 +259,20 @@ export default function Home() {
             onToggleFavorite={toggleFavorite}
           />
         ) : (
-          <div
-            className="
-              rounded-2xl
-              border border-dashed
-              border-[var(--border)]
-              bg-[var(--surface)]
-              px-6 py-16
-              text-center
-            "
-          >
-            <div
-              className="
-                mx-auto flex h-12 w-12
-                items-center justify-center
-                rounded-xl
-                bg-[var(--primary-soft)]
-                text-[var(--primary-text)]
-              "
-            >
+          <div className="ios-card px-6 py-16 text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
               <SearchX size={22} />
             </div>
 
-            <h3
-              className="
-                mt-4 text-base font-semibold
-                text-[var(--text-primary)]
-              "
-            >
-              No tools found
+            <h3 className="mt-4 text-base font-bold text-[var(--text-primary)]">
+              {t('Alat tidak ditemukan', 'No tools found')}
             </h3>
 
-            <p
-              className="
-                mx-auto mt-2 max-w-sm
-                text-sm leading-6
-                text-[var(--text-secondary)]
-              "
-            >
-              We couldn't find a tool matching
-              {' '}
-              <strong>"{searchQuery}"</strong>.
-              Try another keyword.
+            <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-[var(--text-secondary)]">
+              {t(
+                `Kami tidak menemukan alat yang cocok dengan "${searchQuery}". Coba kata kunci lain.`,
+                `We couldn't find a tool matching "${searchQuery}". Try another keyword.`,
+              )}
             </p>
           </div>
         )}

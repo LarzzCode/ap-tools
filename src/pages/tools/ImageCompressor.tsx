@@ -7,18 +7,16 @@ import {
 import { motion } from 'motion/react'
 
 import {
-  ArrowLeft,
   Check,
   Download,
   FileImage,
   ImageDown,
   RefreshCcw,
-  ShieldCheck,
   Upload,
   X,
 } from 'lucide-react'
 
-import { Link } from 'react-router'
+import ToolPageHeader from '../../components/tools/ToolPageHeader'
 
 import {
   compressImage,
@@ -251,74 +249,7 @@ export default function ImageCompressor() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        {/* Back */}
-
-        <Link
-          to="/"
-          className="
-            inline-flex items-center gap-2
-            text-sm font-medium
-            text-[var(--text-secondary)]
-            transition
-            hover:text-[var(--primary-text)]
-          "
-        >
-          <ArrowLeft size={16} />
-
-          All tools
-        </Link>
-
-        {/* Header */}
-
-        <div className="mt-8 max-w-2xl">
-          <div
-            className="
-              mb-5 flex h-12 w-12
-              items-center justify-center
-              rounded-2xl
-              border border-[var(--primary-border)]
-              bg-[var(--primary-soft)]
-              text-[var(--primary-text)]
-            "
-          >
-            <ImageDown size={24} />
-          </div>
-
-          <h1
-            className="
-              text-3xl font-bold tracking-tight
-              text-[var(--text-primary)]
-              sm:text-4xl
-            "
-          >
-            Image Compressor
-          </h1>
-
-          <p
-            className="
-              mt-3 text-base leading-7
-              text-[var(--text-secondary)]
-            "
-          >
-            Reduce image size without uploading it
-            anywhere.
-          </p>
-
-          <div
-            className="
-              mt-4 inline-flex items-center gap-2
-              text-sm
-              text-[var(--text-muted)]
-            "
-          >
-            <ShieldCheck
-              size={15}
-              className="text-[var(--success)]"
-            />
-
-            Your image stays on your device.
-          </div>
-        </div>
+        <ToolPageHeader toolId="image-compressor" />
 
         {!file ? (
           /* Upload */
