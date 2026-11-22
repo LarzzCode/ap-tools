@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
 import { Search, SearchX, X } from 'lucide-react'
+import { useSearchParams } from 'react-router'
 
 import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
@@ -10,6 +11,15 @@ import type { ToolCategory, ToolRuntime } from '../types/tool'
 
 type CategoryFilter = 'all' | ToolCategory
 type RuntimeFilter = 'all' | ToolRuntime
+
+const VALID_CATEGORIES = new Set<CategoryFilter>([
+  'all',
+  'image',
+  'pdf',
+  'links',
+  'text',
+  'media',
+])
 
 const CATEGORY_TABS: Array<{
   id: CategoryFilter
@@ -25,9 +35,23 @@ const CATEGORY_TABS: Array<{
 ]
 
 export default function AllTools() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [searchQuery, setSearchQuery] = useState('')
-  const [category, setCategory] = useState<CategoryFilter>('all')
   const [runtime, setRuntime] = useState<RuntimeFilter>('all')
+
+  const rawCategoryParam = (searchParams.get('category') ?? 'all') as CategoryFilter
+  const category: CategoryFilter = VALID_CATEGORIES.has(rawCategoryParam)
+    ? rawCategoryParam
+    : 'all'
+
+  function setCategory(nextCategory: CategoryFilter) {
+    if (nextCategory === 'all') {
+      searchParams.delete('category')
+      setSearchParams(searchParams, { replace: true })
+    } else {
+      setSearchParams({ category: nextCategory }, { replace: true })
+    }
+  }
 
   const { language, t } = useLanguage()
   const { isFavorite, toggleFavorite } = useFavorites()
