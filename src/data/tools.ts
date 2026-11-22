@@ -265,6 +265,110 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'image-stitcher',
+    name: 'Screenshot & Photo Stitcher',
+    nameId: 'Gabung Screenshot & Foto Panjang',
+    description:
+      'Combine multiple chat screenshots, transfer receipts, or photos vertically or horizontally into a single seamless image.',
+    descriptionId:
+      'Gabungkan beberapa screenshot chat panjang, bukti transfer, atau foto secara vertikal (memanjang ke bawah) maupun horizontal menjadi satu gambar utuh.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/image-stitcher',
+    keywords: [
+      'stitch',
+      'gabung foto',
+      'screenshot panjang',
+      'chat',
+      'collage',
+      'vertical',
+      'horizontal',
+      'struk',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Ingin mengirim tangkapan layar percakapan WhatsApp atau struk panjang tanpa harus mengirim 5–10 gambar terpisah? Alat ini menyambung beberapa gambar sekaligus secara vertikal (ke bawah) maupun horizontal (berdampingan) dengan opsi menyamakan lebar gambar secara otomatis.',
+      overviewEn:
+        'Need to share a multi-page chat thread or long receipt without sending 10 separate screenshots? This stitcher combines multiple images vertically or horizontally and automatically normalizes widths for a clean, continuous result.',
+      stepsId: [
+        'Pilih atau tarik beberapa gambar screenshot sekaligus (hingga 15 gambar).',
+        'Pilih arah penggabungan: Vertikal (memanjang ke bawah) atau Horizontal (berdampingan ke samping).',
+        'Atur urutan gambar menggunakan tombol panah naik/turun, serta sesuaikan jarak antar-gambar (gap) bila diperlukan.',
+        'Unduh hasil gabungan gambar dalam format JPG atau PNG.',
+      ],
+      stepsEn: [
+        'Select or drop multiple screenshots at once (up to 15 images).',
+        'Choose the stitch direction: Vertical (top-to-bottom) or Horizontal (side-by-side).',
+        'Reorder images using the up/down arrows and adjust gap or outer padding if desired.',
+        'Download the combined image as JPG or PNG.',
+      ],
+      tipsId: [
+        'Biarkan opsi "Samakan lebar seluruh gambar otomatis" aktif agar screenshot yang ukurannya sedikit berbeda tetap rata kiri-kanan.',
+        'Atur jarak antar-gambar ke 0px untuk sambungan chat yang menyatu tanpa garis jeda.',
+        'Seluruh gambar digabungkan langsung di browser perangkat Anda.',
+      ],
+      tipsEn: [
+        'Keep automatic width matching enabled so slightly different crop sizes align flush on both edges.',
+        'Set gap to 0px for seamless chat screenshots, or add 8–16px for a clean photo strip.',
+        'All stitching happens 100% locally in your browser.',
+      ],
+    },
+  },
+  {
+    id: 'aspect-cropper',
+    name: 'Social Media & Banner Cropper',
+    nameId: 'Crop Rasio Sosmed & Banner',
+    description:
+      'Crop or fit photos to exact Instagram 4:5, Story/Reels 9:16, Square 1:1, YouTube 16:9, and header banner dimensions.',
+    descriptionId:
+      'Potong atau sesuaikan ukuran foto ke rasio standar Instagram Feed (4:5), Story/Reels/TikTok (9:16), Persegi (1:1), Thumbnail YouTube (16:9), dan Banner.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/aspect-cropper',
+    keywords: [
+      'crop',
+      'potong foto',
+      'rasio',
+      'instagram',
+      '4:5',
+      '9:16',
+      '16:9',
+      '1:1',
+      'thumbnail',
+      'banner',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Setiap platform media sosial memiliki standar ukuran piksel dan rasio yang berbeda agar foto tidak terpotong otomatis saat diunggah. Alat ini menyediakan preset rasio resmi (4:5, 9:16, 1:1, 16:9, 3:1) dengan dua pilihan mode: Penuhi Bingkai (Crop) atau Muat Utuh dengan latar bingkai.',
+      overviewEn:
+        'Every social platform uses specific aspect ratios and pixel dimensions. This tool provides one-tap presets (4:5, 9:16, 1:1, 16:9, 3:1) with both Fill Frame (Crop) and Fit Whole Photo modes.',
+      stepsId: [
+        'Unggah foto yang ingin disesuaikan ukurannya.',
+        'Pilih rasio target seperti 4:5 IG Feed (1080×1350), 9:16 Story/Reels (1080×1920), 1:1 Persegi, atau 16:9 YouTube (1920×1080).',
+        'Pilih mode "Penuhi Bingkai (Crop)" atau "Muat Utuh (Fit)", lalu atur zoom serta posisi geser.',
+        'Unduh hasil gambar siap unggah dalam format JPG atau PNG.',
+      ],
+      stepsEn: [
+        'Upload the photo you want to frame or crop.',
+        'Pick a target aspect ratio preset such as 4:5 IG Portrait, 9:16 Story/Reels, 1:1 Square, or 16:9 YouTube.',
+        'Switch between "Fill Frame (Crop)" or "Fit Whole Photo", and fine-tune zoom and pan.',
+        'Download the ready-to-post JPG or PNG image.',
+      ],
+      tipsId: [
+        'Gunakan rasio 4:5 (1080×1350px) untuk postingan foto Instagram agar tampil maksimal di layar HP.',
+        'Mode "Muat Utuh (Fit)" sangat berguna jika Anda ingin memasukkan foto lanskap ke dalam ukuran Story 9:16 tanpa memotong bagian tepi foto.',
+        'Diproses instan di browser tanpa mengurangi ketajaman foto.',
+      ],
+      tipsEn: [
+        'Use the 4:5 portrait preset (1080×1350px) for Instagram feed posts to maximize vertical screen space.',
+        'Use "Fit Whole Photo" when placing a wide landscape photo inside a 9:16 Story or 1:1 square without cropping edges.',
+        'Processed locally in your browser at full resolution.',
+      ],
+    },
+  },
+  {
     id: 'image-to-pdf',
     name: 'Image to PDF Converter',
     nameId: 'Gabung Gambar ke PDF',
@@ -566,6 +670,157 @@ export const tools: Tool[] = [
         'The generated PDF uses pure vector typography, keeping file size tiny (15–30 KB) and crisp at any zoom level.',
         'Enable the "PAID / LUNAS" stamp when sending a completed payment receipt to a customer.',
         'All billing figures remain strictly inside your local browser session.',
+      ],
+    },
+  },
+  {
+    id: 'pdf-compressor',
+    name: 'PDF Size Compressor',
+    nameId: 'Kompres Ukuran File PDF',
+    description:
+      'Reduce large PDF file sizes for job portals, CPNS, or campus uploads with Balanced, Maximum, and Lossless Structure modes locally.',
+    descriptionId:
+      'Perkecil ukuran file PDF hasil scan ijazah, transkrip, atau berkas lamaran agar lolos batas maksimal upload portal kampus, CPNS, dan HRD.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/pdf-compressor',
+    keywords: [
+      'pdf',
+      'compress',
+      'kompres pdf',
+      'kecilkan pdf',
+      'size',
+      'cpns',
+      'ijazah',
+      'lamaran',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Portal pendaftaran kerja, CPNS, beasiswa, dan kampus sering membatasi unggahan file PDF maksimal 300 KB, 500 KB, atau 1 MB. Alat ini mengecilkan ukuran dokumen PDF langsung di dalam browser Anda tanpa mengunggah dokumen penting tersebut ke server luar.',
+      overviewEn:
+        'Job portals, scholarship forms, and government registration systems often enforce strict 300 KB, 500 KB, or 1 MB PDF limits. This compressor shrinks your PDF files directly inside your browser without uploading confidential documents online.',
+      stepsId: [
+        'Pilih atau tarik file PDF yang ukurannya terlalu besar.',
+        'Pilih tingkat kompresi: "Seimbang" (terbaik untuk PDF scan), "Ekstra Kecil" (untuk batas upload super ketat), atau "Optimasi Struktur" (untuk PDF teks murni).',
+        'Klik "Kompres PDF Sekarang" dan pantau progres halaman.',
+        'Lihat perbandingan ukuran file sebelum vs sesudah beserta persentase penghematannya, lalu unduh PDF Anda.',
+      ],
+      stepsEn: [
+        'Select or drop the PDF document you need to shrink.',
+        'Pick a compression mode: "Balanced" (best for scanned PDFs), "Maximum Compression" (for strict upload caps), or "Lossless Structure" (for vector text PDFs).',
+        'Click Compress PDF Now and wait for page processing to finish.',
+        'Review the before/after size comparison and download your compressed PDF.',
+      ],
+      tipsId: [
+        'Gunakan mode "Seimbang" atau "Ekstra Kecil" untuk PDF hasil foto/scan kamera yang awalnya berukuran 3 MB–15 MB.',
+        'Gunakan mode "Optimasi Struktur & Metadata" jika dokumen PDF berasal dari ekspor Word dan Anda ingin teksnya tetap bisa diblok/dicopy.',
+        'Berkas penting Anda diproses 100% di memori browser perangkat Anda.',
+      ],
+      tipsEn: [
+        'Use "Balanced" or "Maximum Compression" for camera-scanned PDFs that start at 3 MB–15 MB.',
+        'Use "Lossless Structure & Metadata" for Word-exported PDFs when you need text to stay selectable.',
+        'Your documents are compressed 100% locally in browser memory.',
+      ],
+    },
+  },
+  {
+    id: 'cv-maker',
+    name: 'ATS-Friendly CV / Resume Maker',
+    nameId: 'Pembuat CV ATS-Friendly PDF',
+    description:
+      'Build a clean, single-column ATS-friendly PDF resume in Indonesian or English with 100% selectable vector text.',
+    descriptionId:
+      'Buat dokumen CV / Resume PDF satu kolom berstandar ATS-Friendly yang rapi, mudah dibaca sistem seleksi HRD, dan langsung siap kirim.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/cv-maker',
+    keywords: [
+      'cv',
+      'resume',
+      'ats',
+      'lamaran kerja',
+      'curriculum vitae',
+      'pdf',
+      'hrd',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Banyak perusahaan menggunakan sistem ATS (Applicant Tracking System) untuk menyaring CV pelamar secara otomatis. Desain CV yang terlalu banyak grafik atau tabel rumit sering gagal terbaca oleh mesin ATS. Alat ini menghasilkan dokumen PDF CV satu kolom standar internasional dengan teks vektor murni yang 100% terbaca oleh sistem HRD maupun rekruter.',
+      overviewEn:
+        'Most companies use Applicant Tracking Systems (ATS) to parse resumes. Complex multi-column graphics often fail ATS parsing. This builder generates a clean, single-column Harvard-style vector PDF resume that is 100% readable by both ATS software and human recruiters.',
+      stepsId: [
+        'Isi informasi pribadi dan kontak (Nama Lengkap, Headline Posisi, No HP, Email, Kota, serta link LinkedIn/Portofolio).',
+        'Tuliskan ringkasan profesional singkat (2–3 kalimat) mengenai keahlian dan pengalaman utama Anda.',
+        'Tambahkan riwayat Pengalaman Kerja / Organisasi beserta poin-poin pencapaian (pisahkan tiap poin dengan baris baru).',
+        'Lengkapi riwayat Pendidikan, Keahlian (Skills), dan Sertifikasi, lalu klik "Unduh CV ATS-Friendly (PDF)".',
+      ],
+      stepsEn: [
+        'Enter your personal details and contact links (Full Name, Target Role, Phone, Email, City, LinkedIn/Portfolio).',
+        'Write a concise 2–3 sentence professional summary.',
+        'Add your Work & Leadership Experience entries with achievement bullet points (one bullet per line).',
+        'Fill in Education, Technical/Soft Skills, and Certifications, then click Download ATS CV (PDF).',
+      ],
+      tipsId: [
+        'Gunakan kata kerja aktif dan angka terukur pada poin pengalaman (contoh: "Meningkatkan penjualan sebesar 25% dalam 3 bulan").',
+        'File PDF yang dihasilkan sangat ringan (< 30 KB) dan seluruh teksnya bisa di-copy langsung oleh mesin ATS.',
+        'Data CV Anda tidak disimpan di server mana pun.',
+      ],
+      tipsEn: [
+        'Use action verbs and measurable results in your experience bullets (e.g., "Increased page speed by 35%").',
+        'The exported PDF is ultra-lightweight (< 30 KB) with pure selectable vector typography.',
+        'Your personal resume data never leaves your browser.',
+      ],
+    },
+  },
+  {
+    id: 'letter-generator',
+    name: 'Official & Job Application Letter PDF',
+    nameId: 'Pembuat Surat Resmi & Lamaran PDF',
+    description:
+      'Generate formal Indonesian PDF letters for job applications, resignations, leave requests, and official declarations with optional signature.',
+    descriptionId:
+      'Buat PDF Surat Lamaran Kerja, Surat Resign, Surat Izin Kuliah/Kerja, dan Surat Pernyataan resmi lengkap dengan tanda tangan digital dalam hitungan detik.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/letter-generator',
+    keywords: [
+      'surat',
+      'surat lamaran kerja',
+      'resign',
+      'surat izin',
+      'surat pernyataan',
+      'pdf',
+      'cover letter',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Butuh membuat Surat Lamaran Kerja, Surat Pengunduran Diri (Resign), Surat Izin Sakit/Kuliah, atau Surat Pernyataan resmi dari HP tanpa harus membuka Microsoft Word? Pilih jenis surat, isi data singkat, sesuaikan isi paragraf bila perlu, bubuhkan tanda tangan di layar, dan langsung unduh dokumen PDF ukuran A4 berformat rapi.',
+      overviewEn:
+        'Need to create a formal Job Application Cover Letter, Resignation Letter, Leave Request, or Official Declaration on your phone or laptop without opening Word? Pick a template, fill in your details, sign on the pad, and download a formatted A4 PDF.',
+      stepsId: [
+        'Pilih template jenis surat: Surat Lamaran Kerja, Surat Resign Kerja, Surat Izin Kerja/Kuliah, atau Surat Pernyataan.',
+        'Isi kota & tanggal surat, perihal, nama perusahaan/instansi tujuan, serta nama dan kontak Anda.',
+        'Periksa isi surat yang otomatis disusun di panel sebelah kanan (Anda bebas mengedit kata-katanya secara langsung).',
+        'Jika ingin menyertakan tanda tangan, goreskan tanda tangan pada kanvas yang tersedia, lalu klik "Unduh Surat Resmi (PDF A4)".',
+      ],
+      stepsEn: [
+        'Choose a letter template: Job Application, Resignation, Leave/Sick Note, or Declaration.',
+        'Fill in the city & date, subject, recipient company, and your name/contact info.',
+        'Review and freely customize the generated letter body in the editor panel.',
+        'Optionally draw your signature on the pad, then click Download Official Letter (A4 PDF).',
+      ],
+      tipsId: [
+        'Dokumen menggunakan jenis huruf formal Times New Roman standar surat-menyurat resmi di Indonesia.',
+        'Jika Anda ingin mencetak surat untuk ditandatangani basah dengan pulpen, cukup kosongkan kanvas tanda tangan digital.',
+        'Semua isi surat dibuat secara lokal di perangkat Anda.',
+      ],
+      tipsEn: [
+        'The exported A4 PDF uses formal Times Roman typography suitable for official correspondence.',
+        'Leave the digital signature pad blank if you plan to print the letter and sign it by hand.',
+        'All letter content is generated locally on your device.',
       ],
     },
   },

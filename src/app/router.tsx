@@ -76,6 +76,24 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: '/tools/image-stitcher',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/ImageStitcher'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/aspect-cropper',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/AspectCropper'
+          )
+          return { Component }
+        },
+      },
+      {
         path: '/tools/pdf-merge',
         lazy: async () => {
           const { default: Component } = await import(
@@ -107,6 +125,33 @@ export const router = createBrowserRouter([
         lazy: async () => {
           const { default: Component } = await import(
             '../pages/tools/PdfSign'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/pdf-compressor',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/PdfCompressor'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/cv-maker',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/CvMaker'
+          )
+          return { Component }
+        },
+      },
+      {
+        path: '/tools/letter-generator',
+        lazy: async () => {
+          const { default: Component } = await import(
+            '../pages/tools/LetterGenerator'
           )
           return { Component }
         },

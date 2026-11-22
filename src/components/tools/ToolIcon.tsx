@@ -1,8 +1,13 @@
 import {
+  BriefcaseBusiness,
+  Columns2,
+  Crop,
   Eraser,
+  FileDown,
   FileImage,
   FileSignature,
   FileSpreadsheet,
+  FileText,
   Film,
   IdCard,
   Images,
@@ -53,6 +58,12 @@ export default function ToolIcon({
     case 'image-privacy':
       return <ShieldCheck {...props} />
 
+    case 'image-stitcher':
+      return <Columns2 {...props} />
+
+    case 'aspect-cropper':
+      return <Crop {...props} />
+
     case 'pdf-merge':
       return <Merge {...props} />
 
@@ -64,6 +75,15 @@ export default function ToolIcon({
 
     case 'pdf-sign':
       return <FileSignature {...props} />
+
+    case 'pdf-compressor':
+      return <FileDown {...props} />
+
+    case 'cv-maker':
+      return <BriefcaseBusiness {...props} />
+
+    case 'letter-generator':
+      return <FileText {...props} />
 
     case 'invoice-generator':
       return <FileSpreadsheet {...props} />

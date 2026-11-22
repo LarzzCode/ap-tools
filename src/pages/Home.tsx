@@ -1,13 +1,17 @@
-import { useMemo } from 'react'
+import {
+  useMemo,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type DragEvent,
+} from 'react'
 import {
   ArrowRight,
-  FileText,
-  Film,
-  Images,
-  QrCode,
+  ChevronRight,
   Sparkles,
   Star,
-  Type,
+  Upload,
+  X,
 } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Link } from 'react-router'
@@ -16,7 +20,8 @@ import ToolGrid from '../components/tools/ToolGrid'
 import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
 import { useLanguage } from '../hooks/useLanguage'
-import type { Tool, ToolCategory } from '../types/tool'
+import type { Tool } from '../types/tool'
+import { formatFileSize } from '../utils/file'
 
 function getDailyRandomTools(allTools: Tool[], count = 3): Tool[] {
   const now = new Date()
@@ -41,59 +46,61 @@ function getDailyRandomTools(allTools: Tool[], count = 3): Tool[] {
   return copy.slice(0, count)
 }
 
-const CATEGORY_DOCK: Array<{
-  id: ToolCategory
-  labelId: string
-  labelEn: string
-  icon: typeof Images
-  iconBg: string
-  iconText: string
-}> = [
-  {
-    id: 'image',
-    labelId: 'Gambar & KTP',
-    labelEn: 'Image & ID',
-    icon: Images,
-    iconBg: 'bg-sky-500/14 dark:bg-sky-400/20',
-    iconText: 'text-sky-600 dark:text-sky-400',
-  },
-  {
-    id: 'pdf',
-    labelId: 'PDF & Invoice',
-    labelEn: 'PDF & Invoice',
-    icon: FileText,
-    iconBg: 'bg-blue-600/14 dark:bg-blue-400/20',
-    iconText: 'text-blue-600 dark:text-blue-400',
-  },
-  {
-    id: 'links',
-    labelId: 'QR & Wi-Fi',
-    labelEn: 'QR & Wi-Fi',
-    icon: QrCode,
-    iconBg: 'bg-emerald-500/14 dark:bg-emerald-400/20',
-    iconText: 'text-emerald-600 dark:text-emerald-400',
-  },
-  {
-    id: 'text',
-    labelId: 'Teks',
-    labelEn: 'Text',
-    icon: Type,
-    iconBg: 'bg-amber-500/15 dark:bg-amber-400/20',
-    iconText: 'text-amber-600 dark:text-amber-400',
-  },
-  {
-    id: 'media',
-    labelId: 'Media',
-    labelEn: 'Media',
-    icon: Film,
-    iconBg: 'bg-rose-500/14 dark:bg-rose-400/20',
-    iconText: 'text-rose-600 dark:text-rose-400',
-  },
-]
+function getRecommendedToolsForFile(file: File): Tool[] {
+  const type = file.type.toLowerCase()
+  const name = file.name.toLowerCase()
+
+  if (type === 'application/pdf' || name.endsWith('.pdf')) {
+    const ids = [
+      'pdf-compressor',
+      'pdf-merge',
+      'pdf-split',
+      'pdf-organizer',
+      'pdf-sign',
+    ]
+    return tools.filter((t) => ids.includes(t.id))
+  }
+
+  if (
+    type.startsWith('image/') ||
+    /\.(jpg|jpeg|png|webp)$/i.test(name)
+  ) {
+    const ids = [
+      'ktp-watermark',
+      'remove-background',
+      'pas-foto',
+      'image-compressor',
+      'aspect-cropper',
+      'image-stitcher',
+      'image-to-pdf',
+      'image-privacy',
+      'qr-scanner',
+    ]
+    return tools.filter((t) => ids.includes(t.id))
+  }
+
+  if (
+    type.startsWith('video/') ||
+    type.startsWith('audio/') ||
+    /\.(mp4|mkv|mov|webm|mp3|wav|m4a)$/i.test(name)
+  ) {
+    return tools.filter((t) => t.id === 'media-converter')
+  }
+
+  if (type.startsWith('text/') || /\.(txt|md|csv)$/i.test(name)) {
+    return tools.filter((t) => t.id === 'text-utilities')
+  }
+
+  return tools.slice(0, 6)
+}
 
 export default function Home() {
   const { language, t } = useLanguage()
   const { favoriteIds, toggleFavorite, isFavorite } = useFavorites()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [smartFile, setSmartFile] = useState<File | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
 
   const dailyTools = useMemo(() => getDailyRandomTools(tools, 3), [])
 
@@ -101,23 +108,31 @@ export default function Home() {
     return tools.filter((tool) => favoriteIds.includes(tool.id))
   }, [favoriteIds])
 
-  const categoryCounts = useMemo(() => {
-    const counts: Record<ToolCategory, number> = {
-      image: 0,
-      pdf: 0,
-      links: 0,
-      text: 0,
-      media: 0,
+  const matchingTools = useMemo(() => {
+    if (!smartFile) return []
+    return getRecommendedToolsForFile(smartFile)
+  }, [smartFile])
+
+  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const selected = event.target.files?.[0]
+    event.target.value = ''
+    if (selected) {
+      setSmartFile(selected)
     }
-    for (const tool of tools) {
-      counts[tool.category]++
+  }
+
+  function handleDrop(event: DragEvent<HTMLDivElement>) {
+    event.preventDefault()
+    setIsDragging(false)
+    const dropped = event.dataTransfer.files?.[0]
+    if (dropped) {
+      setSmartFile(dropped)
     }
-    return counts
-  }, [])
+  }
 
   return (
     <main>
-      {/* Clean iOS Hero with Category Dock */}
+      {/* Clean iOS Hero with Option 3: Smart File Drop */}
       <section className="relative overflow-hidden px-4 pt-10 pb-8 sm:px-6 sm:pt-12 sm:pb-10 lg:px-8">
         <div
           aria-hidden="true"
@@ -128,7 +143,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-3xl text-center"
+          className="mx-auto max-w-2xl text-center"
         >
           <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
             {t('Alat Harian Anda,', 'Your Everyday Tools,')}{' '}
@@ -139,41 +154,114 @@ export default function Home() {
 
           <p className="mx-auto mt-2.5 max-w-lg text-sm leading-6 text-[var(--text-secondary)] sm:text-base">
             {t(
-              'Pilih kategori atau alat di bawah dan proses langsung di perangkat Anda — tanpa iklan, tanpa login.',
-              'Pick a category or tool below and process directly on your device — no ads, no login.',
+              'Pilih file Anda di bawah atau langsung gunakan alat pilihan hari ini — tanpa iklan, tanpa login.',
+              'Drop a file below or pick a featured utility — no ads, no login.',
             )}
           </p>
 
-          {/* Option 1: iOS Category Squircle Dock */}
-          <div className="mx-auto mt-7 max-w-2xl">
-            <div className="ios-card grid grid-cols-5 gap-1.5 p-2.5 sm:gap-3 sm:p-4">
-              {CATEGORY_DOCK.map((cat) => {
-                const Icon = cat.icon
-                const count = categoryCounts[cat.id]
+          <input
+            id="home-smart-file-input"
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,application/pdf,video/*,audio/*,text/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
 
-                return (
-                  <Link
-                    key={cat.id}
-                    id={`home-dock-${cat.id}`}
-                    to={`/tools?category=${cat.id}`}
-                    className="group flex flex-col items-center rounded-2xl p-2 transition hover:bg-[var(--surface-soft)] active:scale-95"
+          {/* Option 3: Smart File Dropzone */}
+          <div className="mx-auto mt-6 max-w-xl text-left">
+            {!smartFile ? (
+              <div
+                onDragOver={(e) => {
+                  e.preventDefault()
+                  setIsDragging(true)
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    fileInputRef.current?.click()
+                  }
+                }}
+                className={`ios-card flex cursor-pointer items-center justify-between gap-4 border-2 border-dashed px-5 py-4 transition ${
+                  isDragging
+                    ? 'border-[var(--primary)] bg-[var(--primary-soft)]'
+                    : 'hover:border-[var(--primary-border)]'
+                }`}
+              >
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-[var(--text-primary)]">
+                    {t(
+                      'Punya foto, KTP, atau dokumen PDF?',
+                      'Have a photo, ID card, or PDF file?',
+                    )}
+                  </p>
+                  <p className="mt-0.5 text-xs text-[var(--text-secondary)]">
+                    {t(
+                      'Ketuk atau tarik file ke sini — otomatis kami pilihkan alat yang cocok.',
+                      'Tap or drop any file here — we’ll suggest the exact tools for it.',
+                    )}
+                  </p>
+                </div>
+
+                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--primary)] px-4 py-2 text-xs font-bold text-white shadow-xs">
+                  <Upload size={14} />
+                  {t('Pilih File', 'Choose File')}
+                </span>
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="ios-card p-4 sm:p-5"
+              >
+                <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-xs font-bold text-[var(--primary)]">
+                      {t('File Terdeteksi:', 'Detected File:')} {smartFile.name}
+                    </p>
+                    <p className="text-[11px] text-[var(--text-muted)]">
+                      {formatFileSize(smartFile.size)} •{' '}
+                      {t(
+                        `${matchingTools.length} alat cocok untuk file ini`,
+                        `${matchingTools.length} matching utilities`,
+                      )}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setSmartFile(null)}
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--surface-soft)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                    aria-label="Clear file"
                   >
-                    <div
-                      className={`relative flex h-12 w-12 items-center justify-center rounded-[16px] ${cat.iconBg} ${cat.iconText} shadow-2xs transition-transform duration-200 group-hover:-translate-y-0.5 sm:h-14 sm:w-14 sm:rounded-[18px]`}
-                    >
-                      <Icon size={23} strokeWidth={1.9} />
-                      <span className="absolute -top-1 -right-1 flex h-4.5 min-w-4.5 items-center justify-center rounded-full bg-[var(--surface)] px-1 text-[10px] font-bold text-[var(--text-secondary)] shadow-xs">
-                        {count}
-                      </span>
-                    </div>
+                    <X size={14} />
+                  </button>
+                </div>
 
-                    <span className="mt-2 line-clamp-1 text-center text-[11px] font-semibold text-[var(--text-primary)] group-hover:text-[var(--primary)] sm:text-xs">
-                      {language === 'id' ? cat.labelId : cat.labelEn}
-                    </span>
-                  </Link>
-                )
-              })}
-            </div>
+                <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {matchingTools.map((tool) => (
+                    <Link
+                      key={tool.id}
+                      to={tool.path}
+                      className="flex items-center justify-between gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-3.5 py-2.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+                    >
+                      <span className="truncate">
+                        {language === 'id' ? tool.nameId : tool.name}
+                      </span>
+                      <ChevronRight
+                        size={14}
+                        className="shrink-0 text-[var(--text-muted)]"
+                      />
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
         </motion.div>
       </section>
