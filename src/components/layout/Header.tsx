@@ -189,6 +189,9 @@ export default function Header() {
           <NavLink
             to="/"
             end
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            }
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 py-1 text-[10px] font-semibold transition ${
                 isActive
@@ -204,6 +207,9 @@ export default function Header() {
           <NavLink
             to="/tools"
             end
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            }
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 py-1 text-[10px] font-semibold transition ${
                 isActive
@@ -218,6 +224,9 @@ export default function Header() {
 
           <NavLink
             to="/feedback"
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            }
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 py-1 text-[10px] font-semibold transition ${
                 isActive
@@ -232,6 +241,9 @@ export default function Header() {
 
           <NavLink
             to="/about"
+            onClick={() =>
+              window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+            }
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 py-1 text-[10px] font-semibold transition ${
                 isActive

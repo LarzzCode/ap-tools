@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'motion/react'
-import { CheckCircle2 } from 'lucide-react'
+import { ArrowUp, CheckCircle2 } from 'lucide-react'
 import {
   Link,
   Outlet,
@@ -28,6 +28,7 @@ export default function AppLayout() {
   const navigationType = useNavigationType()
   const { t } = useLanguage()
   const [autoLoadedFileName, setAutoLoadedFileName] = useState('')
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   const activeTool = useMemo(() => {
     return tools.find((tool) => tool.path === location.pathname) ?? null
@@ -117,9 +118,12 @@ export default function AppLayout() {
     const key = `${SCROLL_STORAGE_PREFIX}${location.pathname}`
 
     const handleScroll = () => {
-      window.sessionStorage.setItem(key, String(window.scrollY))
+      const currentY = window.scrollY
+      window.sessionStorage.setItem(key, String(currentY))
+      setShowScrollTop(currentY > 320)
     }
 
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -149,6 +153,10 @@ export default function AppLayout() {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [location.pathname, navigationType])
 
+  function handleScrollToTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }
+
   return (
     <MotionConfig reducedMotion="user">
       <div className="flex min-h-dvh flex-col bg-[var(--background)] pb-16 sm:pb-0">
@@ -172,6 +180,26 @@ export default function AppLayout() {
                 </span>
               </div>
             </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Floating iOS Back-to-Top Pill Button */}
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              id="scroll-to-top-btn"
+              type="button"
+              onClick={handleScrollToTop}
+              initial={{ opacity: 0, y: 14, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 14, scale: 0.9 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              aria-label={t('Kembali ke atas', 'Scroll to top')}
+              className="ios-glass fixed bottom-20 right-4 z-40 inline-flex items-center gap-1.5 rounded-full border border-[var(--primary-border)] px-3.5 py-2.5 text-xs font-bold text-[var(--primary)] shadow-lg transition hover:bg-[var(--primary)] hover:text-white active:scale-95 sm:bottom-6 sm:right-6 sm:px-4"
+            >
+              <ArrowUp size={15} strokeWidth={2.4} />
+              <span>{t('Ke Atas', 'Top')}</span>
+            </motion.button>
           )}
         </AnimatePresence>
 

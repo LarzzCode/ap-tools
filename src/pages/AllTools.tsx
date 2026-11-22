@@ -53,6 +53,10 @@ export default function AllTools() {
     } else {
       setSearchParams({ category: nextCategory }, { replace: true })
     }
+
+    if (typeof window !== 'undefined' && window.scrollY > 260) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
   }
 
   const { language, t } = useLanguage()
@@ -204,8 +208,11 @@ export default function AllTools() {
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="-mx-4 flex overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:px-0">
+        {/* Sticky iOS Category Filter Bar — stays reachable even when scrolled deep down */}
+        <div className="sticky top-14 z-30 -mx-4 mt-3 bg-[var(--background)]/88 px-4 py-2.5 backdrop-blur-md sm:top-16 sm:mx-0 sm:px-0">
+          <div className="flex overflow-x-auto no-scrollbar">
             <div className="ios-segmented inline-flex shrink-0 flex-nowrap gap-1">
               {CATEGORY_TABS.map((tab) => (
                 <button
@@ -226,7 +233,7 @@ export default function AllTools() {
           </div>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-6">
           {filteredTools.length > 0 ? (
             <ToolGrid
               tools={filteredTools}
