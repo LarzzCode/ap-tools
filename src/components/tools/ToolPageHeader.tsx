@@ -81,7 +81,7 @@ export default function ToolPageHeader({ toolId }: ToolPageHeaderProps) {
             ) : (
               <>
                 <Cpu size={13} className="text-[var(--primary)]" />
-                {t('Pendamping', 'Companion')}
+                {t('Butuh Server • Hubungi Dev', 'Need Server • Contact Dev')}
               </>
             )}
           </span>

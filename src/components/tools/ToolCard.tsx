@@ -177,12 +177,12 @@ export default function ToolCard({
         <span className="inline-flex items-center gap-1.5">
           <span
             className={`h-1.5 w-1.5 rounded-full ${
-              isBrowser ? 'bg-[var(--success)]' : 'bg-[var(--accent)]'
+              isBrowser ? 'bg-[var(--success)]' : 'bg-[var(--warning)]'
             }`}
           />
           {isBrowser
             ? t('Instan di Browser', 'In-Browser')
-            : t('Pendamping Desktop', 'Desktop Companion')}
+            : t('Butuh Server • Hubungi Dev', 'Need Server • Contact Dev')}
         </span>
 
         <span className="rounded-full bg-[var(--surface-soft)] px-2 py-0.5 text-[10px] font-semibold text-[var(--text-secondary)]">

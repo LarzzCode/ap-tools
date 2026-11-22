@@ -2,9 +2,10 @@ import { motion } from 'motion/react'
 import { Link } from 'react-router'
 import {
   Compass,
-  Laptop,
   LoaderCircle,
+  MessageSquareHeart,
   RefreshCcw,
+  Server,
   Wifi,
 } from 'lucide-react'
 
@@ -34,8 +35,8 @@ export default function LocalServiceStatus({
         />
         <p className="text-xs font-semibold text-[var(--text-secondary)]">
           {t(
-            'Menghubungkan ke Pendamping Perangkat...',
-            'Connecting to Device Companion...',
+            'Memeriksa koneksi jalur server media...',
+            'Checking media server connection...',
           )}
         </p>
       </div>
@@ -53,7 +54,7 @@ export default function LocalServiceStatus({
           <Wifi size={16} />
         </div>
         <p className="text-xs font-semibold text-[var(--text-primary)]">
-          {t('Pendamping Perangkat Aktif', 'Device Companion Active')} • v
+          {t('Server Media Aktif & Siap Digunakan', 'Media Server Active & Ready')} • v
           {health?.version ?? '0.2.0'}
         </p>
       </motion.div>
@@ -66,45 +67,53 @@ export default function LocalServiceStatus({
       animate={{ opacity: 1, y: 0 }}
       className="ios-card p-4 sm:p-5"
     >
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3.5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
-            <Laptop size={18} />
+            <Server size={18} />
           </div>
           <div>
             <p className="text-sm font-bold text-[var(--text-primary)]">
               {t(
-                'Membutuhkan Pendamping Desktop',
-                'Requires Desktop Companion',
+                'Fitur Eksklusif Berbasis Server • Hubungi Developer',
+                'Dedicated Server Feature • Contact Developer',
               )}
             </p>
             <p className="mt-0.5 text-xs leading-5 text-[var(--text-secondary)]">
               {t(
-                'Fitur media ini berjalan lewat aplikasi pendamping komputer. Untuk pemakaian langsung di HP/browser, gunakan alat instan lainnya.',
-                'This media utility runs via the desktop companion. For instant mobile/browser use, explore our other browser tools.',
+                'Alat ini membutuhkan akses server khusus untuk mengolah video & audio berkecepatan tinggi. Hubungi developer untuk request akses server, atau nikmati alat instan browser lainnya!',
+                'This tool uses a dedicated server engine for high-speed video & audio processing. Contact the developer to request server access, or enjoy our instant browser utilities!',
               )}
             </p>
           </div>
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex flex-wrap shrink-0 items-center gap-2">
+          <Link
+            to="/feedback"
+            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary)] px-3.5 py-1.5 text-xs font-bold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
+          >
+            <MessageSquareHeart size={13} />
+            {t('Hubungi Developer', 'Contact Developer')}
+          </Link>
+
           <button
             type="button"
             onClick={() => {
               void onRetry()
             }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--primary)] px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] transition hover:border-[var(--primary-border)]"
           >
             <RefreshCcw size={13} />
-            {t('Coba Lagi', 'Retry')}
+            {t('Cek Koneksi', 'Check Server')}
           </button>
 
           <Link
             to="/tools"
-            className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-3.5 py-1.5 text-xs font-semibold text-[var(--text-primary)] transition hover:border-[var(--primary-border)]"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-3 py-1.5 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[var(--primary-border)]"
           >
             <Compass size={13} />
-            {t('Alat Instan', 'Browser Tools')}
+            {t('Alat Instan', 'Instant Tools')}
           </Link>
         </div>
       </div>

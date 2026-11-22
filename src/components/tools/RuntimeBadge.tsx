@@ -29,14 +29,14 @@ export default function RuntimeBadge({
         fill={
           isBrowser
             ? 'var(--success)'
-            : 'var(--accent)'
+            : 'var(--warning)'
         }
         strokeWidth={0}
       />
 
       {isBrowser
         ? t('Instan di Browser', 'Runs in Browser')
-        : t('Pendamping Perangkat', 'Device Companion')}
+        : t('Butuh Server • Hubungi Developer', 'Need Server • Contact Developer')}
     </div>
   )
 }

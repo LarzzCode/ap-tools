@@ -116,7 +116,7 @@ export default function AllTools() {
                   [
                     ['all', t('Semua Mode', 'All Modes')],
                     ['browser', t('Instan Browser', 'Browser')],
-                    ['local-service', t('Pendamping', 'Companion')],
+                    ['local-service', t('Butuh Server', 'Need Server')],
                   ] as const
                 ).map(([value, label]) => (
                   <button

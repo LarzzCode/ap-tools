@@ -6,16 +6,12 @@ import {
   Globe,
   HardDrive,
   Heart,
-  Mail,
-  MessageSquareHeart,
   ShieldCheck,
   Sparkles,
-  UserRound,
   Wrench,
   Zap,
 } from 'lucide-react'
 import { motion } from 'motion/react'
-import { Link } from 'react-router'
 
 import { useLanguage } from '../hooks/useLanguage'
 
@@ -82,36 +78,24 @@ export default function About() {
           </p>
         </section>
 
-        {/* Creator Profile Card — Gilar Wahiditya */}
-        <section className="ios-card mt-8 overflow-hidden p-6 sm:p-7">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] bg-[var(--primary)] text-white shadow-sm">
-                <UserRound size={26} />
-              </div>
-
-              <div>
-                <span className="inline-flex items-center rounded-full bg-[var(--primary-soft)] px-2.5 py-0.5 text-[11px] font-bold text-[var(--primary)]">
-                  {t('PEMBUAT & PENGEMBANG', 'CREATOR & DEVELOPER')}
-                </span>
-                <h2 className="mt-1.5 text-xl font-bold tracking-tight text-[var(--text-primary)]">
-                  Gilar Wahiditya
-                </h2>
-                <p className="mt-1 max-w-xl text-sm leading-6 text-[var(--text-secondary)]">
-                  {t(
-                    'Membangun Ditya Tools agar teman-teman dan pengguna di Indonesia punya tempat utilitas digital yang bersih, cepat, gratis, dan aman tanpa takut data pribadinya disalahgunakan.',
-                    'Building Ditya Tools so everyone has access to a clean, fast, free, and privacy-respecting digital utility toolbox.',
-                  )}
-                </p>
-              </div>
+        {/* Creator Card — Minimal: Developer label, Name, Portfolio Web, Instagram */}
+        <section className="ios-card mt-8 p-5 sm:p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <span className="inline-flex items-center rounded-full bg-[var(--primary-soft)] px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[var(--primary)]">
+                Developer
+              </span>
+              <h2 className="mt-1.5 text-xl font-bold tracking-tight text-[var(--text-primary)]">
+                Gilar Wahiditya
+              </h2>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2.5 sm:shrink-0">
+            <div className="flex flex-wrap items-center gap-2.5">
               <a
                 href="https://portogilar.vercel.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2 text-xs font-bold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
               >
                 <Globe size={14} />
                 portogilar.vercel.app
@@ -122,37 +106,13 @@ export default function About() {
                 href="https://instagram.com/gilarwdy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
               >
                 <AtSign size={14} />
                 gilarwdy
                 <ExternalLink size={12} />
               </a>
-
-              <a
-                href="mailto:wahidityagilar6@gmail.com"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2.5 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
-              >
-                <Mail size={14} />
-                Email
-              </a>
             </div>
-          </div>
-
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--border)] pt-4 text-xs text-[var(--text-secondary)]">
-            <span>
-              {t(
-                'Punya request tool baru atau masukan buat Gilar?',
-                'Have a tool request or feedback for Gilar?',
-              )}
-            </span>
-            <Link
-              to="/feedback"
-              className="inline-flex items-center gap-1.5 font-bold text-[var(--primary)] hover:underline"
-            >
-              <MessageSquareHeart size={14} />
-              {t('Kirim Saran & Feedback →', 'Send Feedback →')}
-            </Link>
           </div>
         </section>
 
@@ -218,13 +178,16 @@ export default function About() {
 
             <div>
               <h2 className="text-base font-bold text-[var(--text-primary)]">
-                {t('Pendamping Perangkat untuk Media', 'Device Companion for Heavy Media')}
+                {t(
+                  'Jalur Server Khusus (Hubungi Developer)',
+                  'Dedicated Server Access (Contact Developer)',
+                )}
               </h2>
 
               <p className="mt-1.5 text-sm leading-6 text-[var(--text-secondary)]">
                 {t(
-                  'Fitur pengolahan video dan audio berukuran besar dapat terhubung dengan layanan pendamping di komputer pribadi Anda.',
-                  'Heavy video and audio utilities connect to the companion service on your personal computer.',
+                  'Fitur pemrosesan video dan audio berukuran besar membutuhkan jalur server khusus agar tetap cepat. Hubungi developer jika Anda ingin mengaktifkan akses server tersebut.',
+                  'Heavy video and audio utilities run on a dedicated server line for maximum speed. Contact the developer if you need access to these server features.',
                 )}
               </p>
             </div>
@@ -236,8 +199,8 @@ export default function About() {
             <Heart size={15} className="shrink-0 text-[var(--primary)]" />
             <span>
               {t(
-                'Dibuat dengan penuh perhatian oleh Gilar Wahiditya.',
-                'Crafted with care by Gilar Wahiditya.',
+                'Dibuat oleh Gilar Wahiditya.',
+                'Created by Gilar Wahiditya.',
               )}
             </span>
           </div>
