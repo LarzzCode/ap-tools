@@ -147,18 +147,6 @@ export default function Home() {
 
         <div className="mx-auto w-full max-w-2xl">
           <div className="relative overflow-hidden rounded-[28px] border border-[var(--primary-border)] bg-[var(--surface)] p-6 text-center shadow-md sm:p-10">
-            {/* Subtle top accent bar */}
-            <div
-              aria-hidden="true"
-              className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary-soft)] shadow-2xs"
-            >
-              <img
-                src="/favicon.svg"
-                alt="Ditya Tools"
-                className="h-9 w-9 rounded-xl"
-              />
-            </div>
-
             <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[var(--primary)]">
               <ShieldCheck size={14} />
               {t(
@@ -284,23 +272,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Direct Primary CTA inside Hero */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                id="hero-explore-all-tools"
-                to="/tools"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-border)] bg-[var(--primary-soft)] px-5 py-2.5 text-xs font-bold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-white sm:text-sm"
-              >
-                <span>
-                  {t(
-                    `Jelajahi Semua ${tools.length} Alat`,
-                    `Browse All ${tools.length} Tools`,
-                  )}
-                </span>
-                <ArrowRight size={15} />
-              </Link>
             </div>
           </div>
         </div>
