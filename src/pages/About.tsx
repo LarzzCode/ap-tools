@@ -1,14 +1,21 @@
 import {
+  AtSign,
   Cpu,
+  ExternalLink,
   Gauge,
+  Globe,
   HardDrive,
   Heart,
+  Mail,
+  MessageSquareHeart,
   ShieldCheck,
   Sparkles,
+  UserRound,
   Wrench,
   Zap,
 } from 'lucide-react'
 import { motion } from 'motion/react'
+import { Link } from 'react-router'
 
 import { useLanguage } from '../hooks/useLanguage'
 
@@ -20,8 +27,8 @@ export default function About() {
       icon: Zap,
       title: t('Buka. Pakai. Selesai.', 'Open. Use. Done.'),
       description: t(
-        'Ditya Tools dirancang untuk menyelesaikan tugas cepat tanpa langkah berbelit, tanpa pendaftaran akun, dan tanpa gangguan iklan.',
-        'Ditya Tools is built for quick tasks without unnecessary steps, accounts, or ad clutter.',
+        'Dirancang untuk menyelesaikan tugas cepat tanpa langkah berbelit, tanpa pendaftaran akun, dan tanpa gangguan iklan.',
+        'Built for quick tasks without unnecessary steps, accounts, or ad clutter.',
       ),
     },
     {
@@ -34,60 +41,128 @@ export default function About() {
     },
     {
       icon: Gauge,
-      title: t('Ringan & Cepat', 'Fast by Default'),
+      title: t('Ringan & Responsif', 'Fast & Responsive'),
       description: t(
-        'Setiap halaman alat dimuat sesuai kebutuhan (lazy-loaded) sehingga tetap gesit baik di smartphone maupun laptop.',
-        'Tools load only what they need so the experience stays snappy on both phones and desktops.',
+        'Setiap halaman alat dimuat sesuai kebutuhan (lazy-loaded) sehingga tetap gesit baik di Android, iOS, maupun laptop.',
+        'Tools load only what they need so the experience stays snappy on Android, iOS, and desktop.',
       ),
     },
     {
       icon: Wrench,
-      title: t('Penjelasan Lengkap & Mudah Dipahami', 'Clear Guides on Every Tool'),
+      title: t('Panduan Jelas Saat Dibutuhkan', 'Clear On-Demand Guides'),
       description: t(
-        'Setiap alat dilengkapi penjelasan fungsi yang detail, langkah penggunaan bertahap, serta tips privasi.',
-        'Every utility includes an in-depth explanation, step-by-step instructions, and practical privacy tips.',
+        'Tampilan tetap bersih saat dibuka, lengkap dengan panduan langkah demi langkah yang bisa dibuka kapan saja.',
+        'Clean interface on open, with detailed step-by-step instructions available in one tap.',
       ),
     },
   ]
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
+        {/* Hero */}
         <section className="max-w-3xl">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--primary-border)] bg-[var(--primary-soft)] text-[var(--primary)]">
             <Sparkles size={23} />
           </div>
 
-          <h1 className="mt-6 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
+          <h1 className="mt-5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             {t('Tentang Ditya Tools', 'About Ditya Tools')}
           </h1>
 
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
             {t(
               'Ditya Tools adalah kumpulan utilitas harian yang berfokus pada kemudahan penggunaan dan perlindungan privasi untuk mengolah foto, pelindung scan KTP, pas foto, dokumen PDF, invoice, tautan, serta media.',
               'Ditya Tools is a collection of focused utilities for everyday image, ID protection, PDF, invoice, link, and media tasks.',
             )}
           </p>
+        </section>
 
-          <p className="mt-3 max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
-            {t(
-              'Tujuannya sederhana: menghilangkan hambatan yang tidak perlu dan memastikan setiap alat langsung bermanfaat sejak pertama kali dibuka.',
-              'The goal is simple: remove unnecessary friction and make each tool useful from the moment you open it.',
-            )}
-          </p>
+        {/* Creator Profile Card — Gilar Wahiditya */}
+        <section className="ios-card mt-8 overflow-hidden p-6 sm:p-7">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] bg-[var(--primary)] text-white shadow-sm">
+                <UserRound size={26} />
+              </div>
+
+              <div>
+                <span className="inline-flex items-center rounded-full bg-[var(--primary-soft)] px-2.5 py-0.5 text-[11px] font-bold text-[var(--primary)]">
+                  {t('PEMBUAT & PENGEMBANG', 'CREATOR & DEVELOPER')}
+                </span>
+                <h2 className="mt-1.5 text-xl font-bold tracking-tight text-[var(--text-primary)]">
+                  Gilar Wahiditya
+                </h2>
+                <p className="mt-1 max-w-xl text-sm leading-6 text-[var(--text-secondary)]">
+                  {t(
+                    'Membangun Ditya Tools agar teman-teman dan pengguna di Indonesia punya tempat utilitas digital yang bersih, cepat, gratis, dan aman tanpa takut data pribadinya disalahgunakan.',
+                    'Building Ditya Tools so everyone has access to a clean, fast, free, and privacy-respecting digital utility toolbox.',
+                  )}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2.5 sm:shrink-0">
+              <a
+                href="https://portogilar.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[var(--primary-hover)]"
+              >
+                <Globe size={14} />
+                portogilar.vercel.app
+                <ExternalLink size={12} />
+              </a>
+
+              <a
+                href="https://instagram.com/gilarwdy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+              >
+                <AtSign size={14} />
+                gilarwdy
+                <ExternalLink size={12} />
+              </a>
+
+              <a
+                href="mailto:wahidityagilar6@gmail.com"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2.5 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+              >
+                <Mail size={14} />
+                Email
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--border)] pt-4 text-xs text-[var(--text-secondary)]">
+            <span>
+              {t(
+                'Punya request tool baru atau masukan buat Gilar?',
+                'Have a tool request or feedback for Gilar?',
+              )}
+            </span>
+            <Link
+              to="/feedback"
+              className="inline-flex items-center gap-1.5 font-bold text-[var(--primary)] hover:underline"
+            >
+              <MessageSquareHeart size={14} />
+              {t('Kirim Saran & Feedback →', 'Send Feedback →')}
+            </Link>
+          </div>
         </section>
 
         {/* Principles */}
-        <section className="mt-12">
-          <h2 className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
-            {t('Prinsip Utama Kami', 'Built Around Simple Principles')}
+        <section className="mt-10">
+          <h2 className="text-lg font-bold tracking-tight text-[var(--text-primary)]">
+            {t('Prinsip Utama', 'Core Principles')}
           </h2>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {principles.map((principle, index) => {
               const Icon = principle.icon
               return (
@@ -96,17 +171,17 @@ export default function About() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.04 * index, duration: 0.3 }}
-                  className="ios-card p-6"
+                  className="ios-card p-5"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--primary-soft)] text-[var(--primary)]">
                     <Icon size={19} />
                   </div>
 
-                  <h3 className="mt-4 text-base font-bold text-[var(--text-primary)]">
+                  <h3 className="mt-3.5 text-base font-bold text-[var(--text-primary)]">
                     {principle.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+                  <p className="mt-1.5 text-sm leading-6 text-[var(--text-secondary)]">
                     {principle.description}
                   </p>
                 </motion.article>
@@ -116,140 +191,55 @@ export default function About() {
         </section>
 
         {/* How it works */}
-        <section className="ios-card mt-12 p-6 sm:p-8">
+        <section className="ios-card mt-10 p-5 sm:p-7">
           <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
-              <HardDrive size={20} />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
+              <HardDrive size={19} />
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-[var(--text-primary)]">
+              <h2 className="text-base font-bold text-[var(--text-primary)]">
                 {t('Pemrosesan Langsung di Browser', 'Browser-First Processing')}
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+              <p className="mt-1.5 text-sm leading-6 text-[var(--text-secondary)]">
                 {t(
-                  'Sebagian besar fitur Ditya Tools — termasuk Watermark KTP, Hapus Latar AI, Pas Foto, Kompresor Gambar, serta seluruh alat PDF & QR — bekerja 100% di dalam browser Anda. File dokumen Anda tidak pernah dikirim ke server pemrosesan eksternal.',
-                  'Most Ditya Tools features — including ID Card Watermark, AI Background Removal, Pas Foto, Image Compressor, and all PDF & QR tools — perform their work 100% inside your browser. Your working files stay on your device.',
+                  'Watermark KTP, Hapus Latar AI, Pas Foto, Kompresor Gambar, serta seluruh alat PDF & QR bekerja 100% di dalam browser perangkat Anda tanpa mengunggah file ke server.',
+                  'ID Card Watermark, AI Background Removal, Pas Foto, Image Compressor, and all PDF & QR tools work 100% inside your browser without uploading files.',
                 )}
               </p>
             </div>
           </div>
 
-          <div className="mt-6 flex items-start gap-4 border-t border-[var(--border)] pt-6">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
-              <Cpu size={20} />
+          <div className="mt-5 flex items-start gap-4 border-t border-[var(--border)] pt-5">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[var(--primary-soft)] text-[var(--primary)]">
+              <Cpu size={19} />
             </div>
 
             <div>
-              <h2 className="text-lg font-bold text-[var(--text-primary)]">
-                {t('Pendamping Perangkat untuk Media Berat', 'Device Companion for Heavy Media')}
+              <h2 className="text-base font-bold text-[var(--text-primary)]">
+                {t('Pendamping Perangkat untuk Media', 'Device Companion for Heavy Media')}
               </h2>
 
-              <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+              <p className="mt-1.5 text-sm leading-6 text-[var(--text-secondary)]">
                 {t(
-                  'Fitur pengolahan video dan audio berukuran besar dapat terhubung dengan layanan pendamping di komputer pribadi Anda sehingga pemrosesan media tetap kencang dan bebas batas ukuran unggahan cloud.',
-                  'Features that process heavy video and audio streams connect to the companion service on your personal computer so media processing stays fast without cloud upload limits.',
+                  'Fitur pengolahan video dan audio berukuran besar dapat terhubung dengan layanan pendamping di komputer pribadi Anda.',
+                  'Heavy video and audio utilities connect to the companion service on your personal computer.',
                 )}
               </p>
             </div>
           </div>
         </section>
 
-        {/* Current Toolkit */}
-        <section className="mt-12">
-          <h2 className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
-            {t('Katalog Alat Saat Ini', 'Current Toolkit')}
-          </h2>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <div className="ios-card p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                {t('Gambar & KTP', 'Image & ID')}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
-                {t('Watermark KTP & Sensor', 'ID Card Watermark')}
-                <br />
-                {t('Hapus Latar Foto AI', 'Remove Background')}
-                <br />
-                {t('Pas Foto & Cetak 4R/A4', 'Pas Foto & Print Sheet')}
-                <br />
-                {t('Kompres Gambar', 'Image Compressor')}
-                <br />
-                {t('Pembersih EXIF', 'EXIF Stripper')}
-              </p>
-            </div>
-
-            <div className="ios-card p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                {t('PDF & Invoice', 'PDF & Invoice')}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
-                {t('Gambar ke PDF', 'Image to PDF')}
-                <br />
-                {t('Gabung PDF', 'PDF Merge')}
-                <br />
-                {t('Pisah Halaman PDF', 'PDF Split')}
-                <br />
-                {t('Atur & Putar PDF', 'PDF Page Organizer')}
-                <br />
-                {t('Tanda Tangan PDF', 'PDF Sign & Watermark')}
-                <br />
-                {t('Invoice & Kwitansi PDF', 'Invoice & Receipt PDF')}
-              </p>
-            </div>
-
-            <div className="ios-card p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                {t('QR & Tautan', 'QR & Links')}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
-                {t('Kartu QR Wi-Fi', 'Wi-Fi QR Card')}
-                <br />
-                {t('Pembuat Kode QR', 'QR Generator')}
-                <br />
-                {t('Pemindai Kode QR', 'QR Scanner')}
-                <br />
-                {t('Link Chat WhatsApp', 'WhatsApp Link')}
-                <br />
-                {t('Pembersih Link Pelacak', 'Clean URL Stripper')}
-              </p>
-            </div>
-
-            <div className="ios-card p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                {t('Teks', 'Text')}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
-                {t('Perapi Teks PDF & Huruf', 'Text Cleaner & Case')}
-              </p>
-            </div>
-
-            <div className="ios-card p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
-                {t('Media', 'Media')}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--text-primary)]">
-                {t('Pengunduh YouTube', 'YouTube Downloader')}
-                <br />
-                {t('Pemotong Video/Audio', 'Media Clipper & Converter')}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-12 border-t border-[var(--border)] pt-8">
-          <div className="flex items-start gap-3">
-            <Heart
-              size={18}
-              className="mt-0.5 shrink-0 text-[var(--primary)]"
-            />
-            <p className="text-sm leading-6 text-[var(--text-secondary)]">
+        <section className="mt-10 border-t border-[var(--border)] pt-6">
+          <div className="flex items-center gap-2.5 text-xs text-[var(--text-secondary)]">
+            <Heart size={15} className="shrink-0 text-[var(--primary)]" />
+            <span>
               {t(
-                'Ditya Tools terus dikembangkan untuk menghadirkan utilitas yang bersih, ramah pengguna, dan menghormati privasi Anda.',
-                'Ditya Tools continues to evolve around clean, user-friendly utilities that respect your privacy.',
+                'Dibuat dengan penuh perhatian oleh Gilar Wahiditya.',
+                'Crafted with care by Gilar Wahiditya.',
               )}
-            </p>
+            </span>
           </div>
         </section>
       </motion.div>

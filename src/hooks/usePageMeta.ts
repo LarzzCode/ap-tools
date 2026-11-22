@@ -46,6 +46,14 @@ export function usePageMeta() {
           'Browse all privacy-first utilities available in Ditya Tools.',
         ),
       }
+    } else if (location.pathname === '/feedback') {
+      meta = {
+        title: t('Kirim Saran & Masukan — Ditya Tools', 'Send Feedback — Ditya Tools'),
+        description: t(
+          'Kirimkan saran alat baru, masukan tampilan, atau laporan kendala langsung ke Gilar Wahiditya.',
+          'Send new tool ideas, UI feedback, or bug reports directly to Gilar Wahiditya.',
+        ),
+      }
     } else if (location.pathname === '/about') {
       meta = {
         title: t('Tentang — Ditya Tools', 'About — Ditya Tools'),

@@ -295,7 +295,7 @@ export default function PdfOrganizer() {
                   {pages.map((page, index) => (
                     <div
                       key={page.id}
-                      className={`flex items-center justify-between gap-3 rounded-2xl border p-3.5 transition ${
+                      className={`flex flex-col justify-between gap-3 rounded-2xl border p-3.5 transition sm:flex-row sm:items-center ${
                         page.excluded
                           ? 'border-dashed border-red-500/30 bg-red-500/5 opacity-60'
                           : 'border-[var(--border)] bg-[var(--surface-soft)]'

@@ -515,7 +515,7 @@ export default function PdfSign() {
                         ))}
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3 pt-1">
+                      <div className="grid grid-cols-1 gap-3 pt-1 sm:grid-cols-3">
                         <div>
                           <div className="flex justify-between text-xs text-[var(--text-secondary)]">
                             <label htmlFor="pdf-sign-x">X Pos</label>

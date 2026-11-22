@@ -193,6 +193,13 @@ export const router = createBrowserRouter([
         },
       },
       {
+        path: '/feedback',
+        lazy: async () => {
+          const { default: Component } = await import('../pages/Feedback')
+          return { Component }
+        },
+      },
+      {
         path: '/about',
         lazy: async () => {
           const { default: Component } = await import('../pages/About')

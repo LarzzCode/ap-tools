@@ -133,17 +133,17 @@ export default function Home() {
             )}
           </div>
 
-          {/* iOS Segmented Category Filter */}
+          {/* iOS Segmented Category Filter (Swipeable single row on mobile) */}
           {!isSearching && (
-            <div className="mt-5 flex justify-center">
-              <div className="ios-segmented inline-flex flex-wrap justify-center gap-1">
+            <div className="-mx-4 mt-5 flex justify-start overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:justify-center sm:px-0">
+              <div className="ios-segmented inline-flex shrink-0 flex-nowrap gap-1">
                 {HOME_CATEGORIES.map((category) => (
                   <button
                     key={category.id}
                     id={`home-category-${category.id}`}
                     type="button"
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
+                    className={`shrink-0 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                       selectedCategory === category.id
                         ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
                         : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'

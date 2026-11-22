@@ -344,7 +344,7 @@ export default function InvoiceGenerator() {
                 {items.map((item, idx) => (
                   <div
                     key={item.id}
-                    className="grid grid-cols-12 items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-2.5"
+                    className="grid grid-cols-12 items-center gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-3"
                   >
                     <input
                       type="text"
@@ -353,7 +353,7 @@ export default function InvoiceGenerator() {
                         updateItem(item.id, { description: e.target.value })
                       }
                       placeholder={t(`Deskripsi item #${idx + 1}`, `Item #${idx + 1} description`)}
-                      className="col-span-6 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1.5 text-xs text-[var(--text-primary)] outline-none"
+                      className="col-span-12 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs text-[var(--text-primary)] outline-none sm:col-span-6"
                     />
                     <input
                       type="number"
@@ -365,7 +365,7 @@ export default function InvoiceGenerator() {
                         })
                       }
                       placeholder="Qty"
-                      className="col-span-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2 py-1.5 text-center text-xs text-[var(--text-primary)] outline-none"
+                      className="col-span-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2 py-2 text-center text-xs text-[var(--text-primary)] outline-none sm:col-span-2"
                     />
                     <input
                       type="number"
@@ -377,16 +377,16 @@ export default function InvoiceGenerator() {
                         })
                       }
                       placeholder={t('Harga', 'Price')}
-                      className="col-span-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1.5 text-xs text-[var(--text-primary)] outline-none"
+                      className="col-span-7 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-xs text-[var(--text-primary)] outline-none sm:col-span-3"
                     />
                     <button
                       type="button"
                       disabled={items.length <= 1}
                       onClick={() => removeItem(item.id)}
-                      className="col-span-1 flex justify-center text-[var(--text-muted)] hover:text-[var(--error)] disabled:opacity-30"
+                      className="col-span-2 flex h-9 items-center justify-center rounded-xl text-[var(--text-muted)] hover:text-[var(--error)] disabled:opacity-30 sm:col-span-1"
                       aria-label="Remove item"
                     >
-                      <Trash2 size={14} />
+                      <Trash2 size={15} />
                     </button>
                   </div>
                 ))}

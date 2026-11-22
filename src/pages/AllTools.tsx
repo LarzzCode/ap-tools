@@ -110,47 +110,51 @@ export default function AllTools() {
               )}
             </div>
 
-            <div className="ios-segmented inline-flex self-start">
-              {(
-                [
-                  ['all', t('Semua Mode', 'All Modes')],
-                  ['browser', t('Instan Browser', 'Browser')],
-                  ['local-service', t('Pendamping', 'Companion')],
-                ] as const
-              ).map(([value, label]) => (
+            <div className="-mx-4 flex overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:px-0">
+              <div className="ios-segmented inline-flex shrink-0 flex-nowrap">
+                {(
+                  [
+                    ['all', t('Semua Mode', 'All Modes')],
+                    ['browser', t('Instan Browser', 'Browser')],
+                    ['local-service', t('Pendamping', 'Companion')],
+                  ] as const
+                ).map(([value, label]) => (
+                  <button
+                    key={value}
+                    id={`all-tools-runtime-${value}`}
+                    type="button"
+                    onClick={() => setRuntime(value)}
+                    className={`shrink-0 whitespace-nowrap rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
+                      runtime === value
+                        ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="-mx-4 flex overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:px-0">
+            <div className="ios-segmented inline-flex shrink-0 flex-nowrap gap-1">
+              {CATEGORY_TABS.map((tab) => (
                 <button
-                  key={value}
-                  id={`all-tools-runtime-${value}`}
+                  key={tab.id}
+                  id={`all-tools-category-${tab.id}`}
                   type="button"
-                  onClick={() => setRuntime(value)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
-                    runtime === value
+                  onClick={() => setCategory(tab.id)}
+                  className={`shrink-0 whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-semibold transition ${
+                    category === tab.id
                       ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
-                  {label}
+                  {language === 'id' ? tab.labelId : tab.labelEn}
                 </button>
               ))}
             </div>
-          </div>
-
-          <div className="ios-segmented inline-flex flex-wrap gap-1">
-            {CATEGORY_TABS.map((tab) => (
-              <button
-                key={tab.id}
-                id={`all-tools-category-${tab.id}`}
-                type="button"
-                onClick={() => setCategory(tab.id)}
-                className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
-                  category === tab.id
-                    ? 'bg-[var(--surface)] text-[var(--primary)] shadow-xs'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {language === 'id' ? tab.labelId : tab.labelEn}
-              </button>
-            ))}
           </div>
         </div>
 
