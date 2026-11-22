@@ -1,5 +1,4 @@
 import { ChevronRight, Star } from 'lucide-react'
-import { motion } from 'motion/react'
 import { Link } from 'react-router'
 
 import { useLanguage } from '../../hooks/useLanguage'
@@ -68,24 +67,20 @@ export default function ToolCard({
   const isBrowser = tool.runtime === 'browser'
 
   return (
-    <motion.article
-      whileHover={{ y: -2 }}
-      transition={{
-        type: 'spring',
-        stiffness: 440,
-        damping: 30,
-      }}
+    <article
       className="
         ios-card
         group relative flex h-full flex-col justify-between
         p-4 sm:p-5
-        hover:border-[var(--primary-border)]
+        transition duration-150
+        hover:-translate-y-0.5 hover:border-[var(--primary-border)]
+        active:scale-[0.985]
       "
     >
       <div className="flex items-start justify-between gap-3">
         <Link
           to={tool.path}
-          className="flex min-w-0 flex-1 items-start gap-3.5"
+          className="flex min-w-0 flex-1 items-start gap-3.5 after:absolute after:inset-0 after:rounded-[20px] after:content-['']"
         >
           <div
             className={`
@@ -94,7 +89,7 @@ export default function ToolCard({
               rounded-[15px]
               ${style.iconBg}
               ${style.iconText}
-              transition-transform duration-200
+              transition-transform duration-150
               group-hover:scale-105
             `}
           >
@@ -138,10 +133,12 @@ export default function ToolCard({
           </div>
         </Link>
 
-        <motion.button
+        <button
           type="button"
-          onClick={() => onToggleFavorite(tool.id)}
-          whileTap={{ scale: 0.85 }}
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleFavorite(tool.id)
+          }}
           aria-pressed={isFavorite}
           aria-label={
             isFavorite
@@ -155,10 +152,11 @@ export default function ToolCard({
                 )
           }
           className={`
-            flex h-8 w-8 shrink-0
+            relative z-10 flex h-8 w-8 shrink-0
             items-center justify-center
             rounded-full
-            transition-colors
+            transition
+            active:scale-90
             ${
               isFavorite
                 ? 'bg-[var(--primary-soft)] text-[var(--primary)]'
@@ -170,7 +168,7 @@ export default function ToolCard({
             size={15}
             fill={isFavorite ? 'currentColor' : 'none'}
           />
-        </motion.button>
+        </button>
       </div>
 
       <div className="mt-3.5 flex items-center justify-between border-t border-[var(--border)]/60 pt-2.5 text-[11px] font-medium text-[var(--text-muted)]">
@@ -189,6 +187,6 @@ export default function ToolCard({
           {categoryLabel}
         </span>
       </div>
-    </motion.article>
+    </article>
   )
 }

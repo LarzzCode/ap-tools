@@ -1,8 +1,39 @@
 import { createBrowserRouter } from 'react-router'
 
 import AppLayout from '../components/layout/AppLayout'
+import About from '../pages/About'
+import AllTools from '../pages/AllTools'
 import AppError from '../pages/AppError'
+import Feedback from '../pages/Feedback'
 import Home from '../pages/Home'
+import NotFound from '../pages/NotFound'
+import Privacy from '../pages/Privacy'
+import AspectCropper from '../pages/tools/AspectCropper'
+import CleanUrl from '../pages/tools/CleanUrl'
+import ColorPalette from '../pages/tools/ColorPalette'
+import CvMaker from '../pages/tools/CvMaker'
+import ImageCompressor from '../pages/tools/ImageCompressor'
+import ImagePrivacy from '../pages/tools/ImagePrivacy'
+import ImageStitcher from '../pages/tools/ImageStitcher'
+import ImageToPdf from '../pages/tools/ImageToPdf'
+import InvoiceGenerator from '../pages/tools/InvoiceGenerator'
+import KtpWatermark from '../pages/tools/KtpWatermark'
+import LetterGenerator from '../pages/tools/LetterGenerator'
+import MediaConverter from '../pages/tools/MediaConverter'
+import PasFoto from '../pages/tools/PasFoto'
+import PdfCompressor from '../pages/tools/PdfCompressor'
+import PdfMerge from '../pages/tools/PdfMerge'
+import PdfOrganizer from '../pages/tools/PdfOrganizer'
+import PdfSign from '../pages/tools/PdfSign'
+import PdfSplit from '../pages/tools/PdfSplit'
+import PdfToImage from '../pages/tools/PdfToImage'
+import QrGenerator from '../pages/tools/QrGenerator'
+import QrScanner from '../pages/tools/QrScanner'
+import RemoveBackground from '../pages/tools/RemoveBackground'
+import TextUtilities from '../pages/tools/TextUtilities'
+import WhatsAppLink from '../pages/tools/WhatsAppLink'
+import WifiQr from '../pages/tools/WifiQr'
+import YouTubeDownloader from '../pages/tools/YouTubeDownloader'
 
 export const router = createBrowserRouter([
   {
@@ -16,273 +47,128 @@ export const router = createBrowserRouter([
       },
       {
         path: '/tools',
-        lazy: async () => {
-          const { default: Component } = await import('../pages/AllTools')
-          return { Component }
-        },
+        Component: AllTools,
       },
       {
         path: '/tools/ktp-watermark',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/KtpWatermark'
-          )
-          return { Component }
-        },
+        Component: KtpWatermark,
       },
       {
         path: '/tools/image-to-pdf',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/ImageToPdf'
-          )
-          return { Component }
-        },
+        Component: ImageToPdf,
       },
       {
         path: '/tools/image-compressor',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/ImageCompressor'
-          )
-          return { Component }
-        },
+        Component: ImageCompressor,
       },
       {
         path: '/tools/remove-background',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/RemoveBackground'
-          )
-          return { Component }
-        },
+        Component: RemoveBackground,
       },
       {
         path: '/tools/pas-foto',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PasFoto'
-          )
-          return { Component }
-        },
+        Component: PasFoto,
       },
       {
         path: '/tools/image-privacy',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/ImagePrivacy'
-          )
-          return { Component }
-        },
+        Component: ImagePrivacy,
       },
       {
         path: '/tools/image-stitcher',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/ImageStitcher'
-          )
-          return { Component }
-        },
+        Component: ImageStitcher,
       },
       {
         path: '/tools/aspect-cropper',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/AspectCropper'
-          )
-          return { Component }
-        },
+        Component: AspectCropper,
       },
       {
         path: '/tools/color-palette',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/ColorPalette'
-          )
-          return { Component }
-        },
+        Component: ColorPalette,
       },
       {
         path: '/tools/pdf-to-image',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfToImage'
-          )
-          return { Component }
-        },
+        Component: PdfToImage,
       },
       {
         path: '/tools/pdf-merge',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfMerge'
-          )
-          return { Component }
-        },
+        Component: PdfMerge,
       },
       {
         path: '/tools/pdf-split',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfSplit'
-          )
-          return { Component }
-        },
+        Component: PdfSplit,
       },
       {
         path: '/tools/pdf-organizer',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfOrganizer'
-          )
-          return { Component }
-        },
+        Component: PdfOrganizer,
       },
       {
         path: '/tools/pdf-sign',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfSign'
-          )
-          return { Component }
-        },
+        Component: PdfSign,
       },
       {
         path: '/tools/pdf-compressor',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/PdfCompressor'
-          )
-          return { Component }
-        },
+        Component: PdfCompressor,
       },
       {
         path: '/tools/cv-maker',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/CvMaker'
-          )
-          return { Component }
-        },
+        Component: CvMaker,
       },
       {
         path: '/tools/letter-generator',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/LetterGenerator'
-          )
-          return { Component }
-        },
+        Component: LetterGenerator,
       },
       {
         path: '/tools/invoice-generator',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/InvoiceGenerator'
-          )
-          return { Component }
-        },
+        Component: InvoiceGenerator,
       },
       {
         path: '/tools/text-utilities',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/TextUtilities'
-          )
-          return { Component }
-        },
+        Component: TextUtilities,
       },
       {
         path: '/tools/wifi-qr',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/WifiQr'
-          )
-          return { Component }
-        },
+        Component: WifiQr,
       },
       {
         path: '/tools/qr-generator',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/QrGenerator'
-          )
-          return { Component }
-        },
+        Component: QrGenerator,
       },
       {
         path: '/tools/qr-scanner',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/QrScanner'
-          )
-          return { Component }
-        },
+        Component: QrScanner,
       },
       {
         path: '/tools/whatsapp-link',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/WhatsAppLink'
-          )
-          return { Component }
-        },
+        Component: WhatsAppLink,
       },
       {
         path: '/tools/clean-url',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/CleanUrl'
-          )
-          return { Component }
-        },
+        Component: CleanUrl,
       },
       {
         path: '/tools/youtube-downloader',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/YouTubeDownloader'
-          )
-          return { Component }
-        },
+        Component: YouTubeDownloader,
       },
       {
         path: '/tools/media-converter',
-        lazy: async () => {
-          const { default: Component } = await import(
-            '../pages/tools/MediaConverter'
-          )
-          return { Component }
-        },
+        Component: MediaConverter,
       },
       {
         path: '/feedback',
-        lazy: async () => {
-          const { default: Component } = await import('../pages/Feedback')
-          return { Component }
-        },
+        Component: Feedback,
       },
       {
         path: '/about',
-        lazy: async () => {
-          const { default: Component } = await import('../pages/About')
-          return { Component }
-        },
+        Component: About,
       },
       {
         path: '/privacy',
-        lazy: async () => {
-          const { default: Component } = await import('../pages/Privacy')
-          return { Component }
-        },
+        Component: Privacy,
       },
     ],
   },
   {
     path: '*',
-    lazy: async () => {
-      const { default: Component } = await import('../pages/NotFound')
-      return { Component }
-    },
+    Component: NotFound,
   },
 ])

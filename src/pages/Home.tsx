@@ -8,6 +8,7 @@ import {
 import {
   ArrowRight,
   ChevronRight,
+  ShieldCheck,
   Sparkles,
   Star,
   Upload,
@@ -137,145 +138,176 @@ export default function Home() {
 
   return (
     <main>
-      {/* Clean iOS Hero with Option 3: Smart File Drop */}
-      <section className="relative overflow-hidden px-4 pt-10 pb-8 sm:px-6 sm:pt-12 sm:pb-10 lg:px-8">
+      {/* Prominent iOS Hero Spotlight — Designed to be the primary visual focal point on mobile & desktop */}
+      <section className="relative flex min-h-[70dvh] flex-col justify-center overflow-hidden px-4 pt-6 pb-8 sm:min-h-0 sm:px-6 sm:pt-12 sm:pb-12 lg:px-8">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-56 w-80 -translate-x-1/2 rounded-full bg-[var(--primary)]/10 blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-6 -z-10 h-64 w-80 -translate-x-1/2 rounded-full bg-[var(--primary)]/15 blur-3xl sm:w-[28rem]"
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
-            {t('Alat Harian Anda,', 'Your Everyday Tools,')}{' '}
-            <span className="text-[var(--primary)]">
-              {t('Cepat & Privat.', 'Fast & Private.')}
-            </span>
-          </h1>
+        <div className="mx-auto w-full max-w-2xl">
+          <div className="relative overflow-hidden rounded-[28px] border border-[var(--primary-border)] bg-[var(--surface)] p-6 text-center shadow-md sm:p-10">
+            {/* Subtle top accent bar */}
+            <div
+              aria-hidden="true"
+              className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--primary-soft)] shadow-2xs"
+            >
+              <img
+                src="/favicon.svg"
+                alt="Ditya Tools"
+                className="h-9 w-9 rounded-xl"
+              />
+            </div>
 
-          <p className="mx-auto mt-2.5 max-w-lg text-sm leading-6 text-[var(--text-secondary)] sm:text-base">
-            {t(
-              'Pilih file Anda di bawah atau langsung gunakan alat pilihan hari ini — tanpa iklan, tanpa login.',
-              'Drop a file below or pick a featured utility — no ads, no login.',
-            )}
-          </p>
+            <p className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[var(--primary)]">
+              <ShieldCheck size={14} />
+              {t(
+                '100% PRIVAT DI BROWSER • TANPA IKLAN',
+                '100% PRIVATE IN-BROWSER • ZERO ADS',
+              )}
+            </p>
 
-          <input
-            id="home-smart-file-input"
-            ref={fileInputRef}
-            type="file"
-            accept="image/*,application/pdf,video/*,audio/*,text/*"
-            onChange={handleFileChange}
-            className="hidden"
-          />
+            <h1 className="mt-2.5 text-[2rem] leading-[1.15] font-extrabold tracking-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
+              {t('Alat Harian Anda,', 'Your Everyday Tools,')}{' '}
+              <span className="block text-[var(--primary)] sm:inline">
+                {t('Cepat & Privat.', 'Fast & Private.')}
+              </span>
+            </h1>
 
-          {/* Option 3: Smart File Dropzone */}
-          <div className="mx-auto mt-6 max-w-xl text-left">
-            {!smartFile ? (
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault()
-                  setIsDragging(true)
-                }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
+            <p className="mx-auto mt-3.5 max-w-lg text-sm leading-6 text-[var(--text-secondary)] sm:text-base sm:leading-7">
+              {t(
+                `Kumpulan ${tools.length} alat praktis untuk proteksi KTP, edit foto, kompres & rapikan PDF, buat CV ATS, hingga kartu QR — langsung siap pakai tanpa perlu login.`,
+                `A collection of ${tools.length} practical utilities for ID protection, photo editing, PDF compression, ATS resumes, and QR cards — ready instantly without login.`,
+              )}
+            </p>
+
+            <input
+              id="home-smart-file-input"
+              ref={fileInputRef}
+              type="file"
+              accept="image/*,application/pdf,video/*,audio/*,text/*"
+              onChange={handleFileChange}
+              className="hidden"
+            />
+
+            {/* Option 3: Smart File Drop inside the Hero Spotlight */}
+            <div className="mx-auto mt-6 max-w-xl text-left">
+              {!smartFile ? (
+                <div
+                  onDragOver={(e) => {
                     e.preventDefault()
-                    fileInputRef.current?.click()
-                  }
-                }}
-                className={`ios-card flex cursor-pointer items-center justify-between gap-4 border-2 border-dashed px-5 py-4 transition ${
-                  isDragging
-                    ? 'border-[var(--primary)] bg-[var(--primary-soft)]'
-                    : 'hover:border-[var(--primary-border)]'
-                }`}
-              >
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-[var(--text-primary)]">
-                    {t(
-                      'Punya foto, KTP, atau dokumen PDF?',
-                      'Have a photo, ID card, or PDF file?',
-                    )}
-                  </p>
-                  <p className="mt-0.5 text-xs text-[var(--text-secondary)]">
-                    {t(
-                      'Ketuk atau tarik file ke sini — otomatis kami pilihkan alat yang cocok.',
-                      'Tap or drop any file here — we’ll suggest the exact tools for it.',
-                    )}
-                  </p>
-                </div>
-
-                <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--primary)] px-4 py-2 text-xs font-bold text-white shadow-xs">
-                  <Upload size={14} />
-                  {t('Pilih File', 'Choose File')}
-                </span>
-              </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="ios-card p-4 sm:p-5"
-              >
-                <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+                    setIsDragging(true)
+                  }}
+                  onDragLeave={() => setIsDragging(false)}
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      fileInputRef.current?.click()
+                    }
+                  }}
+                  className={`flex cursor-pointer flex-col items-center justify-between gap-3 rounded-2xl border-2 border-dashed bg-[var(--surface-soft)] px-4 py-4 text-center transition sm:flex-row sm:px-5 sm:text-left ${
+                    isDragging
+                      ? 'border-[var(--primary)] bg-[var(--primary-soft)]'
+                      : 'border-[var(--border)] hover:border-[var(--primary-border)]'
+                  }`}
+                >
                   <div className="min-w-0">
-                    <p className="truncate text-xs font-bold text-[var(--primary)]">
-                      {t('File Siap Dibawa:', 'File Ready to Load:')} {smartFile.name}
-                    </p>
-                    <p className="text-[11px] text-[var(--text-muted)]">
-                      {formatFileSize(smartFile.size)} •{' '}
+                    <p className="text-xs font-bold text-[var(--text-primary)] sm:text-sm">
                       {t(
-                        'Ketuk alat di bawah, file ini otomatis langsung masuk',
-                        'Tap any tool below to auto-load this file inside it',
+                        'Punya foto, KTP, atau dokumen PDF?',
+                        'Have a photo, ID card, or PDF file?',
+                      )}
+                    </p>
+                    <p className="mt-0.5 text-[11px] leading-4 text-[var(--text-secondary)] sm:text-xs">
+                      {t(
+                        'Pilih file di sini — otomatis kami pilihkan & muat alat yang cocok.',
+                        'Pick any file here — we’ll suggest & auto-load the right tool.',
                       )}
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSmartFile(null)
-                      setPendingSmartFile(null)
-                    }}
-                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--surface-soft)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-                    aria-label="Clear file"
-                  >
-                    <X size={14} />
-                  </button>
+                  <span className="inline-flex w-full shrink-0 items-center justify-center gap-1.5 rounded-xl bg-[var(--primary)] px-4 py-2.5 text-xs font-bold text-white shadow-xs sm:w-auto sm:rounded-full sm:py-2">
+                    <Upload size={14} />
+                    {t('Pilih File Otomatis', 'Choose File')}
+                  </span>
                 </div>
+              ) : (
+                <div className="rounded-2xl border border-[var(--primary-border)] bg-[var(--surface-soft)] p-4">
+                  <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] pb-3">
+                    <div className="min-w-0">
+                      <p className="truncate text-xs font-bold text-[var(--primary)]">
+                        {t('File Siap Dibawa:', 'File Ready to Load:')}{' '}
+                        {smartFile.name}
+                      </p>
+                      <p className="text-[11px] text-[var(--text-muted)]">
+                        {formatFileSize(smartFile.size)} •{' '}
+                        {t(
+                          'Ketuk alat di bawah, file ini otomatis langsung masuk',
+                          'Tap any tool below to auto-load this file inside it',
+                        )}
+                      </p>
+                    </div>
 
-                <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {matchingTools.map((tool) => (
-                    <Link
-                      key={tool.id}
-                      to={tool.path}
-                      className="flex items-center justify-between gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] px-3.5 py-2.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSmartFile(null)
+                        setPendingSmartFile(null)
+                      }}
+                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                      aria-label="Clear file"
                     >
-                      <span className="truncate">
-                        {language === 'id' ? tool.nameId : tool.name}
-                      </span>
-                      <ChevronRight
-                        size={14}
-                        className="shrink-0 text-[var(--text-muted)]"
-                      />
-                    </Link>
-                  ))}
+                      <X size={14} />
+                    </button>
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                    {matchingTools.map((tool) => (
+                      <Link
+                        key={tool.id}
+                        to={tool.path}
+                        className="flex items-center justify-between gap-2 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-3.5 py-2.5 text-xs font-bold text-[var(--text-primary)] transition hover:border-[var(--primary-border)] hover:text-[var(--primary)]"
+                      >
+                        <span className="truncate">
+                          {language === 'id' ? tool.nameId : tool.name}
+                        </span>
+                        <ChevronRight
+                          size={14}
+                          className="shrink-0 text-[var(--text-muted)]"
+                        />
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            )}
+              )}
+            </div>
+
+            {/* Direct Primary CTA inside Hero */}
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                id="hero-explore-all-tools"
+                to="/tools"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--primary-border)] bg-[var(--primary-soft)] px-5 py-2.5 text-xs font-bold text-[var(--primary)] transition hover:bg-[var(--primary)] hover:text-white sm:text-sm"
+              >
+                <span>
+                  {t(
+                    `Jelajahi Semua ${tools.length} Alat`,
+                    `Browse All ${tools.length} Tools`,
+                  )}
+                </span>
+                <ArrowRight size={15} />
+              </Link>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Main Content: Favorites + 3 Daily Random Tools + Link to All Tools */}
-      <div className="mx-auto max-w-7xl space-y-10 px-4 pb-20 sm:px-6 lg:px-8">
+      {/* Main Content below Hero: Favorites + 3 Daily Random Tools */}
+      <div className="mx-auto max-w-7xl space-y-10 px-4 pt-2 pb-20 sm:px-6 lg:px-8">
         {/* Favorites Section */}
         <AnimatePresence>
           {favoriteTools.length > 0 && (
@@ -283,7 +315,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.2 }}
             >
               <div className="mb-3.5 flex items-center gap-2">
                 <Star
