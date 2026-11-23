@@ -1,6 +1,8 @@
 import {
   BriefcaseBusiness,
+  Calculator,
   Columns2,
+  Contact,
   Crop,
   Eraser,
   FileDown,
@@ -9,6 +11,7 @@ import {
   FileSpreadsheet,
   FileText,
   Film,
+  Frame,
   IdCard,
   ImageDown,
   Images,
@@ -17,12 +20,14 @@ import {
   Merge,
   MessageCircle,
   Palette,
+  Percent,
   Play,
   QrCode,
   ScanLine,
   Scissors,
   ShieldAlert,
   ShieldCheck,
+  TvMinimalPlay,
   Type,
   Wifi,
 } from 'lucide-react'
@@ -72,6 +77,9 @@ export default function ToolIcon({
     case 'color-palette':
       return <Palette {...props} />
 
+    case 'twibbon-maker':
+      return <Frame {...props} />
+
     case 'pdf-merge':
       return <Merge {...props} />
 
@@ -99,6 +107,15 @@ export default function ToolIcon({
     case 'text-utilities':
       return <Type {...props} />
 
+    case 'teleprompter':
+      return <TvMinimalPlay {...props} />
+
+    case 'loan-calculator':
+      return <Calculator {...props} />
+
+    case 'discount-calculator':
+      return <Percent {...props} />
+
     case 'wifi-qr':
       return <Wifi {...props} />
 
@@ -110,6 +127,9 @@ export default function ToolIcon({
 
     case 'whatsapp-link':
       return <MessageCircle {...props} />
+
+    case 'vcard-qr':
+      return <Contact {...props} />
 
     case 'clean-url':
       return <Link2Off {...props} />

@@ -12,6 +12,7 @@ import AspectCropper from '../pages/tools/AspectCropper'
 import CleanUrl from '../pages/tools/CleanUrl'
 import ColorPalette from '../pages/tools/ColorPalette'
 import CvMaker from '../pages/tools/CvMaker'
+import DiscountCalculator from '../pages/tools/DiscountCalculator'
 import ImageCompressor from '../pages/tools/ImageCompressor'
 import ImagePrivacy from '../pages/tools/ImagePrivacy'
 import ImageStitcher from '../pages/tools/ImageStitcher'
@@ -19,6 +20,7 @@ import ImageToPdf from '../pages/tools/ImageToPdf'
 import InvoiceGenerator from '../pages/tools/InvoiceGenerator'
 import KtpWatermark from '../pages/tools/KtpWatermark'
 import LetterGenerator from '../pages/tools/LetterGenerator'
+import LoanCalculator from '../pages/tools/LoanCalculator'
 import MediaConverter from '../pages/tools/MediaConverter'
 import PasFoto from '../pages/tools/PasFoto'
 import PdfCompressor from '../pages/tools/PdfCompressor'
@@ -30,7 +32,10 @@ import PdfToImage from '../pages/tools/PdfToImage'
 import QrGenerator from '../pages/tools/QrGenerator'
 import QrScanner from '../pages/tools/QrScanner'
 import RemoveBackground from '../pages/tools/RemoveBackground'
+import Teleprompter from '../pages/tools/Teleprompter'
 import TextUtilities from '../pages/tools/TextUtilities'
+import TwibbonMaker from '../pages/tools/TwibbonMaker'
+import VCardQr from '../pages/tools/VCardQr'
 import WhatsAppLink from '../pages/tools/WhatsAppLink'
 import WifiQr from '../pages/tools/WifiQr'
 import YouTubeDownloader from '../pages/tools/YouTubeDownloader'
@@ -86,6 +91,10 @@ export const router = createBrowserRouter([
         Component: ColorPalette,
       },
       {
+        path: '/tools/twibbon-maker',
+        Component: TwibbonMaker,
+      },
+      {
         path: '/tools/pdf-to-image',
         Component: PdfToImage,
       },
@@ -126,6 +135,18 @@ export const router = createBrowserRouter([
         Component: TextUtilities,
       },
       {
+        path: '/tools/teleprompter',
+        Component: Teleprompter,
+      },
+      {
+        path: '/tools/loan-calculator',
+        Component: LoanCalculator,
+      },
+      {
+        path: '/tools/discount-calculator',
+        Component: DiscountCalculator,
+      },
+      {
         path: '/tools/wifi-qr',
         Component: WifiQr,
       },
@@ -140,6 +161,10 @@ export const router = createBrowserRouter([
       {
         path: '/tools/whatsapp-link',
         Component: WhatsAppLink,
+      },
+      {
+        path: '/tools/vcard-qr',
+        Component: VCardQr,
       },
       {
         path: '/tools/clean-url',

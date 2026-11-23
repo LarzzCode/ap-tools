@@ -1217,6 +1217,261 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'twibbon-maker',
+    name: 'Twibbon & Photo Frame Studio',
+    nameId: 'Twibbon & Frame Foto Studio',
+    description:
+      'Combine your portrait with any custom transparent PNG event frame or built-in banner template with interactive pan/zoom and 100% zero watermark.',
+    descriptionId:
+      'Pasang bingkai Twibbon PNG transparan (acara kampus, kepanitiaan, komunitas, 17-an) pada foto Anda dengan pengatur geser/zoom interaktif tanpa watermark.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/twibbon-maker',
+    keywords: [
+      'twibbon',
+      'frame',
+      'bingkai foto',
+      'kampus',
+      'event',
+      'panitia',
+      '17 agustus',
+      'tanpa watermark',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Ingin memasang foto profil ke bingkai Twibbon acara kampus, kepanitiaan, atau organisasi tanpa harus mengunggah foto ke situs pihak ketiga yang menempelkan logo watermark dan penuh iklan? Alat ini menggabungkan foto diri Anda dengan file bingkai PNG transparan (atau template bingkai bawaan) langsung di browser dalam kualitas 1080p HD bersih.',
+      overviewEn:
+        'Pair your portrait with a transparent PNG campaign/event frame or customize a built-in banner template directly in your browser. Drag to reposition, pinch/slide to zoom, and export crisp 1080p images with zero watermarks or ads.',
+      stepsId: [
+        'Klik "1. Pilih Foto Diri" untuk mengunggah foto wajah atau profil Anda.',
+        'Klik "2. Upload Frame PNG" jika Anda sudah punya file bingkai PNG transparan dari panitia, atau pilih salah satu template bingkai bawaan (Pita Event, Lencana Lingkaran, Merah Putih).',
+        'Geser posisi foto langsung di dalam kanvas menggunakan jari/mouse dan atur slider Zoom atau Rotasi hingga pas.',
+        'Unduh hasil Twibbon dalam format PNG HD atau JPG tanpa watermark.',
+      ],
+      stepsEn: [
+        'Click "1. Pick Your Photo" to load your portrait.',
+        'Click "2. Upload PNG Frame" to overlay a transparent PNG frame, or pick a built-in customizable event frame template.',
+        'Drag the photo directly inside the canvas and adjust Zoom or Rotation until framed nicely.',
+        'Download your finished Twibbon as a full-resolution PNG or JPG.',
+      ],
+      tipsId: [
+        'Pastikan file bingkai Twibbon dari panitia berformat .PNG dengan bagian tengah transparan agar foto wajah terlihat di baliknya.',
+        'Jika belum punya desain frame PNG, Anda tetap bisa langsung membuat bingkai acara dengan memilih mode "Pita Event Modern" atau "Lencana Lingkaran".',
+        '100% Bebas Watermark dan privasi foto tetap terjaga di perangkat Anda.',
+      ],
+      tipsEn: [
+        'Make sure custom uploaded event frames are transparent .PNG files so your photo shows through the cutout.',
+        'If you do not have a PNG frame file, switch to the built-in Banner or Circle Badge templates and type your event title.',
+        '100% watermark-free and processed locally on your device.',
+      ],
+    },
+  },
+  {
+    id: 'vcard-qr',
+    name: 'Digital Business Card & vCard QR',
+    nameId: 'Pembuat Kartu Nama Digital (QR Kontak)',
+    description:
+      'Generate a vCard 3.0 contact QR code and printable digital business card PNG so anyone scanning can save your phone, WhatsApp, email, and socials in 1 tap.',
+    descriptionId:
+      'Buat kartu nama digital beserta kode QR Kontak (vCard) yang saat di-scan kamera HP langsung memunculkan tombol Simpan ke Kontak lengkap dengan nomor WA, email, dan jabatan.',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/vcard-qr',
+    keywords: [
+      'vcard',
+      'kartu nama',
+      'business card',
+      'qr kontak',
+      'contact qr',
+      'simpan kontak',
+      'vcf',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Saat berkenalan dengan klien, rekan kerja, atau teman kepanitiaan, mengetik nomor HP dan email satu per satu sering memakan waktu. Alat ini membuat Kartu Nama Digital sekaligus Kode QR berstandar vCard 3.0 yang langsung dikenali kamera iPhone maupun Android untuk menyimpan seluruh data kontak Anda ke buku telepon dalam sekali ketuk.',
+      overviewEn:
+        'Share your complete contact details at meetings or networking events without typing phone numbers manually. This tool encodes an industry-standard vCard 3.0 QR code and renders an executive digital business card PNG.',
+      stepsId: [
+        'Isi Nama Lengkap, Nomor HP / WhatsApp, Jabatan/Jurusan, Nama Perusahaan/Kampus, Email, serta Website atau Instagram.',
+        'Periksa pratinjau Kartu Nama Digital dan kode QR yang langsung terbentuk secara otomatis.',
+        'Klik "Unduh Kartu Nama Digital + QR (PNG)" untuk disimpan di galeri HP atau dicetak.',
+        'Anda juga bisa mengunduh gambar QR-nya saja atau file kontak `.VCF` standar.',
+      ],
+      stepsEn: [
+        'Enter your Full Name, Phone/WhatsApp, Role/Title, Company/Campus, Email, Website, and Instagram.',
+        'Preview the live executive Digital Business Card and scannable vCard QR code.',
+        'Click "Download Business Card + QR (PNG)" to save to your phone gallery or print.',
+        'Optionally download the standalone QR PNG or a standard `.VCF` contact file.',
+      ],
+      tipsId: [
+        'Simpan gambar Kartu Nama Digital ini di album Favorit galeri HP Anda agar mudah ditunjukkan kapan saja saat bertemu relasi baru.',
+        'Kode QR vCard menyimpan data kontak secara langsung (offline) sehingga tetap bisa di-scan walau tanpa sinyal internet.',
+        'Data pribadi Anda tidak pernah dikirim atau disimpan di server mana pun.',
+      ],
+      tipsEn: [
+        'Save the exported Business Card PNG to your phone’s Favorites album for instant sharing in person.',
+        'Because vCard QR codes embed contact data directly, they work offline forever and never expire.',
+        'Your contact information stays 100% local in your browser.',
+      ],
+    },
+  },
+  {
+    id: 'teleprompter',
+    name: 'Screen Teleprompter & Script Reader',
+    nameId: 'Teleprompter Layar HP & Laptop',
+    description:
+      'Auto-scroll presentation scripts and video talking points smoothly near your camera lens with speed control, eye-line focus guide, mirror mode, and selfie preview.',
+    descriptionId:
+      'Jalankan teks naskah presentasi atau konten video secara otomatis di layar lengkap dengan pengatur kecepatan baca, garis fokus mata, mode cermin, dan cermin kamera.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/teleprompter',
+    keywords: [
+      'teleprompter',
+      'prompter',
+      'presentasi',
+      'naskah',
+      'script',
+      'rekam video',
+      'public speaking',
+      'tiktok',
+      'reels',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Sering lupa kalimat atau terlihat melirik ke catatan samping saat merekam video tugas kuliah, presentasi kerja, maupun konten TikTok/Reels? Teleprompter ini menggulirkan naskah Anda secara mulus tepat di layar perangkat lengkap dengan pita "Fokus Baca" di dekat lensa kamera agar tatapan mata Anda tetap terlihat natural.',
+      overviewEn:
+        'Keep natural eye contact with your camera while recording video assignments, speeches, or social content. This teleprompter smoothly scrolls your script past an eye-line reading band with adjustable speed, font size, mirror mode, and optional selfie camera preview.',
+      stepsId: [
+        'Ketik atau tempelkan naskah presentasi / video Anda pada kolom editor di sebelah kiri.',
+        'Atur kecepatan jalan teks (1x hingga 10x) serta ukuran huruf yang nyaman dibaca dari jarak duduk Anda.',
+        'Aktifkan "Cermin Kamera" jika ingin mengecek posisi wajah Anda di dekat teks, atau klik "Layar Penuh" untuk tampilan maksimal.',
+        'Klik tombol "Mulai Jalan" dan bacalah baris teks saat melewati pita fokus berwarna biru.',
+      ],
+      stepsEn: [
+        'Type or paste your presentation or video script into the left editor panel.',
+        'Adjust the scroll speed (1x–10x) and font size for comfortable reading at your distance.',
+        'Optionally toggle "Selfie Cam" to check your framing or enter Fullscreen mode.',
+        'Click "Start Scroll" and read along the highlighted eye-line band.',
+      ],
+      tipsId: [
+        'Posisikan jendela browser sedekat mungkin dengan kamera depan HP atau webcam laptop agar gerakan bola mata tidak terlihat membaca teks.',
+        'Gunakan fitur "Mode Cermin" (Mirror Flip) jika Anda memantulkan layar HP ke kaca teleprompter fisik.',
+        'Naskah dan pratinjau kamera berjalan 100% lokal di perangkat Anda.',
+      ],
+      tipsEn: [
+        'Place the reading band close to your webcam or front phone camera so your gaze looks straight into the lens.',
+        'Use "Mirror Flip" when reflecting your phone or tablet screen onto physical teleprompter beam-splitter glass.',
+        'Your script and camera preview stay strictly on your device.',
+      ],
+    },
+  },
+  {
+    id: 'loan-calculator',
+    name: 'Loan, KPR & Flat vs Effective Calculator',
+    nameId: 'Kalkulator Cicilan, KPR & Bunga',
+    description:
+      'Simulate monthly installments for KPR mortgages, vehicles, or business loans, compare Flat vs Effective Annuity rates, and inspect the full amortization schedule.',
+    descriptionId:
+      'Hitung simulasi cicilan bulanan KPR rumah, kredit kendaraan, atau pinjaman lengkap dengan konversi Bunga Flat vs Bunga Efektif serta tabel rincian angsuran.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/loan-calculator',
+    keywords: [
+      'kalkulator kpr',
+      'cicilan',
+      'kredit',
+      'bunga flat',
+      'bunga efektif',
+      'anuitas',
+      'pinjaman',
+      'simulasi kredit',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Banyak penawaran kredit kendaraan atau pinjaman mencantumkan angka "Bunga Flat" yang terlihat kecil, padahal jika dihitung secara Bunga Efektif (Anuitas) bebannya hampir dua kali lipat. Kalkulator ini menghitung angsuran bulanan secara akurat untuk sistem Bunga Flat, Anuitas (KPR), maupun Efektif Menurun (Sliding), sekaligus membuka konversi beban bunga sebenarnya.',
+      overviewEn:
+        'Compare loan offers transparently. Many vehicle or personal loans advertise a low "Flat Interest Rate" whose true effective cost is nearly double. This calculator computes monthly payments across Flat, Annuity (Mortgage), and Sliding methods while revealing the equivalent effective rate and full amortization schedule.',
+      stepsId: [
+        'Pilih sistem perhitungan bunga: Bunga Flat (kredit motor/mobil), Anuitas (KPR Bank), atau Efektif Menurun.',
+        'Masukkan Harga Barang / Plafon Pinjaman serta Uang Muka / DP (isi 0 jika pinjaman tunai tanpa DP).',
+        'Pilih Tenor (lama cicilan dalam bulan) dan masukkan persentase suku bunga per tahun.',
+        'Lihat estimasi cicilan per bulan, perbandingan ekuivalensi Bunga Flat vs Efektif, tabel rincian angsuran, atau salin ringkasannya ke WhatsApp.',
+      ],
+      stepsEn: [
+        'Select the interest calculation system: Flat Rate, Annuity (Mortgage), or Sliding Rate.',
+        'Enter the total asset price / loan amount and optional down payment.',
+        'Pick the loan term in months and enter the annual interest percentage.',
+        'Review monthly installments, Flat vs Effective rate equivalence, the full monthly amortization table, or copy a summary for WhatsApp.',
+      ],
+      tipsId: [
+        'Perhatikan kotak "Perbandingan Bunga Flat vs Bunga Efektif" sebelum mengambil keputusan kredit agar Anda tahu beban bunga riil per tahunnya.',
+        'Klik "Lihat Tabel Rincian Angsuran" untuk melihat porsi pembayaran pokok vs bunga dari bulan ke-1 hingga lunas.',
+        'Gunakan tombol "Salin Ringkasan WA" untuk membagikan hasil hitungan ke pasangan atau keluarga.',
+      ],
+      tipsEn: [
+        'Check the Flat vs Effective Equivalence box to compare leasing flat rates fairly against bank annuity loans.',
+        'Expand the Monthly Amortization Schedule to see how principal and interest portions shift each month.',
+        'Use Copy Summary to paste a clean breakdown directly into WhatsApp.',
+      ],
+    },
+  },
+  {
+    id: 'discount-calculator',
+    name: 'Stacked Discount & Unit Price Comparator',
+    nameId: 'Kalkulator Diskon & Bandingkan Harga',
+    description:
+      'Calculate real prices on stacked store discounts (e.g., 50% + 20% off + tax) and compare supermarket package sizes per 100g/ml to find the cheapest deal.',
+    descriptionId:
+      'Hitung harga akhir diskon bertingkat (misal 50% + 20% + PPN) secara cepat dan bandingkan harga per 100 gram/ml antar ukuran kemasan saat belanja.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/discount-calculator',
+    keywords: [
+      'diskon',
+      'kalkulator diskon',
+      '50%+20%',
+      'belanja',
+      'minimarket',
+      'bandingkan harga',
+      'ppn',
+      'hemat',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Saat belanja di mall, minimarket, atau marketplace, kita sering menjumpai promo diskon bertingkat seperti "Diskon 50% + 20%" atau bingung memilih apakah kemasan besar benar-benar lebih murah daripada beli dua kemasan kecil. Alat ini memiliki 2 mode praktis untuk menghitung harga bayar diskon bertingkat sekaligus membandingkan harga satuan per 100g/ml atau per pcs.',
+      overviewEn:
+        'Quickly decode "50% + 20% off" stacked retail promotions and compare different package sizes at the supermarket to see which option actually costs less per 100g, 100ml, or piece.',
+      stepsId: [
+        'Pilih tab "Hitung Diskon Bertingkat" untuk memasukkan harga awal, diskon pertama (%), diskon kedua (+%), potongan voucher, serta opsi pajak PPN 11%.',
+        'Atau pilih tab "Bandingkan Harga Minimarket" untuk membandingkan 2 hingga 4 ukuran produk.',
+        'Masukkan Harga (Rp) dan Berat/Isi Bersih (gram, ml, atau pcs) masing-masing kemasan.',
+        'Produk yang paling menguntungkan akan langsung ditandai dengan lencana hijau "PALING HEMAT" beserta persentase selisih penghematannya.',
+      ],
+      stepsEn: [
+        'Use the "Double Discount & Tax" tab to enter original price, first discount (%), second stacked discount (+%), voucher off, and optional 11% VAT.',
+        'Or switch to "Compare Unit Value" to compare 2 to 4 package sizes side-by-side.',
+        'Enter each item’s price and net weight/volume (grams, ml, or pieces).',
+        'The cheapest unit cost is automatically highlighted with a green "BEST VALUE" badge and exact savings percentage.',
+      ],
+      tipsId: [
+        'Ingat: Diskon 50% + 20% bukan berarti diskon 70%, melainkan 50% terlebih dahulu lalu dipotong 20% dari sisa harganya (setara 60%).',
+        'Saat di supermarket, kemasan jumbo kadang justru lebih mahal per 100ml jika kemasan sedang sedang ada promo potongan harga.',
+        'Buka alat ini langsung dari layar utama HP (PWA) saat sedang berbelanja.',
+      ],
+      tipsEn: [
+        'Remember: 50% + 20% off equals 60% total off, because the second discount applies to the already-discounted subtotal.',
+        'In supermarkets, medium packages on promo often beat bulk family packs on price per 100g/ml.',
+        'Add Ditya Tools to your phone Home Screen for one-tap access while shopping.',
+      ],
+    },
+  },
+  {
     id: 'youtube-downloader',
     name: 'YouTube Video & Audio Saver',
     nameId: 'Pengunduh Video & Audio YouTube',

@@ -72,7 +72,10 @@ export default function AppLayout() {
         return
       }
 
-      if (activeTool.id === 'text-utilities') {
+      if (
+        activeTool.id === 'text-utilities' ||
+        activeTool.id === 'teleprompter'
+      ) {
         const textarea = document.querySelector<HTMLTextAreaElement>(
           'main textarea',
         )

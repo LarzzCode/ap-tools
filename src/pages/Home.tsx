@@ -72,6 +72,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
       'ktp-watermark',
       'remove-background',
       'pas-foto',
+      'twibbon-maker',
       'image-compressor',
       'aspect-cropper',
       'image-stitcher',
@@ -92,7 +93,9 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   }
 
   if (type.startsWith('text/') || /\.(txt|md|csv)$/i.test(name)) {
-    return tools.filter((t) => t.id === 'text-utilities')
+    return tools.filter(
+      (t) => t.id === 'text-utilities' || t.id === 'teleprompter',
+    )
   }
 
   return tools.slice(0, 6)
