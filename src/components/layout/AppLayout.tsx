@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'motion/react'
 import { ArrowUp, CheckCircle2 } from 'lucide-react'
 import {
@@ -113,25 +113,8 @@ export default function AppLayout() {
     return () => window.clearTimeout(id)
   }, [autoLoadedFileName])
 
-  // Record live scroll position on every page so returning via Back restores exact scroll
-  useEffect(() => {
-    const key = `${SCROLL_STORAGE_PREFIX}${location.pathname}`
-
-    const handleScroll = () => {
-      const currentY = window.scrollY
-      window.sessionStorage.setItem(key, String(currentY))
-      setShowScrollTop(currentY > 320)
-    }
-
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [location.pathname])
-
-  // Restore scroll position on POP (Back button) or when returning to catalog pages
-  useEffect(() => {
+  // Restore scroll position synchronously before paint on POP (Back button) or catalog pages
+  useLayoutEffect(() => {
     const key = `${SCROLL_STORAGE_PREFIX}${location.pathname}`
     const saved = window.sessionStorage.getItem(key)
     const isCatalogPage =
@@ -143,15 +126,29 @@ export default function AppLayout() {
     ) {
       const targetY = Number(saved)
       if (Number.isFinite(targetY) && targetY > 0) {
-        const frame = window.requestAnimationFrame(() => {
-          window.scrollTo({ top: targetY, left: 0, behavior: 'instant' })
-        })
-        return () => window.cancelAnimationFrame(frame)
+        window.scrollTo({ top: targetY, left: 0, behavior: 'instant' })
+        return
       }
     }
 
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   }, [location.pathname, navigationType])
+
+  // Record live scroll position on every page so returning via Back restores exact scroll
+  useEffect(() => {
+    const key = `${SCROLL_STORAGE_PREFIX}${location.pathname}`
+
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      window.sessionStorage.setItem(key, String(currentY))
+      setShowScrollTop(currentY > 320)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [location.pathname])
 
   function handleScrollToTop() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })

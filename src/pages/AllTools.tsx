@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { motion } from 'motion/react'
 import { Clock, Search, SearchX, X } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router'
 
@@ -98,11 +97,7 @@ export default function AllTools() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <div>
         <div className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-wider text-[var(--primary)]">
             {t('DIREKTORI LENGKAP', 'DIRECTORY')}
@@ -257,7 +252,7 @@ export default function AllTools() {
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </main>
   )
 }
