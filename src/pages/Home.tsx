@@ -73,6 +73,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
       'remove-background',
       'pas-foto',
       'twibbon-maker',
+      'device-mockup',
       'image-compressor',
       'aspect-cropper',
       'image-stitcher',

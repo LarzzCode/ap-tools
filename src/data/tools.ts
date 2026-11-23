@@ -1268,6 +1268,58 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'device-mockup',
+    name: 'Device & Browser Screenshot Mockup',
+    nameId: 'Mockup Bingkai Screenshot HP & Laptop',
+    description:
+      'Wrap app or website screenshots inside realistic iPhone 16 Pro, MacBook Pro, or macOS Safari/Chrome browser frames with curated studio backdrops.',
+    descriptionId:
+      'Bungkus screenshot aplikasi, tugas web, atau halaman produk ke dalam bingkai iPhone 16 Pro, MacBook Pro, atau Jendela Browser macOS dengan latar estetik.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/device-mockup',
+    keywords: [
+      'mockup',
+      'screenshot',
+      'iphone',
+      'macbook',
+      'browser',
+      'frame',
+      'portofolio',
+      'ui',
+      'presentasi',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Menampilkan hasil screenshot website, proyek kodingan, atau desain aplikasi secara polos sering terlihat kurang menarik di slide presentasi maupun portofolio. Alat ini membungkus screenshot Anda ke dalam bingkai perangkat iPhone 16 Pro (lengkap dengan Dynamic Island), MacBook Pro, atau jendela browser macOS lengkap dengan efek bayangan 3D dan latar studio.',
+      overviewEn:
+        'Turn plain app or website screenshots into polished portfolio visuals. Wrap any screenshot inside an iPhone 16 Pro bezel, a MacBook Pro display, or a macOS browser window with customizable URL bar, 3D elevation shadow, and studio backdrops.',
+      stepsId: [
+        'Pilih atau tarik gambar screenshot HP, website, atau aplikasi Anda.',
+        'Pilih jenis bingkai perangkat: Browser macOS (untuk tampilan web), iPhone 16 Pro (untuk screenshot vertikal HP), MacBook Pro, atau Kartu 3D Clean.',
+        'Pilih tema latar belakang studio (atau pilih "Transparan PNG" jika ingin ditempel ke slide PPT/Canva), lalu atur ketebalan jarak tepi & bayangan.',
+        'Unduh hasil gambar mockup dalam format PNG HD atau JPG tanpa watermark.',
+      ],
+      stepsEn: [
+        'Select or drop your mobile or desktop screenshot.',
+        'Choose a device frame: macOS Browser Window, iPhone 16 Pro, MacBook Pro, or Clean Floating Card.',
+        'Pick a studio backdrop preset (or Transparent PNG for slide decks) and adjust outer margin and shadow depth.',
+        'Download the finished high-resolution PNG or JPG mockup.',
+      ],
+      tipsId: [
+        'Pada mode "Browser macOS", Anda dapat mengganti teks alamat URL di bagian atas jendela sesuai alamat proyek atau nama brand Anda.',
+        'Pilih tema latar "Transparan (PNG)" jika Anda ingin menempelkan perangkat mockup ini langsung ke atas slide PowerPoint atau desain Canva.',
+        'Sistem otomatis mendeteksi screenshot vertikal (potret) dan menyarankan bingkai iPhone.',
+      ],
+      tipsEn: [
+        'In macOS Browser mode, customize the address bar text to show your live project domain or portfolio URL.',
+        'Use the Transparent (PNG) backdrop when placing the device mockup directly onto PowerPoint, Keynote, or Canva slides.',
+        'Portrait screenshots automatically switch to the iPhone frame on load.',
+      ],
+    },
+  },
+  {
     id: 'vcard-qr',
     name: 'Digital Business Card & vCard QR',
     nameId: 'Pembuat Kartu Nama Digital (QR Kontak)',

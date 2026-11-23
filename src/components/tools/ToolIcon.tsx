@@ -19,6 +19,7 @@ import {
   Link2Off,
   Merge,
   MessageCircle,
+  MonitorSmartphone,
   Palette,
   Percent,
   Play,
@@ -79,6 +80,9 @@ export default function ToolIcon({
 
     case 'twibbon-maker':
       return <Frame {...props} />
+
+    case 'device-mockup':
+      return <MonitorSmartphone {...props} />
 
     case 'pdf-merge':
       return <Merge {...props} />

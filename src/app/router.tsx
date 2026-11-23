@@ -12,6 +12,7 @@ import AspectCropper from '../pages/tools/AspectCropper'
 import CleanUrl from '../pages/tools/CleanUrl'
 import ColorPalette from '../pages/tools/ColorPalette'
 import CvMaker from '../pages/tools/CvMaker'
+import DeviceMockup from '../pages/tools/DeviceMockup'
 import DiscountCalculator from '../pages/tools/DiscountCalculator'
 import ImageCompressor from '../pages/tools/ImageCompressor'
 import ImagePrivacy from '../pages/tools/ImagePrivacy'
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: '/tools/twibbon-maker',
         Component: TwibbonMaker,
+      },
+      {
+        path: '/tools/device-mockup',
+        Component: DeviceMockup,
       },
       {
         path: '/tools/pdf-to-image',
