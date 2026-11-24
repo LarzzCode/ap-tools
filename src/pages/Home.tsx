@@ -70,8 +70,11 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   ) {
     const ids = [
       'ktp-watermark',
+      'document-scanner',
+      'signature-extractor',
       'remove-background',
       'pas-foto',
+      'photo-collage',
       'twibbon-maker',
       'device-mockup',
       'image-compressor',

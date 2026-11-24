@@ -1320,6 +1320,157 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'signature-extractor',
+    name: 'Signature Photo to Transparent PNG',
+    nameId: 'Ubah Foto Tanda Tangan Jadi PNG Transparan',
+    description:
+      'Remove white or shadowy paper backgrounds from handwritten signature photos and export a crisp, auto-trimmed transparent PNG in black or ballpoint blue ink.',
+    descriptionId:
+      'Hapus latar belakang kertas dari foto tanda tangan pulpen Anda menjadi file PNG transparan bersih (warna tinta Biru Pulpen atau Hitam) siap tempel ke Word & PDF.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/signature-extractor',
+    keywords: [
+      'tanda tangan',
+      'signature',
+      'transparent png',
+      'ttd transparan',
+      'hapus background tanda tangan',
+      'word',
+      'pdf',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Menggambar tanda tangan langsung di layar sentuh sering terasa kaku dibandingkan tanda tangan asli memakai pulpen di atas kertas. Dengan alat ini, Anda cukup menulis tanda tangan di kertas putih biasa lalu memfotonya dengan HP; sistem otomatis menghapus latar kertas beserta bayangannya dan menyisakan tinta tanda tangan berformat PNG transparan yang siap ditempel ke Microsoft Word, Google Docs, atau PDF.',
+      overviewEn:
+        'Signing with a real pen on paper feels much more natural than drawing with a mouse. Snap a photo of your handwritten signature on paper and this tool automatically strips away the paper background and shadows, leaving a crisp, auto-cropped transparent PNG in ballpoint blue or black ink.',
+      stepsId: [
+        'Tulis tanda tangan di kertas putih polos, foto menggunakan HP, lalu unggah ke mode "Ekstrak dari Foto Kertas" (atau gunakan mode "Tulis di Layar").',
+        'Atur slider "Pembersih Bayangan Kertas" hingga seluruh warna kertas hilang dan hanya tersisa goresan tanda tangan.',
+        'Pilih warna tinta yang diinginkan: Biru Pulpen Resmi, Hitam Pekat, Biru Navy, atau Warna Foto Asli.',
+        'Aktifkan "Potong Otomatis Area Kosong (Auto-Trim)" lalu klik "Unduh Tanda Tangan Transparan (PNG)".',
+      ],
+      stepsEn: [
+        'Sign on plain white paper, take a photo, and upload it in "Extract from Paper Photo" mode (or switch to "Draw Signature on Screen").',
+        'Adjust the "Paper Removal Threshold" slider until the paper background disappears completely.',
+        'Choose your ink color preset: Ballpoint Blue, Jet Black, Deep Navy, or Original Ink.',
+        'Keep "Auto-Trim Empty Margins" enabled and click Download Transparent Signature (PNG).',
+      ],
+      tipsId: [
+        'Foto tanda tangan di tempat yang terang agar kontras antara tinta pulpen dan kertas putih semakin tajam.',
+        'Warna "Biru Pulpen Resmi" membuat dokumen digital terlihat seperti ditandatangani dengan pulpen asli.',
+        '100% Aman: Foto tanda tangan Anda diproses lokal di dalam browser dan tidak pernah diunggah ke server.',
+      ],
+      tipsEn: [
+        'Take the photo in good lighting without harsh shadow lines crossing the ink strokes.',
+        'The "Ballpoint Blue" preset gives digital documents an authentic hand-signed appearance.',
+        '100% Private: Your signature image never leaves your browser.',
+      ],
+    },
+  },
+  {
+    id: 'document-scanner',
+    name: 'Camera Document Scanner & Paper Whitener',
+    nameId: 'Scanner Dokumen & Pemutih Foto Kertas',
+    description:
+      'Turn dark, shadowy phone photos of paper documents, notes, or receipts into crisp snow-white scans (Magic Color or B&W) and export to A4 PDF or JPG.',
+    descriptionId:
+      'Ubah foto kertas dokumen, catatan, atau surat yang agak gelap/berbayang menjadi hasil scan putih bersih (Magic Color / Hitam Putih) siap simpan ke PDF A4 atau JPG.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/document-scanner',
+    keywords: [
+      'scanner',
+      'camscanner',
+      'scan dokumen',
+      'pemutih kertas',
+      'magic color',
+      'foto ke scan',
+      'pdf',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Saat memfoto dokumen kertas, tugas kuliah, atau surat menggunakan kamera HP, hasilnya sering tampak abu-abu redup atau tertutup bayangan tangan. Alat ini bekerja layaknya aplikasi scanner dokumen: memutihkan latar kertas secara merata sekaligus mempertajam teks dan warna stempel tanpa menempelkan watermark aplikasi apa pun.',
+      overviewEn:
+        'Phone photos of paper documents often look dim, gray, or unevenly lit. This scanner utility whitens the paper background while sharpening text and preserving colored stamps/signatures (Magic Color or B&W Crisp mode), then exports directly to an A4 PDF or JPG with zero watermarks.',
+      stepsId: [
+        'Pilih atau foto langsung dokumen kertas (surat, catatan, kwitansi, berkas) dari perangkat Anda.',
+        'Pilih mode efek scan: "Magic Color" (kertas putih bersih namun warna stempel/tanda tangan tetap hidup) atau "Hitam Putih Tajam" (untuk teks fotokopi kontras tinggi).',
+        'Sesuaikan slider "Pemutih Kertas & Hapus Bayangan" serta "Ketajaman Teks", dan putar 90° bila orientasi foto miring.',
+        'Klik "Simpan Hasil Scan sebagai PDF A4" atau unduh sebagai gambar JPG HD.',
+      ],
+      stepsEn: [
+        'Select or snap a photo of your paper document, handwritten note, or receipt.',
+        'Pick a scan filter: "Magic Color" (snow-white paper while keeping colored ink/stamps vivid) or "B&W Crisp Text" (high-contrast monochrome).',
+        'Fine-tune the Paper Whitening and Text Contrast sliders, and rotate 90° if needed.',
+        'Click "Download Scanned Document as A4 PDF" or save as a crisp JPG image.',
+      ],
+      tipsId: [
+        'Gunakan mode "Magic Color" untuk dokumen resmi yang memiliki kop surat berwarna, materai, stempel basah, atau tanda tangan biru.',
+        'Gunakan mode "Hitam Putih Tajam" untuk catatan tulisan tangan atau teks buku agar sangat jelas saat dicetak.',
+        'Bebas watermark "Scanned with..." dan 100% diproses di perangkat Anda.',
+      ],
+      tipsEn: [
+        'Use "Magic Color" for official documents with colored letterheads, stamps, or blue signatures.',
+        'Use "B&W Crisp Text" for handwritten notes or printed text pages to maximize readability.',
+        'Completely free of third-party scanner watermarks and processed locally.',
+      ],
+    },
+  },
+  {
+    id: 'photo-collage',
+    name: 'Photo Collage, Polaroid & Photobooth Studio',
+    nameId: 'Kolase Foto Grid, Polaroid & Strip Photobox',
+    description:
+      'Arrange 1 to 9 photos into aesthetic Polaroid cards, 4-frame vertical Photobooth strips, or symmetrical 2×2 and 3×3 grids with custom captions and dates.',
+    descriptionId:
+      'Susun 1 hingga 9 foto ke dalam bingkai kartu Polaroid estetik, strip Photobox 3–4 foto, atau kolase Grid simetris lengkap dengan tulisan caption & tanggal.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/photo-collage',
+    keywords: [
+      'kolase foto',
+      'collage',
+      'polaroid',
+      'photobooth',
+      'photobox',
+      'grid foto',
+      'bingkai',
+      'before after',
+    ],
+    featured: true,
+    guide: {
+      overviewId:
+        'Ingin membuat kartu foto bergaya Polaroid klasik, strip foto ala Photobox studio bersama teman, atau menggabungkan hingga 9 foto dokumentasi acara ke dalam satu bingkai rapi? Alat ini menyusun foto-foto Anda secara proporsional (tanpa membuat foto gepeng) lengkap dengan warna kertas bingkai serta teks caption dan tanggal.',
+      overviewEn:
+        'Create classic Polaroid photo cards, vertical 3–4 frame Photobooth strips, side-by-side Before/After comparisons, or up to 9-photo grids. Every slot automatically center-crops proportionally without stretching.',
+      stepsId: [
+        'Klik kotak "Tambah Foto Kolase" untuk memilih 1 hingga 9 foto sekaligus dari galeri Anda.',
+        'Pilih gaya tata letak: Kartu Polaroid, Strip Photobox, 2 Foto Sejajar (Before-After), Grid 4 Foto (2×2), atau Grid 6–9 Foto.',
+        'Pilih warna kertas bingkai (Putih, Krem Vintage, Hitam Film, atau Biru Langit), lalu isi tulisan Caption & Tanggal di bagian bawah.',
+        'Atur urutan foto menggunakan tombol panah bila perlu, lalu unduh hasilnya dalam format PNG HD atau JPG.',
+      ],
+      stepsEn: [
+        'Click "Add Collage Photos" to select between 1 and 9 images from your device.',
+        'Choose a layout style: Polaroid Card, Photobooth Strip, 2 Side-by-Side, 4-Photo Grid (2×2), or 6–9 Photo Grid.',
+        'Pick a frame paper color (White, Vintage Cream, Dark Film, or Sky) and customize the bottom caption and date.',
+        'Reorder photos with the up/down buttons if needed, then download your high-resolution PNG or JPG.',
+      ],
+      tipsId: [
+        'Gaya "Strip Photobox" dengan warna kertas Hitam atau Krem sangat cocok untuk menggabungkan 3–4 foto selfie bersama teman.',
+        'Gaya "2 Foto Sejajar" sangat pas untuk menampilkan perbandingan Before vs After.',
+        'Kosongkan kolom Caption & Tanggal jika Anda hanya menginginkan kolase grid bersih tanpa teks bawah.',
+      ],
+      tipsEn: [
+        'The "Photobooth Strip" layout with Dark or Cream paper is great for 3–4 candid selfie poses.',
+        'Use "2 Side-by-Side" for clean Before & After comparisons.',
+        'Clear the caption and date fields if you prefer a minimal text-free photo grid.',
+      ],
+    },
+  },
+  {
     id: 'vcard-qr',
     name: 'Digital Business Card & vCard QR',
     nameId: 'Pembuat Kartu Nama Digital (QR Kontak)',

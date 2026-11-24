@@ -14,6 +14,7 @@ import ColorPalette from '../pages/tools/ColorPalette'
 import CvMaker from '../pages/tools/CvMaker'
 import DeviceMockup from '../pages/tools/DeviceMockup'
 import DiscountCalculator from '../pages/tools/DiscountCalculator'
+import DocumentScanner from '../pages/tools/DocumentScanner'
 import ImageCompressor from '../pages/tools/ImageCompressor'
 import ImagePrivacy from '../pages/tools/ImagePrivacy'
 import ImageStitcher from '../pages/tools/ImageStitcher'
@@ -30,9 +31,11 @@ import PdfOrganizer from '../pages/tools/PdfOrganizer'
 import PdfSign from '../pages/tools/PdfSign'
 import PdfSplit from '../pages/tools/PdfSplit'
 import PdfToImage from '../pages/tools/PdfToImage'
+import PhotoCollage from '../pages/tools/PhotoCollage'
 import QrGenerator from '../pages/tools/QrGenerator'
 import QrScanner from '../pages/tools/QrScanner'
 import RemoveBackground from '../pages/tools/RemoveBackground'
+import SignatureExtractor from '../pages/tools/SignatureExtractor'
 import Teleprompter from '../pages/tools/Teleprompter'
 import TextUtilities from '../pages/tools/TextUtilities'
 import TwibbonMaker from '../pages/tools/TwibbonMaker'
@@ -98,6 +101,18 @@ export const router = createBrowserRouter([
       {
         path: '/tools/device-mockup',
         Component: DeviceMockup,
+      },
+      {
+        path: '/tools/signature-extractor',
+        Component: SignatureExtractor,
+      },
+      {
+        path: '/tools/document-scanner',
+        Component: DocumentScanner,
+      },
+      {
+        path: '/tools/photo-collage',
+        Component: PhotoCollage,
       },
       {
         path: '/tools/pdf-to-image',

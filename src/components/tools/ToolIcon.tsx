@@ -16,15 +16,18 @@ import {
   ImageDown,
   Images,
   Layers,
+  LayoutGrid,
   Link2Off,
   Merge,
   MessageCircle,
   MonitorSmartphone,
   Palette,
+  PenTool,
   Percent,
   Play,
   QrCode,
   ScanLine,
+  ScanText,
   Scissors,
   ShieldAlert,
   ShieldCheck,
@@ -83,6 +86,15 @@ export default function ToolIcon({
 
     case 'device-mockup':
       return <MonitorSmartphone {...props} />
+
+    case 'signature-extractor':
+      return <PenTool {...props} />
+
+    case 'document-scanner':
+      return <ScanText {...props} />
+
+    case 'photo-collage':
+      return <LayoutGrid {...props} />
 
     case 'pdf-merge':
       return <Merge {...props} />
