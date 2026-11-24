@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router'
 
 import { tools } from '../../data/tools'
 import { useLanguage } from '../../hooks/useLanguage'
+import { isToolNew } from '../../types/tool'
 import ToolIcon from './ToolIcon'
 
 interface ToolPageHeaderProps {
@@ -56,6 +57,7 @@ export default function ToolPageHeader({ toolId }: ToolPageHeaderProps) {
   const tips =
     language === 'id' ? tool.guide.tipsId : tool.guide.tipsEn
   const isBrowser = tool.runtime === 'browser'
+  const showNewBadge = isToolNew(tool, tools)
 
   return (
     <div>
@@ -72,6 +74,12 @@ export default function ToolPageHeader({ toolId }: ToolPageHeaderProps) {
         </button>
 
         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          {showNewBadge && (
+            <span className="inline-flex items-center rounded-full bg-[var(--primary)] px-2.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-2xs">
+              NEW
+            </span>
+          )}
+
           <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-2.5 py-1 text-[11px] font-semibold text-[var(--text-secondary)]">
             {isBrowser ? (
               <>
@@ -109,9 +117,16 @@ export default function ToolPageHeader({ toolId }: ToolPageHeaderProps) {
         </div>
 
         <div className="min-w-0 flex-1">
-          <h1 className="text-xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
-            {title}
-          </h1>
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl">
+              {title}
+            </h1>
+            {showNewBadge && (
+              <span className="rounded-full bg-[var(--primary)] px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider text-white shadow-2xs">
+                NEW
+              </span>
+            )}
+          </div>
 
           <p className="mt-1 line-clamp-2 max-w-2xl text-xs leading-5 text-[var(--text-secondary)] sm:text-sm sm:leading-6">
             {description}

@@ -1471,6 +1471,212 @@ export const tools: Tool[] = [
     },
   },
   {
+    id: 'live-photobooth',
+    name: 'Live Camera Photobooth Studio',
+    nameId: 'Photobox Kamera Langsung (Auto-Timer)',
+    description:
+      'Open your selfie camera or webcam for an automated 3- or 4-pose countdown photobooth session with vintage/Y2K filters and instant photobox strip export.',
+    descriptionId:
+      'Buka kamera selfie HP atau laptop langsung di browser untuk sesi foto 3–4 pose otomatis (hitung mundur 3..2..1.. Jepret!) lengkap dengan filter & strip Photobox.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/live-photobooth',
+    keywords: [
+      'photobooth',
+      'photobox',
+      'kamera langsung',
+      'selfie',
+      'strip foto',
+      'timezone',
+      'kamera',
+    ],
+    featured: true,
+    addedAt: '2026-11-23T20:35:00-08:00',
+    guide: {
+      overviewId:
+        'Rasakan serunya berfoto di mesin Photobox mall langsung dari HP atau laptop Anda bersama teman! Alat ini menyalakan kamera depan perangkat Anda, menghitung mundur otomatis (3.. 2.. 1.. Jepret!) sebanyak 3 atau 4 kali pose berturut-turut, memberikan efek filter (Vintage, Retro B&W, Warm, Y2K), dan langsung menyusunnya menjadi Strip Foto Photobox siap unduh.',
+      overviewEn:
+        'Experience a mall-style Photobox session right inside your browser. Turn on your selfie camera or webcam, start the automated 3- or 4-pose countdown timer, apply live film filters, and download a custom Photobooth strip PNG/JPG.',
+      stepsId: [
+        'Klik tombol "Nyalakan Kamera" dan izinkan akses kamera pada browser Anda.',
+        'Pilih efek filter kamera (Natural, Film Vintage, Retro B&W, Warm Golden, atau Cool Y2K), jumlah pose (3x atau 4x), serta jeda timer (3s atau 5s).',
+        'Klik "Mulai Sesi Otomatis" lalu bergayalah di depan kamera setiap kali hitungan mundur mencapai angka 1.',
+        'Pilih warna kertas strip Photobox dan edit judul/tanggal di bagian bawah, lalu unduh Strip PNG atau JPG.',
+      ],
+      stepsEn: [
+        'Click "Turn On Camera" and grant camera access in your browser.',
+        'Pick a live filter preset, number of poses (3x or 4x), and countdown interval (3s or 5s).',
+        'Click "Start Auto Session" and strike a pose each time the countdown hits 1.',
+        'Customize the strip paper color and footer text, then download your Photobooth Strip as PNG or JPG.',
+      ],
+      tipsId: [
+        'Anda juga bisa mengambil foto satu per satu secara manual menggunakan tombol "Jepret" atau mengunggah foto dari galeri.',
+        'Gunakan warna strip "Hitam" atau "Krem" dengan filter "Film Vintage" untuk tampilan ala photobox retro.',
+        '100% Privat: Rekaman kamera hanya diproses di layar perangkat Anda dan tidak pernah dikirim ke server.',
+      ],
+      tipsEn: [
+        'You can also snap poses manually one by one using the "Snap" button or load photos from your gallery.',
+        'Pair the Dark or Cream strip paper with the Vintage Film filter for an authentic retro photobox look.',
+        '100% Private: Camera frames are captured strictly in local memory and never transmitted online.',
+      ],
+    },
+  },
+  {
+    id: 'voice-changer',
+    name: 'Studio Voice Changer & Audio Effects',
+    nameId: 'Pengubah Suara & Efek Audio Studio',
+    description:
+      'Record your voice or upload audio to transform it into Anonymous Deep Pitch, Chipmunk, Cyborg Robot, Walkie-Talkie Radio, or Hall Echo in-browser.',
+    descriptionId:
+      'Rekam suara dari mikrofon atau unggah file audio untuk mengubah karakter suara menjadi Anonymous Berat, Chipmunk, Robot, Radio HT, atau Gema Studio.',
+    category: 'media',
+    runtime: 'browser',
+    path: '/tools/voice-changer',
+    keywords: [
+      'voice changer',
+      'pengubah suara',
+      'efek suara',
+      'anonymous',
+      'chipmunk',
+      'robot',
+      'audio',
+      'rekam suara',
+    ],
+    featured: true,
+    addedAt: '2026-11-23T20:35:00-08:00',
+    guide: {
+      overviewId:
+        'Ubah karakter rekaman suara Anda secara instan langsung di dalam browser tanpa perlu menginstal aplikasi edit audio maupun mengunggah suara ke server luar. Menggunakan teknologi Web Audio API (OfflineAudioContext), alat ini mampu memodulasi frekuensi vokal menjadi suara Anonymous yang berat, Chipmunk yang lucu, Robot Cyborg, Radio HT, maupun pantulan Gema Aula.',
+      overviewEn:
+        'Transform voice recordings directly inside your browser without external servers. Powered by the Web Audio API (OfflineAudioContext), this studio morphs vocal pitch and timbre into Deep Anonymous, Chipmunk, Cyborg Robot, Walkie-Talkie Radio, or Hall Echo.',
+      stepsId: [
+        'Klik "Rekam Suara dari Mikrofon" untuk bicara langsung (atau pilih file audio MP3/WAV/M4A dari perangkat).',
+        'Pilih salah satu dari 6 karakter efek suara: Anonymous (Suara Berat), Chipmunk, Robot Cyborg, Radio Walkie-Talkie, Gema Aula, atau Penguat Suara Jernih.',
+        'Tekan tombol Play pada pemutar audio untuk mendengarkan hasil perubahan suara secara langsung.',
+        'Klik "Unduh File Audio (.WAV)" untuk menyimpan hasil suara ke HP atau laptop Anda.',
+      ],
+      stepsEn: [
+        'Click "Record Voice from Microphone" to speak live (or upload an MP3/WAV/M4A audio file).',
+        'Select any of the 6 studio voice effects: Anonymous, Chipmunk, Cyborg Robot, Walkie-Talkie Radio, Hall Echo, or Vocal Boost.',
+        'Press Play on the audio preview player to audition the transformed voice immediately.',
+        'Click "Download Transformed Audio (.WAV)" to save the audio file.',
+      ],
+      tipsId: [
+        'Anda bebas mengganti-ganti pilihan efek suara tanpa perlu merekam ulang — sistem otomatis menerapkan efek baru ke rekaman yang sama.',
+        'Efek "Anonymous (Suara Berat)" sangat cocok untuk menyamarkan identitas suara pada konten video atau narasi.',
+        'Berjalan 100% di browser tanpa membutuhkan server backend.',
+      ],
+      tipsEn: [
+        'Switch between different voice effects freely without re-recording — the engine re-renders from your original audio buffer.',
+        'The "Anonymous (Deep Pitch)" preset is ideal for disguising vocal identity in videos or narrations.',
+        'Runs 100% locally in your browser with no backend server required.',
+      ],
+    },
+  },
+  {
+    id: 'carousel-splitter',
+    name: 'Seamless Instagram Carousel Splitter',
+    nameId: 'Pembuat Carousel IG Nyambung (Panorama)',
+    description:
+      'Slice wide photos or panoramic designs into 2 to 5 seamless, swipeable Instagram Carousel slides in 4:5 Portrait (1080×1350) or 1:1 Square format.',
+    descriptionId:
+      'Potong foto lebar atau poster panorama menjadi 2 hingga 5 slide Carousel Instagram (rasio 4:5 atau 1:1) yang tersambung mulus tanpa putus saat digeser.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/carousel-splitter',
+    keywords: [
+      'carousel',
+      'instagram',
+      'panorama',
+      'split image',
+      'potong foto ig',
+      'slide nyambung',
+      'microblog',
+    ],
+    featured: true,
+    addedAt: '2026-11-23T20:35:00-08:00',
+    guide: {
+      overviewId:
+        'Pernah melihat postingan Instagram yang ketika digeser ke samping (swipe), gambarnya menyambung terus tanpa terputus dari Slide 1 sampai Slide 5? Alat ini memotong foto lanskap lebar atau desain kanvas panjang Anda secara presisi ke ukuran resmi Instagram Feed (1080×1350px potret atau 1080×1080px persegi) lengkap dengan indikator garis sambungan.',
+      overviewEn:
+        'Create seamless swipeable Instagram carousels where wide photos or panoramic designs flow continuously across 2 to 5 slides. Automatically slices at exact 1080×1350 (4:5) or 1080×1080 (1:1) pixel boundaries.',
+      stepsId: [
+        'Pilih atau tarik foto lanskap lebar / desain panorama Anda.',
+        'Tentukan jumlah potongan slide (2, 3, 4, atau 5 Slide) serta rasio Instagram (4:5 Feed Potret atau 1:1 Persegi).',
+        'Perhatikan garis putus-putus biru pada pratinjau panorama dan sesuaikan Zoom atau Geser X/Y bila diperlukan.',
+        'Klik "Unduh Semua" untuk menyimpan seluruh potongan gambar slide secara berurutan.',
+      ],
+      stepsEn: [
+        'Select or drop a wide photo or panoramic graphic.',
+        'Choose the number of slides (2, 3, 4, or 5) and target Instagram ratio (4:5 Portrait or 1:1 Square).',
+        'Check the blue dashed seam lines in the preview and fine-tune Zoom or Pan X/Y.',
+        'Click "Download All" to save every numbered slide ready for Instagram upload.',
+      ],
+      tipsId: [
+        'Gunakan rasio 4:5 (1080×1350px per slide) agar tampilan carousel memenuhi ruang vertikal layar HP secara maksimal di feed Instagram.',
+        'Anda dapat mematikan opsi Label "Geser →" jika ingin gambar murni tanpa penanda sudut.',
+        'Saat mengunggah ke Instagram, pilih fitur multi-foto sesuai urutan nomor file Slide 1 hingga selesai.',
+      ],
+      tipsEn: [
+        'Use the 4:5 portrait ratio (1080×1350px per slide) to take up maximum vertical real estate in the Instagram feed.',
+        'Toggle off the "Swipe →" pill badge if you want a completely clean image seam.',
+        'Upload the numbered slide files in order (Slide 1, Slide 2, ...) as a multi-photo post on Instagram.',
+      ],
+    },
+  },
+  {
+    id: 'privacy-blur-brush',
+    name: 'Privacy Blur & Pixelate Censor Brush',
+    nameId: 'Kuas Sensor Blur & Mozaik Foto Privasi',
+    description:
+      'Paint directly over faces, license plates, shipping labels, or chat names with an interactive Pixelate, Soft Blur, or Blackout censor brush.',
+    descriptionId:
+      'Usapkan jari atau mouse langsung di atas wajah, plat nomor kendaraan, resi paket, atau nomor HP pada screenshot untuk memberikan efek sensor Mozaik TV atau Blur.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/privacy-blur-brush',
+    keywords: [
+      'blur',
+      'pixelate',
+      'sensor',
+      'mozaik',
+      'plat nomor',
+      'sensor wajah',
+      'privasi',
+      'censor',
+    ],
+    featured: true,
+    addedAt: '2026-11-23T20:35:00-08:00',
+    guide: {
+      overviewId:
+        'Sebelum mengunggah screenshot percakapan, foto resi paket, atau foto jalanan ke media sosial, sering kali ada bagian kecil seperti nomor telepon, alamat rumah, plat nomor kendaraan, atau wajah orang lain yang perlu ditutupi. Dengan kuas interaktif ini, Anda cukup mengusapkan jari atau kursor langsung pada bagian tersebut untuk mengubahnya menjadi sensor mozaik kotak-kotak (Pixelate), blur halus, atau stabilo hitam.',
+      overviewEn:
+        'Quickly redact sensitive details before posting photos or screenshots online. Simply swipe your finger or mouse over faces, vehicle license plates, addresses, or chat names to apply permanent Pixelate mosaic, Soft Gaussian Blur, or Solid Blackout strokes.',
+      stepsId: [
+        'Pilih atau tarik foto / screenshot yang ingin disensor.',
+        'Pilih gaya kuas sensor: "Mozaik TV" (kotak-kotak piksel), "Blur Halus", atau "Stabilo Hitam".',
+        'Atur Ukuran Kuas dan Tingkat Kerapatan Sensor, lalu usapkan jari atau mouse langsung di atas area foto pada kanvas.',
+        'Gunakan tombol "Undo Goresan" jika salah usap, lalu klik "Unduh JPG" atau "Unduh PNG HD" untuk menyimpan.',
+      ],
+      stepsEn: [
+        'Select or drop the photo or screenshot you want to redact.',
+        'Pick a brush style: "Pixelate" (TV mosaic blocks), "Soft Blur", or "Blackout".',
+        'Adjust Brush Size and Strength, then paint directly over sensitive areas on the canvas.',
+        'Use "Undo Stroke" if needed, then click Download JPG or Download PNG.',
+      ],
+      tipsId: [
+        'Gaya "Mozaik TV" dengan kerapatan 18–24px sangat efektif untuk menyamarkan teks nomor HP dan plat nomor agar tidak bisa dibaca ulang.',
+        'Anda dapat mengombinasikan beberapa gaya kuas dalam satu foto yang sama (misalnya Mozaik pada wajah dan Stabilo Hitam pada nomor rekening).',
+        'Efek sensor menyatu permanen ke dalam piksel gambar sehingga tidak bisa dibuka kembali oleh penerima foto.',
+      ],
+      tipsEn: [
+        'The "Pixelate" brush at 18–24px strength is ideal for destroying text legibility on license plates and phone numbers.',
+        'You can mix multiple brush styles on the same photo (e.g., Pixelate on faces and Blackout on account numbers).',
+        'Redactions are permanently flattened into the output pixels so they cannot be reversed.',
+      ],
+    },
+  },
+  {
     id: 'vcard-qr',
     name: 'Digital Business Card & vCard QR',
     nameId: 'Pembuat Kartu Nama Digital (QR Kontak)',

@@ -70,11 +70,14 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   ) {
     const ids = [
       'ktp-watermark',
+      'privacy-blur-brush',
       'document-scanner',
       'signature-extractor',
       'remove-background',
       'pas-foto',
+      'carousel-splitter',
       'photo-collage',
+      'live-photobooth',
       'twibbon-maker',
       'device-mockup',
       'image-compressor',
@@ -91,9 +94,11 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   if (
     type.startsWith('video/') ||
     type.startsWith('audio/') ||
-    /\.(mp4|mkv|mov|webm|mp3|wav|m4a)$/i.test(name)
+    /\.(mp4|mkv|mov|webm|mp3|wav|m4a|ogg)$/i.test(name)
   ) {
-    return tools.filter((t) => t.id === 'media-converter')
+    return tools.filter(
+      (t) => t.id === 'voice-changer' || t.id === 'media-converter',
+    )
   }
 
   if (type.startsWith('text/') || /\.(txt|md|csv)$/i.test(name)) {

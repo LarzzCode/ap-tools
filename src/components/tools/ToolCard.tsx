@@ -1,8 +1,9 @@
 import { ChevronRight, Star } from 'lucide-react'
 import { Link } from 'react-router'
 
+import { tools } from '../../data/tools'
 import { useLanguage } from '../../hooks/useLanguage'
-import type { Tool, ToolCategory } from '../../types/tool'
+import { isToolNew, type Tool, type ToolCategory } from '../../types/tool'
 import ToolIcon from './ToolIcon'
 
 interface ToolCardProps {
@@ -65,6 +66,7 @@ export default function ToolCard({
   const style = CATEGORY_STYLES[tool.category]
   const categoryLabel = language === 'id' ? style.labelId : style.labelEn
   const isBrowser = tool.runtime === 'browser'
+  const showNewBadge = isToolNew(tool, tools)
 
   return (
     <article
@@ -108,6 +110,12 @@ export default function ToolCard({
               >
                 {displayName}
               </h3>
+
+              {showNewBadge && (
+                <span className="shrink-0 rounded-full bg-[var(--primary)] px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-white shadow-2xs">
+                  NEW
+                </span>
+              )}
 
               <ChevronRight
                 size={15}

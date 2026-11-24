@@ -9,6 +9,7 @@ import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import Privacy from '../pages/Privacy'
 import AspectCropper from '../pages/tools/AspectCropper'
+import CarouselSplitter from '../pages/tools/CarouselSplitter'
 import CleanUrl from '../pages/tools/CleanUrl'
 import ColorPalette from '../pages/tools/ColorPalette'
 import CvMaker from '../pages/tools/CvMaker'
@@ -22,6 +23,7 @@ import ImageToPdf from '../pages/tools/ImageToPdf'
 import InvoiceGenerator from '../pages/tools/InvoiceGenerator'
 import KtpWatermark from '../pages/tools/KtpWatermark'
 import LetterGenerator from '../pages/tools/LetterGenerator'
+import LivePhotobooth from '../pages/tools/LivePhotobooth'
 import LoanCalculator from '../pages/tools/LoanCalculator'
 import MediaConverter from '../pages/tools/MediaConverter'
 import PasFoto from '../pages/tools/PasFoto'
@@ -32,6 +34,7 @@ import PdfSign from '../pages/tools/PdfSign'
 import PdfSplit from '../pages/tools/PdfSplit'
 import PdfToImage from '../pages/tools/PdfToImage'
 import PhotoCollage from '../pages/tools/PhotoCollage'
+import PrivacyBlurBrush from '../pages/tools/PrivacyBlurBrush'
 import QrGenerator from '../pages/tools/QrGenerator'
 import QrScanner from '../pages/tools/QrScanner'
 import RemoveBackground from '../pages/tools/RemoveBackground'
@@ -40,6 +43,7 @@ import Teleprompter from '../pages/tools/Teleprompter'
 import TextUtilities from '../pages/tools/TextUtilities'
 import TwibbonMaker from '../pages/tools/TwibbonMaker'
 import VCardQr from '../pages/tools/VCardQr'
+import VoiceChanger from '../pages/tools/VoiceChanger'
 import WhatsAppLink from '../pages/tools/WhatsAppLink'
 import WifiQr from '../pages/tools/WifiQr'
 import YouTubeDownloader from '../pages/tools/YouTubeDownloader'
@@ -113,6 +117,22 @@ export const router = createBrowserRouter([
       {
         path: '/tools/photo-collage',
         Component: PhotoCollage,
+      },
+      {
+        path: '/tools/live-photobooth',
+        Component: LivePhotobooth,
+      },
+      {
+        path: '/tools/voice-changer',
+        Component: VoiceChanger,
+      },
+      {
+        path: '/tools/carousel-splitter',
+        Component: CarouselSplitter,
+      },
+      {
+        path: '/tools/privacy-blur-brush',
+        Component: PrivacyBlurBrush,
       },
       {
         path: '/tools/pdf-to-image',

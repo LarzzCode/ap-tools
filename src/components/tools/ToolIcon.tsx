@@ -1,10 +1,14 @@
 import {
+  AudioWaveform,
   BriefcaseBusiness,
   Calculator,
+  Camera,
   Columns2,
+  Columns3,
   Contact,
   Crop,
   Eraser,
+  EyeOff,
   FileDown,
   FileImage,
   FileSignature,
@@ -95,6 +99,18 @@ export default function ToolIcon({
 
     case 'photo-collage':
       return <LayoutGrid {...props} />
+
+    case 'live-photobooth':
+      return <Camera {...props} />
+
+    case 'voice-changer':
+      return <AudioWaveform {...props} />
+
+    case 'carousel-splitter':
+      return <Columns3 {...props} />
+
+    case 'privacy-blur-brush':
+      return <EyeOff {...props} />
 
     case 'pdf-merge':
       return <Merge {...props} />

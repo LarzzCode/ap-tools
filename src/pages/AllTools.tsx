@@ -8,7 +8,12 @@ import { tools } from '../data/tools'
 import { useFavorites } from '../hooks/useFavorites'
 import { useLanguage } from '../hooks/useLanguage'
 import { useRecentTools } from '../hooks/useRecentTools'
-import type { Tool, ToolCategory, ToolRuntime } from '../types/tool'
+import {
+  isToolNew,
+  type Tool,
+  type ToolCategory,
+  type ToolRuntime,
+} from '../types/tool'
 
 type CategoryFilter = 'all' | ToolCategory
 type RuntimeFilter = 'all' | ToolRuntime
@@ -92,6 +97,11 @@ export default function AllTools() {
         .toLowerCase()
 
       return searchable.includes(query)
+    })
+    .sort((a, b) => {
+      const aNew = isToolNew(a, tools) ? 1 : 0
+      const bNew = isToolNew(b, tools) ? 1 : 0
+      return bNew - aNew
     })
   }, [searchQuery, category, runtime])
 
