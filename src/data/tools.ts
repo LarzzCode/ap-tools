@@ -1984,4 +1984,60 @@ export const tools: Tool[] = [
       ],
     },
   },
+  {
+    id: 'spin-wheel',
+    name: 'Spin Wheel & Random Team Generator',
+    nameId: 'Roda Undian Interaktif & Pembagi Kelompok Acak',
+    description:
+      'Spin an interactive 60fps fortune wheel with sound & auto-elimination for raffles/doorprizes, or split names into fair balanced teams with leaders & WhatsApp/PNG export.',
+    descriptionId:
+      'Putar roda undian interaktif lengkap dengan efek suara & eliminasi pemenang untuk arisan/doorprize, atau bagi daftar nama menjadi kelompok acak yang adil siap kirim ke WhatsApp.',
+    category: 'text',
+    runtime: 'browser',
+    path: '/tools/spin-wheel',
+    keywords: [
+      'spin wheel',
+      'roda undian',
+      'wheel of names',
+      'acak nama',
+      'arisan',
+      'doorprize',
+      'pembagi kelompok',
+      'team generator',
+      'group generator',
+      'bagi tim',
+      'undian',
+      'randomizer',
+    ],
+    featured: true,
+    addedAt: '2026-11-24T21:18:00-08:00',
+    guide: {
+      overviewId:
+        'Butuh mengundi pemenang arisan, doorprize acara, urutan maju presentasi kelas, atau membagi anggota kepanitiaan dan tim futsal secara adil tanpa bias? Alat 2-in-1 ini menggabungkan Roda Undian Interaktif berfisika mulus (lengkap dengan efek suara klik mekanis, konfeti perayaan, mode layar penuh proyektor, dan eliminasi pemenang otomatis) dengan Pembagi Kelompok Acak berbasis pengacakan kriptografi browser.',
+      overviewEn:
+        'Run fair raffles, doorprizes, classroom presentation draws, or split participants into balanced teams in one unified workspace. Combines a smooth 60fps interactive Spin Wheel (with synthesized mechanical peg clicks, celebration confetti, projector fullscreen, and winner auto-elimination) with a cryptographically unbiased Team Generator.',
+      stepsId: [
+        'Ketik atau tempel daftar nama peserta (satu nama per baris), impor file .TXT/.CSV, atau pilih salah satu tombol Contoh Cepat di bagian atas.',
+        'Pada tab "Roda Undian Interaktif", pilih durasi putaran (3d, 5d, atau Tegang 8d) dan aktifkan opsi "Singkirkan pemenang otomatis" bila ingin tiap peserta hanya bisa menang satu kali, lalu klik tombol PUTAR.',
+        'Beralih ke tab "Pembagi Kelompok Acak" kapan saja menggunakan daftar nama yang sama, tentukan jumlah kelompok atau jumlah anggota per tim, gaya nama tim, serta opsi Ketua Tim otomatis.',
+        'Bagikan hasil undian atau pembagian kelompok dalam sekali klik lewat tombol "Salin Format WA", "Unduh Gambar PNG" (siap kirim ke Grup WhatsApp), atau file Excel (.CSV).',
+      ],
+      stepsEn: [
+        'Type or paste participant names (one per line), import a .TXT/.CSV list, or pick a Quick Preset template.',
+        'In the "Interactive Spin Wheel" tab, choose spin duration (3s, 5s, or 8s Suspense), optionally enable "Auto-remove winner", and tap SPIN or press Spacebar.',
+        'Switch to the "Random Team Generator" tab using the exact same list, set the number of teams or max members per team, pick a naming theme, and toggle Auto-Pick Team Leader.',
+        'Share results instantly via "Copy for WhatsApp", "Save Poster PNG" for group chats, or export a spreadsheet (.CSV).',
+      ],
+      tipsId: [
+        'Gunakan tombol "Layar Penuh" pada Roda Undian saat menampilkan undian di proyektor kelas, rapat kantor, atau panggung acara.',
+        'Pada Pembagi Kelompok, aktifkan "Pisahkan Unggulan ke Beda Tim" jika ada kapten atau pemain inti yang harus tersebar merata agar kekuatan tiap tim seimbang.',
+        'Seluruh pengacakan menggunakan Web Crypto API (crypto.getRandomValues) langsung di perangkat Anda — 100% adil, transparan, dan privat.',
+      ],
+      tipsEn: [
+        'Use the "Fullscreen" button on the Spin Wheel stage when projecting live draws in classrooms, town halls, or events.',
+        'Enable "Separate Seeded Captains" in Team Generator to distribute key leads or skilled players evenly across separate teams.',
+        'Randomness is powered locally by the browser Web Crypto API (crypto.getRandomValues) — 100% unbiased and private.',
+      ],
+    },
+  },
 ]

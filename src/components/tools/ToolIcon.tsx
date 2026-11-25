@@ -7,6 +7,7 @@ import {
   Columns3,
   Contact,
   Crop,
+  Dices,
   Eraser,
   EyeOff,
   FileDown,
@@ -141,6 +142,9 @@ export default function ToolIcon({
 
     case 'teleprompter':
       return <TvMinimalPlay {...props} />
+
+    case 'spin-wheel':
+      return <Dices {...props} />
 
     case 'loan-calculator':
       return <Calculator {...props} />

@@ -39,6 +39,7 @@ import QrGenerator from '../pages/tools/QrGenerator'
 import QrScanner from '../pages/tools/QrScanner'
 import RemoveBackground from '../pages/tools/RemoveBackground'
 import SignatureExtractor from '../pages/tools/SignatureExtractor'
+import SpinWheel from '../pages/tools/SpinWheel'
 import Teleprompter from '../pages/tools/Teleprompter'
 import TextUtilities from '../pages/tools/TextUtilities'
 import TwibbonMaker from '../pages/tools/TwibbonMaker'
@@ -177,6 +178,10 @@ export const router = createBrowserRouter([
       {
         path: '/tools/teleprompter',
         Component: Teleprompter,
+      },
+      {
+        path: '/tools/spin-wheel',
+        Component: SpinWheel,
       },
       {
         path: '/tools/loan-calculator',

@@ -103,7 +103,10 @@ function getRecommendedToolsForFile(file: File): Tool[] {
 
   if (type.startsWith('text/') || /\.(txt|md|csv)$/i.test(name)) {
     return tools.filter(
-      (t) => t.id === 'text-utilities' || t.id === 'teleprompter',
+      (t) =>
+        t.id === 'spin-wheel' ||
+        t.id === 'text-utilities' ||
+        t.id === 'teleprompter',
     )
   }
 
