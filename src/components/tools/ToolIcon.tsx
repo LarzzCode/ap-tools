@@ -13,6 +13,7 @@ import {
   EyeOff,
   FileDown,
   FileImage,
+  FileLock2,
   FileSignature,
   FileSpreadsheet,
   FileText,
@@ -21,6 +22,7 @@ import {
   IdCard,
   ImageDown,
   Images,
+  ImageUpscale,
   Layers,
   LayoutGrid,
   Link2Off,
@@ -32,6 +34,7 @@ import {
   Percent,
   Play,
   QrCode,
+  Radio,
   ScanLine,
   ScanText,
   Scissors,
@@ -179,6 +182,15 @@ export default function ToolIcon({
 
     case 'audio-transcriber':
       return <Captions {...props} />
+
+    case 'p2p-wormhole':
+      return <Radio {...props} />
+
+    case 'photo-upscaler':
+      return <ImageUpscale {...props} />
+
+    case 'pdf-redactor':
+      return <FileLock2 {...props} />
 
     default:
       return <FileImage {...props} />

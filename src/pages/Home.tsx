@@ -54,12 +54,14 @@ function getRecommendedToolsForFile(file: File): Tool[] {
 
   if (type === 'application/pdf' || name.endsWith('.pdf')) {
     const ids = [
+      'pdf-redactor',
       'pdf-compressor',
       'pdf-to-image',
       'pdf-merge',
       'pdf-split',
       'pdf-organizer',
       'pdf-sign',
+      'p2p-wormhole',
     ]
     return tools.filter((t) => ids.includes(t.id))
   }
@@ -69,6 +71,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
     /\.(jpg|jpeg|png|webp)$/i.test(name)
   ) {
     const ids = [
+      'photo-upscaler',
       'ktp-watermark',
       'privacy-blur-brush',
       'document-scanner',
@@ -87,6 +90,7 @@ function getRecommendedToolsForFile(file: File): Tool[] {
       'image-to-pdf',
       'image-privacy',
       'qr-scanner',
+      'p2p-wormhole',
     ]
     return tools.filter((t) => ids.includes(t.id))
   }

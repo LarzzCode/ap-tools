@@ -27,14 +27,17 @@ import LetterGenerator from '../pages/tools/LetterGenerator'
 import LivePhotobooth from '../pages/tools/LivePhotobooth'
 import LoanCalculator from '../pages/tools/LoanCalculator'
 import MediaConverter from '../pages/tools/MediaConverter'
+import P2PWormhole from '../pages/tools/P2PWormhole'
 import PasFoto from '../pages/tools/PasFoto'
 import PdfCompressor from '../pages/tools/PdfCompressor'
 import PdfMerge from '../pages/tools/PdfMerge'
 import PdfOrganizer from '../pages/tools/PdfOrganizer'
+import PdfRedactor from '../pages/tools/PdfRedactor'
 import PdfSign from '../pages/tools/PdfSign'
 import PdfSplit from '../pages/tools/PdfSplit'
 import PdfToImage from '../pages/tools/PdfToImage'
 import PhotoCollage from '../pages/tools/PhotoCollage'
+import PhotoUpscaler from '../pages/tools/PhotoUpscaler'
 import PrivacyBlurBrush from '../pages/tools/PrivacyBlurBrush'
 import QrGenerator from '../pages/tools/QrGenerator'
 import QrScanner from '../pages/tools/QrScanner'
@@ -227,6 +230,18 @@ export const router = createBrowserRouter([
       {
         path: '/tools/audio-transcriber',
         Component: AudioTranscriber,
+      },
+      {
+        path: '/tools/p2p-wormhole',
+        Component: P2PWormhole,
+      },
+      {
+        path: '/tools/photo-upscaler',
+        Component: PhotoUpscaler,
+      },
+      {
+        path: '/tools/pdf-redactor',
+        Component: PdfRedactor,
       },
       {
         path: '/feedback',

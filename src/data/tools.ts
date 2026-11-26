@@ -2097,4 +2097,167 @@ export const tools: Tool[] = [
       ],
     },
   },
+  {
+    id: 'p2p-wormhole',
+    name: 'P2P AirDrop & Wormhole Transfer (QR)',
+    nameId: 'Kirim File Lintas HP–Laptop P2P (Wormhole QR)',
+    description:
+      'Beam original full-resolution photos, large videos, ZIPs, or clipboard links directly between iPhone, Android, and Windows via QR scan over encrypted WebRTC.',
+    descriptionId:
+      'Kirim foto kualitas asli (tanpa kompresi WA), video besar, file dokumen, atau link teks langsung antar iPhone, Android, & Laptop cukup lewat Scan QR (enkripsi P2P tanpa cloud).',
+    category: 'links',
+    runtime: 'browser',
+    path: '/tools/p2p-wormhole',
+    keywords: [
+      'airdrop',
+      'wormhole',
+      'p2p',
+      'webrtc',
+      'kirim file',
+      'transfer foto iphone ke windows',
+      'sharedrop',
+      'snapdrop',
+      'pairdrop',
+      'tanpa kabel',
+      'qr transfer',
+    ],
+    featured: true,
+    addedAt: '2026-11-26T04:05:00-08:00',
+    guide: {
+      overviewId:
+        'Mengirim foto dari iPhone ke laptop Windows atau memindahkan video besar antar Android sering merepotkan: kirim ke WhatsApp kualitasnya pecah terkompresi, sedangkan upload ke Google Drive memakan kuota dua kali dan memenuhi penyimpanan. Alat ini menciptakan terowongan WebRTC DataChannel terenkripsi (DTLS 1.3) sehingga file maupun teks clipboard mengalir langsung dari browser ke browser cukup dengan satu kali Scan QR.',
+      overviewEn:
+        'Moving original photos from an iPhone to a Windows PC or beaming heavy videos across Android and Mac shouldn’t require WhatsApp compression or cloud storage uploads. This utility establishes a direct DTLS 1.3 encrypted WebRTC DataChannel between any two browsers via a 6-digit QR scan — streaming files in 64 KB chunks with zero cloud storage.',
+      stepsId: [
+        'Buka halaman ini di perangkat pertama (misalnya Laptop) untuk menampilkan Kode QR dan Kode Ruangan 6 Digit.',
+        'Arahkan kamera HP Anda ke Kode QR tersebut (atau buka halaman yang sama di perangkat kedua lalu ketik kode 6 digitnya).',
+        'Begitu status berubah hijau "Terhubung P2P Langsung", pilih/tarik berapa pun foto, video, PDF, atau ketik link panjang di kolom teks.',
+        'Klik Simpan di perangkat penerima (atau aktifkan "Simpan otomatis saat terima" agar file langsung terunduh begitu sampai).',
+      ],
+      stepsEn: [
+        'Open this page on your first device (e.g., your laptop) to display its 6-digit Room Code and pairing QR.',
+        'Scan the QR code with your phone camera (or open this tool on the second device and enter the 6-digit code).',
+        'Once the green "Connected P2P Directly" status appears, drop any files or paste clipboard text/links.',
+        'Tap Save on the receiving screen (or toggle "Auto-save incoming files" for hands-free batch transfers).',
+      ],
+      tipsId: [
+        'Jika kedua perangkat berada di jaringan Wi-Fi atau Hotspot yang sama, kecepatan transfer mengalir langsung lewat jalur lokal (LAN) hingga puluhan MB per detik tanpa memakan kuota internet utama.',
+        'Jangan menutup tab browser selama proses pengiriman berlangsung karena tidak ada server penyimpanan perantara.',
+        'Gunakan kolom teks cepat di bawah kotak file untuk melempar URL panjang, alamat, atau catatan antar HP dan laptop dalam sedetik.',
+      ],
+      tipsEn: [
+        'When both devices share the same Wi-Fi network or mobile hotspot, WebRTC routes traffic directly over your local LAN at blazing speeds.',
+        'Keep both browser tabs open during active transfers since files stream peer-to-peer with zero intermediary cloud storage.',
+        'Use the Instant Clipboard bar below the dropzone to beam URLs or notes across screens in one tap.',
+      ],
+    },
+  },
+  {
+    id: 'photo-upscaler',
+    name: 'AI Photo Upscaler & De-JPEG Restorer (4×)',
+    nameId: 'AI Penajam Foto Buram & Anti-Pecah WA (4×)',
+    description:
+      'Upscale low-resolution portraits, logos, and compressed WhatsApp images up to 4× Ultra HD locally using Swin2SR BSRGAN neural super-resolution with a live Before/After slider.',
+    descriptionId:
+      'Perbesar & pertajam foto kenangan buram, kiriman gambar WhatsApp yang pecah, atau logo resolusi kecil hingga 4× HD memakai AI Swin2SR langsung di perangkat.',
+    category: 'image',
+    runtime: 'browser',
+    path: '/tools/photo-upscaler',
+    keywords: [
+      'upscale',
+      'upscaler',
+      'penajam foto',
+      'foto buram',
+      'hd foto',
+      'remini',
+      'waifu2x',
+      'swin2sr',
+      'super resolution',
+      'perjelas gambar pecah',
+      '4x',
+    ],
+    featured: true,
+    addedAt: '2026-11-26T04:05:00-08:00',
+    guide: {
+      overviewId:
+        'Foto lama dari HP jadul, logo kiriman klien yang kecil, atau gambar yang sudah berkali-kali diteruskan lewat WhatsApp sering terlihat kotak-kotak (artefak JPEG) dan buram saat diperbesar. Alat ini menjalankan jaringan saraf Swin2SR (BSRGAN Real-World 4× & Lightweight 2×) dengan teknik perenderan blok tumpang-tindih halus (feathered tiling) langsung di browser agar hasil tajam mulus tanpa garis sambungan dan tanpa mengunggah foto pribadi ke server.',
+      overviewEn:
+        'Old portraits, tiny client logos, and heavily forwarded WhatsApp images suffer from blocky JPEG compression and blur. This studio runs Swin2SR neural super-resolution (Real-World BSRGAN 4× and Lightweight 2×) inside a Web Worker with feathered overlapping tiles — delivering seamless Ultra HD restoration privately on your device.',
+      stepsId: [
+        'Pilih atau tarik foto buram, gambar pecah WhatsApp, atau logo kecil ke area kanvas.',
+        'Pilih mesin penajam: "AI Anti-Pecah WA (4×)" untuk membersihkan bintik kompresi & memperbesar 4×, "AI Tajam Cepat (2×)" untuk logo/potret ringan, atau "DSP Penajam Kilat" untuk hasil instan tanpa unduh model.',
+        'Klik "Pertajam & Perbesar" dan pantau progres blok AI hingga selesai.',
+        'Geser garis pembagi tirai Before / After ke kiri dan kanan untuk mengecek detail ketajaman, lalu unduh dalam format PNG HD atau JPG 95%.',
+      ],
+      stepsEn: [
+        'Select or drop a low-resolution photo, compressed WhatsApp image, or small logo.',
+        'Choose your engine: "AI Real-World Restore (4×)" to strip JPEG noise & 4× upscale, "AI Lightweight Crisp (2×)" (~7 MB), or "Instant Edge-Crisp DSP (2×)".',
+        'Click "Upscale & Restore" and watch tile-by-tile progress complete in the background.',
+        'Drag the interactive Before / After curtain slider to inspect restored detail, then download as PNG HD or JPG 95%.',
+      ],
+      tipsId: [
+        'Gunakan mesin "AI Anti-Pecah WA (4×)" khusus untuk foto yang tampak berbintik atau kotak-kotak akibat kompresi chat.',
+        'Jika foto asli Anda sudah berukuran sangat besar (>2000 piksel) dan hanya butuh ketajaman ekstra cepat, pilih mode "DSP Penajam Kilat (2×)".',
+        'Aktifkan tombol "200% Zoom" di pojok kanan atas kanvas untuk melihat perbandingan tekstur piksel dari dekat.',
+      ],
+      tipsEn: [
+        'Pick "AI Real-World Restore (4×)" whenever an image has visible WhatsApp/JPEG mosquito noise or blockiness.',
+        'For already large photos (>2000px) that just need crisp edge enhancement in under a second, use "Instant Edge-Crisp DSP".',
+        'Toggle "200% Zoom" above the comparison stage to inspect fine pixel edges up close.',
+      ],
+    },
+  },
+  {
+    id: 'pdf-redactor',
+    name: 'Forensic PDF Redactor & Metadata Sanitizer',
+    nameId: 'Sensor Forensik PDF Permanen & Hapus Metadata',
+    description:
+      'Auto-detect NIK, phone numbers, emails, or secret names in PDFs, permanently destroy underlying text streams (anti-copy-paste), and wipe hidden author/XMP metadata.',
+    descriptionId:
+      'Deteksi otomatis NIK, nomor HP, email, atau nama rahasia di PDF, hancurkan teks tersembunyi di balik kotak hitam secara permanen (anti copy-paste), & bersihkan metadata.',
+    category: 'pdf',
+    runtime: 'browser',
+    path: '/tools/pdf-redactor',
+    keywords: [
+      'sensor pdf',
+      'redact pdf',
+      'forensic redaction',
+      'hapus metadata pdf',
+      'blok hitam pdf',
+      'sensor nik pdf',
+      'dokumen rahasia',
+      'sanitize pdf',
+      'privasi pdf',
+    ],
+    featured: true,
+    addedAt: '2026-11-26T04:05:00-08:00',
+    guide: {
+      overviewId:
+        'Tahukah Anda bahwa menempelkan kotak hitam biasa di atas PDF menggunakan editor umum SANGAT BERBAHAYA karena teks gaji, NIK, atau nama klien di baliknya masih utuh dan bisa di-copy-paste oleh siapa pun? Alat Sensor Forensik ini memindai kebocoran metadata tersembunyi, membantu menandai NIK/Email/No.HP/Kata Rahasia secara otomatis, lalu meleburkan halaman ke piksel terkunci di dalam kontainer PDF steril baru — dilanjutkan verifikasi mandiri bahwa 0 karakter teks tersisa di halaman tersensor.',
+      overviewEn:
+        'Drawing a black rectangle in standard PDF editors is a classic security trap: the underlying text layer remains selectable and copy-pasteable! This Forensic Redactor audits hidden XMP/Author metadata, auto-detects sensitive patterns (IDs, phones, emails, custom names), destructively flattens redacted pages into a sterile new PDF container, and self-verifies that 0 selectable characters survive.',
+      stepsId: [
+        'Unggah dokumen PDF rahasia (kontrak, slip gaji, rekening koran, berkas hukum) — sistem langsung menampilkan audit metadata tersembunyi.',
+        'Gunakan panel "Deteksi Otomatis Data Sensitif" untuk memblokir NIK, Nomor HP/WA, Email, Nominal Rupiah, atau ketik nama klien/nomor rekening rahasia di seluruh halaman sekaligus.',
+        'Tarik kursor/jari langsung pada gambar halaman PDF di sebelah kanan untuk menambah kotak sensor manual pada tanda tangan atau paragraf tertentu.',
+        'Pilih tampilan sensor (Hitam Pekat, Stempel RAHASIA, atau Putih Kertas), lalu klik "Bakar Permanen & Unduh PDF".',
+      ],
+      stepsEn: [
+        'Load your confidential PDF (contracts, payslips, bank statements, legal filings) to inspect hidden metadata fields immediately.',
+        'Use "Auto-Detect Sensitive Text" to box 16-digit IDs, phone numbers, emails, currency amounts, or custom secret keywords across all pages.',
+        'Drag directly on any page preview on the right to draw manual redaction blocks over signatures, tables, or paragraphs.',
+        'Select your redaction style (Solid Black, Stamped REDACTED, or Whiteout) and click "Burn Permanently & Download PDF".',
+      ],
+      tipsId: [
+        'Pilih Mode Keamanan "Kunci Semua Halaman (Maks)" untuk kontrak atau berkas hukum super sensitif agar seluruh dokumen terkunci rapat tanpa satu pun teks tersembunyi.',
+        'Pilih gaya "Putih Kertas" jika Anda ingin menghapus bagian dokumen seolah-olah diberi tipe-x bersih saat dicetak.',
+        '100% Rahasia: Berkas PDF Anda dibongkar dan disterilkan sepenuhnya di dalam memori browser tanpa pernah menyentuh internet.',
+      ],
+      tipsEn: [
+        'Keep "Full Raster Lock (Max)" selected for high-stakes legal or financial disclosures so zero selectable text layers exist anywhere in the output.',
+        'Switch to "Whiteout" appearance when you want clean blank margins instead of visible black bars on printed copies.',
+        '100% Confidential: Every byte of your PDF is processed in local browser memory and never transmitted online.',
+      ],
+    },
+  },
 ]
