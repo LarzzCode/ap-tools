@@ -9,6 +9,7 @@ import Home from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import Privacy from '../pages/Privacy'
 import AspectCropper from '../pages/tools/AspectCropper'
+import AudioTranscriber from '../pages/tools/AudioTranscriber'
 import CarouselSplitter from '../pages/tools/CarouselSplitter'
 import CleanUrl from '../pages/tools/CleanUrl'
 import ColorPalette from '../pages/tools/ColorPalette'
@@ -222,6 +223,10 @@ export const router = createBrowserRouter([
       {
         path: '/tools/media-converter',
         Component: MediaConverter,
+      },
+      {
+        path: '/tools/audio-transcriber',
+        Component: AudioTranscriber,
       },
       {
         path: '/feedback',

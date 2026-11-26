@@ -237,3 +237,54 @@ a {
 .spin-hub-btn:active:not(:disabled) {
   transform: translate(-50%, -50%) scale(0.95);
 }
+
+/* ================================
+   AUDIO TRANSCRIBER & WAVEFORM STUDIO TOKENS
+================================ */
+
+.waveform-stage-surface {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 122, 255, 0.035) 0%,
+      transparent 100%
+    ),
+    var(--surface-soft);
+}
+
+.dark .waveform-stage-surface {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 132, 255, 0.08) 0%,
+      transparent 100%
+    ),
+    var(--surface-soft);
+}
+
+.transcript-cue-row {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.transcript-cue-row[data-active="true"] {
+  background: var(--primary-soft);
+  border-color: var(--primary-border);
+}
+
+@keyframes recPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.38;
+    transform: scale(0.86);
+  }
+}
+
+.rec-dot-pulse {
+  animation: recPulse 1.35s ease-in-out infinite;
+}

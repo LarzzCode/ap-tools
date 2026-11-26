@@ -2040,4 +2040,61 @@ export const tools: Tool[] = [
       ],
     },
   },
+  {
+    id: 'audio-transcriber',
+    name: 'AI Audio & Video Transcriber (SRT/VTT)',
+    nameId: 'Transkripsi Audio/Video & Subtitle AI',
+    description:
+      'Transcribe voice notes, lectures, meetings, or videos into timestamped text and CapCut/Premiere SRT & VTT subtitles 100% locally in your browser using OpenAI Whisper.',
+    descriptionId:
+      'Ubah rekaman kuliah, rapat, Voice Note WA, atau video konten menjadi teks utuh & file subtitle .SRT/.VTT (CapCut/Premiere) 100% lokal di browser memakai OpenAI Whisper AI.',
+    category: 'media',
+    runtime: 'browser',
+    path: '/tools/audio-transcriber',
+    keywords: [
+      'transkrip',
+      'transcribe',
+      'speech to text',
+      'whisper',
+      'subtitle',
+      'srt',
+      'vtt',
+      'capcut',
+      'voice note',
+      'notulensi rapat',
+      'rekaman kuliah',
+      'audio ke teks',
+      'video ke teks',
+    ],
+    featured: true,
+    addedAt: '2026-11-26T03:20:00-08:00',
+    guide: {
+      overviewId:
+        'Menyalin hasil rekaman kuliah, wawancara skripsi, rapat kantor, atau membuat subtitle video secara manual memakan waktu berjam-jam, sedangkan layanan cloud berbayar mengharuskan Anda mengunggah rekaman pribadi ke server luar. Alat ini menjalankan model kecerdasan buatan OpenAI Whisper langsung di dalam browser perangkat Anda (WebGPU / WebAssembly) lengkap dengan gelombang suara interaktif, pratinjau subtitle langsung di atas video, serta ekspor .SRT, .VTT, .TXT, dan ringkasan WhatsApp.',
+      overviewEn:
+        'Transcribing lectures, interviews, meetings, or video captions manually takes hours, while cloud services require uploading private recordings to external servers. This studio runs OpenAI Whisper directly inside your browser via WebGPU or WebAssembly, featuring an interactive 16 kHz waveform scrubber, live burned-in video caption preview, inline cue editing, and instant .SRT, .VTT, .TXT, and WhatsApp exports.',
+      stepsId: [
+        'Pilih atau tarik file audio/video (MP3, WAV, M4A, Voice Note WA .ogg/.opus, MP4, MOV, WebM) atau rekam suara langsung dari mikrofon.',
+        'Pilih ukuran model Whisper AI (Seimbang Base direkomendasikan), bahasa suara di dalam rekaman, serta gaya pemotongan subtitle (Kalimat Standar atau Pendek 4 Kata untuk Reels/CapCut).',
+        'Klik "Mulai Transkripsi Lokal" — unduhan model hanya dilakukan sekali ke cache browser, lalu teks akan mengalir secara langsung.',
+        'Klik penanda waktu pada daftar Timeline Subtitle untuk mendengarkan & mengoreksi ejaan bila perlu, lalu unduh sebagai file .SRT, .VTT, .TXT, atau salin ke WhatsApp.',
+      ],
+      stepsEn: [
+        'Drop an audio or video file (MP3, WAV, M4A, WhatsApp .ogg/.opus, MP4, MOV, WebM) or record live from your microphone.',
+        'Select your Whisper AI model tier (Balanced Base recommended), spoken language, and subtitle pacing (Standard Sentences or Short 4-Word Reels/CapCut cues).',
+        'Click "Start Local Transcription" — model weights download once into your browser cache and stream recognized text live.',
+        'Click any timestamp pill to audition and edit cues inline, then export to .SRT, .VTT, .TXT, .JSON, or WhatsApp.',
+      ],
+      tipsId: [
+        'Pilih gaya "Pendek · 4 Kata" jika Anda ingin menghasilkan file .SRT bergaya dinamis siap impor ke CapCut, Premiere Pro, atau DaVinci Resolve untuk TikTok/Reels.',
+        'Gunakan mode "Terjemahkan ke Inggris" jika rekaman berbahasa Indonesia/daerah namun Anda membutuhkan subtitle berbahasa Inggris secara langsung.',
+        '100% Privat & Tanpa Kuota Berulang: File audio/video tidak pernah keluar dari perangkat Anda, dan model AI tersimpan di cache browser.',
+      ],
+      tipsEn: [
+        'Choose "Short · 4 Words" pacing to generate punchy social-video .SRT files ready to drop into CapCut, Premiere Pro, or DaVinci Resolve.',
+        'Switch Output Task to "Translate to English" to turn non-English speech directly into English subtitles in a single pass.',
+        '100% Private: Your audio and video files are decoded and transcribed strictly on-device and never uploaded anywhere.',
+      ],
+    },
+  },
 ]

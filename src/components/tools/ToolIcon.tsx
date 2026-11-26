@@ -3,6 +3,7 @@ import {
   BriefcaseBusiness,
   Calculator,
   Camera,
+  Captions,
   Columns2,
   Columns3,
   Contact,
@@ -175,6 +176,9 @@ export default function ToolIcon({
 
     case 'media-converter':
       return <Film {...props} />
+
+    case 'audio-transcriber':
+      return <Captions {...props} />
 
     default:
       return <FileImage {...props} />

@@ -94,10 +94,13 @@ function getRecommendedToolsForFile(file: File): Tool[] {
   if (
     type.startsWith('video/') ||
     type.startsWith('audio/') ||
-    /\.(mp4|mkv|mov|webm|mp3|wav|m4a|ogg)$/i.test(name)
+    /\.(mp4|mkv|mov|webm|mp3|wav|m4a|ogg|opus|flac)$/i.test(name)
   ) {
     return tools.filter(
-      (t) => t.id === 'voice-changer' || t.id === 'media-converter',
+      (t) =>
+        t.id === 'audio-transcriber' ||
+        t.id === 'voice-changer' ||
+        t.id === 'media-converter',
     )
   }
 
